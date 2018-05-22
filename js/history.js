@@ -1,56 +1,47 @@
-
-function getBalance(){
-
+function getUser(){
     if(!!Cookies.get('session'))
         var address = localStorage.getItem("walle");
 
-    $.post('./getBalance.php',
+    $.post('./getUser.php',
            {
         user_address : address
-    }).done(function(data){
-
+    }).done(function(data)
+            {
         if(data.status == 404)
         {
-            alert(data.message);
+            $("#alert_msg").text("This Address does not exist, please Sign-Up first");
+            $("#alert_modal").modal("show");
         }
-        else{
-            $("#balance").text(data.wallet_balance);
-            $("#unlock-balance").text(data.wallet_unlock);
-
-
-            if(data.wallet_balance >= 10)
-            {
-                $("#spnPaidMsg").text("You are avialable to withdraw your SUPs now !");
-                $("#btnPaid").css("visibility", "visible");
-            }
-            else{
-                $("#spnPaidMsg").text("You need 10-SUPs or more to get paid ! Keep playing");
-                $("#btnPaid").css("visibility", "hidden");
-            }
-
-            //START TIMER
-            setTimer();
-            $("#destination").val(address);
-            $("#spnClaim").text(data.wallet_claims);
-            $("#spnPaid").text(data.wallet_paids);
-
+        else
+        {   
+            $("#spnIdUser").text(data.user_name);
+            $("#spnEmail").text(data.user_email);
         }
     });
+}
 
-    //GET POOL BALANCE
-    var xhttp = new XMLHttpRequest(); 
-    //CHECK STATUS VALUES -IF-ADD TEXT TO DIV -ELSE-NO CONNECTION MESSAGE
-    xhttp.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200){
-            $("#spnPoolAmount").text(this.response);
-        }
-        else{
-            $("#spnPoolAmount").text("INVALID CONNECTION");
-        }
-    };
-    xhttp.open("GET","pool-show.php", true); //(METHOD,URL,BOOLEAN)
-    xhttp.send();// SEND THE REQUEST
+function getTbSucces(){
 
+    var dataTable = $('#tb-succes').DataTable( {
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": "./getTbSucces.php",
+            "type": "post"
+        }
+    });
+}
+
+function getTbError(){
+
+    var dataTable = $('#tb-error').DataTable( {
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": "./getTbError.php",
+            "type": "post"
+        }
+    });
 }
 
 function setClaim(){
@@ -160,45 +151,9 @@ function setTransfer(){
     }
 }
 
-function getTbPayments(){
-
-    // Disable search and ordering by default
-         $.extend( $.fn.DataTable.defaults, {
-             searching: false,
-             ordering:  false
-         } );
-        
-    var dataTable = $('#tb-payments').DataTable( {
-        "pageLength": 10,
-        "processing": true,
-        "serverSide": true,
-        "ajax": {
-            "url": "./getTbPayments.php",
-            "type": "post"
-        }
-    });
-}
-
-function setTimer(){
-
-    $('#spnTimer').timer({
-        countdown: true,
-        duration: '1m',      // This will start the countdown from 3 mins 40 seconds
-        callback: function() 
-        {  // This will execute after the duration has elapsed
-            $("#aClaim").css("color", "orange");
-            $("#btnClaim").css("visibility", "visible");
-        },
-        repeat: false
-    });
-}
-
-
 $(document).ready(function(){
     //start once page is load
-    getBalance();
-    getTbPayments();
-    $('[data-toggle="tooltip"]').tooltip();
+    getUser();
 
     $("#btnClaim").click(function(){
         alert("This could an Add-On");

@@ -16,8 +16,22 @@
     </head>
 
     <body>
+        
+        <!-- LOADING PAGE -->
+        <div id="loading-container">
+            <div id="loading"></div>
+            </div>
+        
+        <script>
+            window.onload = function(){
 
-        <head>
+                $("#loading-container").css("visibility", "hidden");
+                $("#loading-container").css("opacity", "0");
+                $("#page").css("visibility", "visible");
+            }
+        </script>
+
+        <head id="page">
             <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
                 <a class="navbar-brand" href="#">
                     <img src="assets/img/sup-logo.png" width="40" height="40" class="d-inline-block align-top" alt="">
