@@ -166,7 +166,7 @@ if (!$result = mysqli_query($cnn, $query))
 
 		        #UPDATE BALANCE FROM WALLET NOT PROCESSED
 		        
-		        $query6 = "SELECT wallet_balance FROM wallet WHERE user_id = '$userid'";
+		        $query6 = "SELECT wallet_unlock FROM wallet WHERE user_id = '$userid'";
 		        if (!$result = mysqli_query($cnn,$query6)) 
 		        	exit(mysqli_error($cnn));
 		        if (mysqli_num_rows($result) > 0) 
@@ -188,13 +188,13 @@ if (!$result = mysqli_query($cnn, $query))
 
 		        $new_withdraws = $wallet_withdraws - 1;
 
-		        $query8 = "UPDATE wallet SET wallet_balance = '$newBalance', wallet_withdraws = '$new_withdraws'";
-		        if (!$result = mysqli_query($cnn,$query7)) 
+		        $query8 = "UPDATE wallet SET wallet_unlock = '$newBalance', wallet_withdraws = '$new_withdraws'";
+		        if (!$result = mysqli_query($cnn,$query7))
 			        exit(mysqli_error($cnn));
-			    	echo "</br> <h3>This Wallet Address Balance: ".$invalidWallet." has been updated</h3>";
-		        }
+				else{
+					echo "</br> <h3>This Wallet Address Balance: ".$invalidWallet." has been updated</h3>";
+				}
 			}  
-
 		
 
 		echo "<h1>The Transfer has not been processed</br> Error Transfer!</h1> </br> ";
