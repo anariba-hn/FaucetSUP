@@ -97,15 +97,12 @@ if (!$result = mysqli_query($cnn, $query))
 		for ($x=0; $x < $requestcount; $x++)
 		{
 
-			$query3 = "DELETE FROM vf_payments WHERE user_address = '$cron_address[$x]'";
+			$query3 = "DELETE FROM vf_payments WHERE payments_wallet = '$cron_address[$x]'";
 			if (!$result = mysqli_query($cnn,$query3)) 
 		        exit(mysqli_error($cnn));
 		}
 
-		/*$db->query("insert into tbl_cronjob_history 
-			(  run_date, success,total_amount,total_transfers, fee, hash_transfers, error_transfer ) 
-	 values (".$run_date.",1 ,".$total_amount.", ".$requestcount.",".$transfer_fee.
-	 ", '$hash_transfer' , ''  ) ");*/
+		
 	    echo "</br><h3>".$requestcount. " Withdrawal Transfers has been proceessed with hash number:".$hash_transfer."</h3>" ;
 	    
 	//if "fee" not exists in transfer response means that error exists
@@ -131,22 +128,6 @@ if (!$result = mysqli_query($cnn, $query))
 		        
 		    }
 
-		    echo $paymentID;
-
-
-		/*
-		$query3 = "SELECT id_payments FROM vf_payments WHERE payments_wallet = '$invalidWallet'";
-		    if (!$result2 = mysqli_query($cnn,$query3)) 
-		        exit(mysqli_error($cnn));
-
-		    if (mysqli_num_rows($result2) > 0) 
-		    {
-		        $data = mysqli_fetch_row($result);
-		        $paymentID = (int) $data[0];
-		    }				
-			//flag
-			echo $paymentID;
-
 		$query3 = "SELECT payments_balance FROM vf_payments WHERE id_payments = '$paymentID'";
 		if (!$result = mysqli_query($cnn,$query3)) 
 		        exit(mysqli_error($cnn));
@@ -162,10 +143,10 @@ if (!$result = mysqli_query($cnn, $query))
 		    if (mysqli_num_rows($result) > 0) 
 		    {
 		        $data3 = mysqli_fetch_row($result);
-		        $invalidId = (int) $data3[0];
+		        $userid = (int) $data3[0];
 		    }
 
-		$insert = "INSERT INTO vf_payments_error (payments_balance, payments_status, payments_wallet, payments_status, payments_date, user_id) VALUES ('$invalidBalance', 'error', '$invalidWallet', now(), '$invalidId')";  
+		$insert = "INSERT INTO vf_payments_error (payments_balance, payments_status, payments_wallet, payments_status, payments_date, user_id) VALUES ('$invalidBalance', 'error', '$invalidWallet', now(), '$userid')";  
 		if (!$result = mysqli_query($cnn, $query3)) 
 			{
 				echo "</br>Wallet: ".$x." not be inserted on db payments_error";	
@@ -175,24 +156,21 @@ if (!$result = mysqli_query($cnn, $query))
 
 				#UPDATE PAYMENTS DB WHERE CRON RUNS
 				
-				$query3 = "DELETE FROM vf_payments WHERE user_address = '$invalidWallet'";
+				$query3 = "DELETE FROM vf_payments WHERE payments_wallet = '$invalidWallet'";
 				if (!$result = mysqli_query($cnn,$query3)) 
 		        	exit(mysqli_error($cnn));
+		        else{
+		        	echo "</br> <h1>This Wallet Address: ".$invalidWallet." has been deledet";
+		        }
 			}  
 
-		*/
+		
 
 		echo "<h1>The Transfer has not been processed</br> Error Transfer!</h1> </br> ";
 		echo 
 		"Error Code: ".$transfer_errorcode. 
 		"</br>Error Message: ".$transfer_errormessage;
 
-		
-		/*
-		$db->query("insert into tbl_cronjob_history 
-			(  run_date, success,total_amount,total_transfers, fee, hash_transfers, error_transfer ) 
-	 values (".$run_date.",1 ,".$total_amount.", ".$requestcount.",".$transfer_errorcode.
-	 ", '' , '$transfer_errormessage'  ) "); */
 	}
 		
 }
@@ -286,7 +264,6 @@ if ($user_address != null)
 			$response['status'] = 404;
 	        $response['message'] = "Invalid Request !";
 }
-
 */
 
  ?>
