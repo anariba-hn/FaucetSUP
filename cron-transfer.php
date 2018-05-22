@@ -1,4 +1,4 @@
-(<?php 
+<?php 
  include("./connex.php");
  //Superior-php functions
  require "../vendor/autoload.php";
@@ -146,8 +146,8 @@ if (!$result = mysqli_query($cnn, $query))
 		        $userid = (int) $data3[0];
 		    }
 
-		$insert = "INSERT INTO vf_payments_error (payments_balance, payments_status, payments_wallet, payments_status, payments_date, user_id) VALUES ('$invalidBalance', 'error', '$invalidWallet', now(), '$userid')";  
-		if (!$result = mysqli_query($cnn, $query3)) 
+		$insert = "INSERT INTO vf_payments_error (payments_balance, payments_status, payments_wallet, payments_date, user_id) VALUES ('$invalidBalance', 'error', '$invalidWallet', now(), '$userid')";  
+		if (!$result = mysqli_query($cnn, $insert)) 
 			{
 				echo "</br>Wallet: ".$x." not be inserted on db payments_error";	
 				echo mysqli_error($cnn); 		
