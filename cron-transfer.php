@@ -115,6 +115,7 @@ if (!$result = mysqli_query($cnn, $query))
 		#DELETE SPACES FROM STRING
 		$invalidWallet = str_replace(' ', '', $walletmsg);
 
+
 		#INSERT DATA OF INVAILD TRANFER
 		
 		$query2 = "SELECT id_payments FROM vf_payments WHERE payments_wallet = '$invalidWallet'";
@@ -149,18 +150,48 @@ if (!$result = mysqli_query($cnn, $query))
 		$insert = "INSERT INTO vf_payments_error (payments_balance, payments_status, payments_wallet, payments_date, user_id) VALUES ('$invalidBalance', 'error', '$invalidWallet', now(), '$userid')";  
 		if (!$result = mysqli_query($cnn, $insert)) 
 			{
-				echo "</br>Wallet: ".$x." not be inserted on db payments_error";	
+				echo "</br>Wallet: ".$invalidWallet." not be inserted on db payments_error";	
 				echo mysqli_error($cnn); 		
 			}
 			else{
 
 				#UPDATE PAYMENTS DB WHERE CRON RUNS
 				
-				$query3 = "DELETE FROM vf_payments WHERE payments_wallet = '$invalidWallet'";
-				if (!$result = mysqli_query($cnn,$query3)) 
+				$query5 = "DELETE FROM vf_payments WHERE id_payments = '$paymentID'";
+				if (!$result = mysqli_query($cnn,$query5)) 
 		        	exit(mysqli_error($cnn));
 		        else{
-		        	echo "</br> <h1>This Wallet Address: ".$invalidWallet." has been deledet";
+		        	echo "</br> <h2>This Wallet Address: ".$invalidWallet." has been deledet</h2>";
+		        }
+
+		        #UPDATE BALANCE FROM WALLET NOT PROCESSED
+		        
+		        $query6 = "SELECT wallet_balance FROM wallet WHERE user_id = '$userid'";
+		        if (!$result = mysqli_query($cnn,$query6)) 
+		        	exit(mysqli_error($cnn));
+		        if (mysqli_num_rows($result) > 0) 
+		        {
+		        $data4 = mysqli_fetch_row($result);
+		        $old_balance = (int) $data4[0];
+		    	}
+
+		    	$newBalance = $old_balance + $invalidBalance;
+
+		    	$query7 = "SELECT wallet_withdraws FROM wallet WHERE user_id = '$userid'";
+			    if (!$result = mysqli_query($cnn,$query7)) 
+			        exit(mysqli_error($cnn));
+			    if (mysqli_num_rows($result) > 0) 
+			    {
+		        $data5 = mysqli_fetch_row($result);
+		        $wallet_withdraws = (int) $data5[0];
+		        }
+
+		        $new_withdraws = $wallet_withdraws - 1;
+
+		        $query8 = "UPDATE wallet SET wallet_balance = '$newBalance', wallet_withdraws = '$new_withdraws'";
+		        if (!$result = mysqli_query($cnn,$query7)) 
+			        exit(mysqli_error($cnn));
+			    	echo "</br> <h3>This Wallet Address Balance: ".$invalidWallet." has been updated</h3>";
 		        }
 			}  
 
