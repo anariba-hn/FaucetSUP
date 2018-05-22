@@ -49,8 +49,6 @@ if (!$result = mysqli_query($cnn, $query))
 
 	#VALIDATING IF TRANSFER SUCCES
 	
-	
-	 
 	//if "fee" exists in transfer response means that transfe was successfull
 	if (isset($transfer_result->{'fee'})) 
 	{
@@ -189,7 +187,7 @@ if (!$result = mysqli_query($cnn, $query))
 		        $new_withdraws = $wallet_withdraws - 1;
 
 		        $query8 = "UPDATE wallet SET wallet_unlock = '$newBalance', wallet_withdraws = '$new_withdraws'";
-		        if (!$result = mysqli_query($cnn,$query7))
+		        if (!$result = mysqli_query($cnn,$query8))
 			        exit(mysqli_error($cnn));
 				else{
 					echo "</br> <h3>This Wallet Address Balance: ".$invalidWallet." has been updated</h3>";

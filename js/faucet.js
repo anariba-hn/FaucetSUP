@@ -152,8 +152,12 @@ function setTransfer(){
                 $('#amount').focus();
             }
             else{
-                
-                $("#modal4").modal("show");
+
+                $("#succes_tranfer_modal").modal("show");
+                /*
+                        lert("This could an Add-On");
+                        window.open("https://www.youtube.com/watch?v=coVJIoQJx9Q", "Diseño Web", "width=500, height=300");
+                        */
             }
         });
 
@@ -183,15 +187,8 @@ function getUser(){
 }
 
 function getTbPayments(){
-    
-        // Disable search and ordering by default
-        $.extend( $.fn.DataTable.defaults, {
-            searching: false,
-            ordering:  false
-        } );
 
     var dataTable = $('#tb-payments').DataTable( {
-        "pageLength": 10,
         "processing": true,
         "serverSide": true,
         "ajax": {
@@ -208,6 +205,18 @@ function getTbSucces(){
         "serverSide": true,
         "ajax": {
             "url": "./getTbSucces.php",
+            "type": "post"
+        }
+    });
+}
+
+function getTbError(){
+
+    var dataTable = $('#tb-error').DataTable( {
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": "./getTbError.php",
             "type": "post"
         }
     });
@@ -232,7 +241,6 @@ $(document).ready(function(){
     //start once page is load
     getBalance();
     getTbPayments();
-    getTbSucces();
     $('[data-toggle="tooltip"]').tooltip();
 
     $("#btnClaim").click(function(){
@@ -248,8 +256,6 @@ $(document).ready(function(){
     })
 
     $("#btnSend").click(function(){    
-        alert("This could an Add-On");
-        window.open("https://www.youtube.com/watch?v=coVJIoQJx9Q", "Diseño Web", "width=500, height=300");
         setTransfer();
     })
 

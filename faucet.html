@@ -17,21 +17,7 @@
 
     <body>
 
-        <!-- LOADING PAGE -->
-        <div id="loading-container">
-            <div id="loading"></div>
-            </div>
-        
-        <script>
-            window.onload = function(){
-
-                $("#loading-container").css("visibility", "hidden");
-                $("#loading-container").css("opacity", "0");
-                $("#page").css("visibility", "visible");
-            }
-        </script>
-
-        <head id="page">
+        <head>
             <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
                 <a class="navbar-brand" href="#">
                     <img src="assets/img/sup-logo.png" width="40" height="40" class="d-inline-block align-top" alt="">
@@ -50,7 +36,7 @@
                             <a class="nav-link" href="#modal2" data-toggle="modal" data-target="#modal2">Transfer</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#modal3" data-toggle="modal" data-target="#modal3">MyHistory</a>
+                            <a class="nav-link" href="./history.html" >MyHistory</a>
                         </li>
                         <li class="nav-item">
                             <a id="btnLogOut" class="nav-link" href="#">Log Out</a>
@@ -60,7 +46,7 @@
             </nav>
         </head>
 
-        <div class="container" id="page">
+        <div class="container">
             <div class="hero-balance">
                 <div class="row">
                     <div class="col balance rounded" data-toggle="tooltip" data-placement="top" title="This is your faucet balance.">
@@ -206,7 +192,7 @@
 
 
         <!--SUCCES MODAL-->
-        <div class="modal fade" id="modal4" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal fade" id="succes_tranfer_modal" tabindex="-1" data-backdrop="static" data-keyboard="false">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header modal-header-success">
