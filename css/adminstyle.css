@@ -1,0 +1,27 @@
+a{
+    color: orange;
+}
+
+#logout{
+   justify-content: flex-end;
+}
+
+.nav a{
+    margin-bottom: 30px;
+    text-align: center;
+    color: black;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+    background-color: orange;
+}
+
+.users, .claims, .paids, .donated{
+    width: 150px;
+    height: 100px;
+    border: 1px solid orange;
+    border-radius: 10px;
+    text-align: center;
+    margin: 15px;
+}
+

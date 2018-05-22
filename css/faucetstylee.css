@@ -1,0 +1,358 @@
+/*FIRST SECTION*/
+
+*,*:after, *:before;{
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#loading-container{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    -webkit-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+    z-index: 1000;
+}
+
+#loading{
+    height: 250px;
+    width: 250px;
+    
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    
+    background-image: url(../assets/img/superiorcoin-animation2.gif);
+}
+
+#page{
+    visibility: hidden;
+}
+
+.container{
+    max-width: 1200px;
+}
+
+.hero{
+    margin: 15px;
+}
+.hero h1{
+    text-align: center;
+}
+
+.hero-content{
+    text-align: center;
+}
+
+.hero-content input[type="text"]{
+    width: 300px;
+    text-align: center;
+}
+
+.goBtn{
+    text-align: center;
+    margin-top: 15px;
+    letter-spacing: 0.2rem;
+}
+
+.upBtn{
+    text-align: center;
+    margin-top: 15px;
+    margin-left: 10px;
+    letter-spacing: 0.2rem;
+}
+
+#alert_msg{
+    text-align: center;
+    color: black;
+    font-size: 18px;
+}
+
+#msg{
+    padding: 5px;
+    font-size: 0.9em;
+    text-align: center;
+    color: black;
+    border-radius: 15px;
+    background-color: red;
+    visibility:hidden;
+}
+
+.succes_signup_modal{
+    text-align: center;
+}
+
+/*SECOND SECTION*/
+
+.info-page{
+    text-align: center;
+}
+
+.info-page p{
+    margin-top: 20px;
+}
+
+.info-coins{
+    text-align: center;
+}
+
+.info-coins p{
+    margin-top: 20px;
+}
+
+.info-donate{
+    text-align: center;
+}
+
+.info-donate p{
+    margin-top: 20px;
+}
+
+.pool{
+    text-align: center;
+}
+
+.pool h2{
+    
+    font-size: 38px;
+    color: hsla(0, 0%, 0%, .9);
+    font: normal 38px Varela Round, sans-serif;
+    letter-spacing: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    animation: move linear 2000ms infinite;
+}
+
+
+#spnPoolAmount{
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 5px;
+}
+
+/*FOOTER SECTION*/
+.ends{
+    text-align: center;
+    background-color: #343a40;;
+    height: auto;
+    width: auto ;
+}
+
+.footer-ends{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+    width: auto ;
+}
+
+.ends p{
+    font-size: 16px;
+}
+
+.media-footer{
+    padding: 0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.media-krypto img{
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.media-github img{
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.media-linked img{
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.media-fb img{
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.media-tw img{
+    max-width: 50px;
+    max-height: 50px;
+}
+
+footer .title{
+    font-size: 18px;
+    margin: 0 0 15px 0;
+    font-weight: 600;
+}
+
+footer a{
+    color: #000;
+}
+
+.links .col-md-3{
+    margin-bottom: 20px;
+}
+
+.links{
+    text-align: center;
+}
+
+/*FAUCET HTML STYLEE*/
+
+
+.hero-balance{
+    margin: 50px 0px 50px 0;
+}
+
+.balance{
+    padding: 20px 0 10px 0;
+    text-align: center; 
+    background-color: #343a40;
+    color: #fff;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#balance{
+    font-size: 26px;
+    color: #877d7d;
+}
+
+.unlock-balance{
+    padding: 20px 0 10px 0;
+    text-align: center; 
+    background-color: #343a40;
+    color: #fff;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#unlock-balance{
+    font-size: 26px;
+    color: #877d7d;
+}
+
+.form-group-claim{
+    text-align: center;
+}
+
+.form-group-claim label{
+    font-size: 32px;
+}
+
+.timer{
+    text-align: center;
+}
+
+#spnTimer{
+    font-size: 38px;
+    
+}
+
+#btnClaim{
+    visibility: hidden;
+    letter-spacing: 5px;
+}
+
+#btnWithdraw{
+    letter-spacing: 5px;
+}
+
+#btnLogOut:hover{
+    color: orange;
+}
+
+.payments-container{
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.history{
+    text-align: center;
+}
+
+.profile-hero{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+/* KEY FRAME EFFECT*/
+@keyframes move {
+  0% {
+    text-shadow:
+      4px -4px 0 hsla(0, 100%, 50%, 1), 
+      3px -3px 0 hsla(0, 100%, 50%, 1), 
+      2px -2px 0 hsla(0, 100%, 50%, 1), 
+      1px -1px 0 hsla(0, 100%, 50%, 1),
+      -4px 4px 0 hsla(180, 100%, 50%, 1), 
+      -3px 3px 0 hsla(180, 100%, 50%, 1), 
+      -2px 2px 0 hsla(180, 100%, 50%, 1), 
+      -1px 1px 0 hsla(180, 100%, 50%, 1)
+    ;
+  }
+  25% {    
+    text-shadow:      
+      -4px -4px 0 hsla(180, 100%, 50%, 1), 
+      -3px -3px 0 hsla(180, 100%, 50%, 1), 
+      -2px -2px 0 hsla(180, 100%, 50%, 1), 
+      -1px -1px 0 hsla(180, 100%, 50%, 1),
+      4px 4px 0 hsla(0, 100%, 50%, 1), 
+      3px 3px 0 hsla(0, 100%, 50%, 1), 
+      2px 2px 0 hsla(0, 100%, 50%, 1), 
+      1px 1px 0 hsla(0, 100%, 50%, 1)      
+    ;
+  }
+  50% {
+    text-shadow:
+      -4px 4px 0 hsla(0, 100%, 50%, 1), 
+      -3px 3px 0 hsla(0, 100%, 50%, 1), 
+      -2px 2px 0 hsla(0, 100%, 50%, 1), 
+      -1px 1px 0 hsla(0, 100%, 50%, 1),
+      4px -4px 0 hsla(180, 100%, 50%, 1), 
+      3px -3px 0 hsla(180, 100%, 50%, 1), 
+      2px -2px 0 hsla(180, 100%, 50%, 1), 
+      1px -1px 0 hsla(180, 100%, 50%, 1)
+    ;
+  }
+  75% {
+    text-shadow:
+      4px 4px 0 hsla(180, 100%, 50%, 1), 
+      3px 3px 0 hsla(180, 100%, 50%, 1), 
+      2px 2px 0 hsla(180, 100%, 50%, 1), 
+      1px 1px 0 hsla(180, 100%, 50%, 1),
+      -4px -4px 0 hsla(0, 100%, 50%, 1), 
+      -3px -3px 0 hsla(0, 100%, 50%, 1), 
+      -2px -2px 0 hsla(0, 100%, 50%, 1), 
+      -1px -1px 0 hsla(0, 100%, 50%, 1)      
+    ;
+  }
+  100% {
+    text-shadow:
+      4px -4px 0 hsla(0, 100%, 50%, 1), 
+      3px -3px 0 hsla(0, 100%, 50%, 1), 
+      2px -2px 0 hsla(0, 100%, 50%, 1), 
+      1px -1px 0 hsla(0, 100%, 50%, 1),
+      -4px 4px 0 hsla(180, 100%, 50%, 1), 
+      -3px 3px 0 hsla(180, 100%, 50%, 1), 
+      -2px 2px 0 hsla(180, 100%, 50%, 1), 
+      -1px 1px 0 hsla(180, 100%, 50%, 1)
+    ;
+  }  
+}

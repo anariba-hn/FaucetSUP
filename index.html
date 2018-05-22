@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/faucetstylee.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <title>SuperiorFaucet</title>
+
+        <!-- SCRIPTS --> 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <!--RECAPTCHA-->
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+    </head>
+
+    <body>
+        <!-- LOADING PAGE -->
+        <div id="loading-container">
+            <div id="loading"></div>
+            </div>
+        
+        <script>
+            window.onload = function(){
+
+                $("#loading-container").css("visibility", "hidden");
+                $("#loading-container").css("opacity", "0");
+                $("#page").css("visibility", "visible");
+            }
+        </script>
+
+        <div class="container" id="page">
+
+            <div class="col hero">
+                <h1>Welcome to Superior Faucet</h1>
+            </div> <!--ENDS HERO-->
+
+            <div class="col hero-content">
+                <img src="assets/img/sup-logo.png" alt="SUPERIOR-LOGO" class="center-block img-circle logo-margin-negative">
+                <br/>
+                <input id="txtWallet" type="text" placeholder="Enter your Wallet/Email Addres">
+                <br/>
+                <button id="btnLogIn" type="button" type="button" class="goBtn btn btn-dark">GO</button>
+                <button id="btnSignUp" class="btn btn-dark upBtn" type="button" data-toggle="modal" data-target="#modal1">Sign Up</button>
+            </div> <!-- ENDS SUP-IMG-->
+
+            <div class="modal fade" id="modal1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Please Fill the Information Below</h5>
+                            <br/>
+                            <span id="msg"></span>
+                            <button type="button" class="close" data-dismiss="modal" arial-label="Close">&times;</button>
+                        </div> <!--ENDS MODAL-HEADER-->
+
+                        <div class="modal-body">
+                            <form id="form">
+                                <div class="form-group">
+                                    <label for="first_name">First Name</label>
+                                    <input type="text" id="user_name" placeholder="Could be a Username" class="form-control" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Email Address</label>
+                                    <input type="text" id="user_email" placeholder="Email Address" class="form-control" required/>
+                                </div>
+
+                                <div class="form-group" id="formpass">
+                                    <label for="pass">Password</label>
+                                    <input type="password" id="user_pw" placeholder="Password" class="form-control" required />
+                                </div>
+                                <div class="form-group">
+                                    <label for="cpass">Repeat Password</label>
+                                    <input type="password" id="cpass" placeholder="Repeat Password" class="form-control" required />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="user_address">Wallet Address</label>
+                                    <input type="text" id="user_address" placeholder="Wallet-Address" class="form-control" required />
+                                </div>		
+                                <br>
+                                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                                <div class="g-recaptcha" data-sitekey="6LdKHlcUAAAAAGgrRg639ZPqtaNP3JMny-izMjMX
+                                                                       "></div>
+                                <noscript>
+                                    <div>
+                                        <div style="width: 302px; height: 422px; position: relative;">
+                                            <div style="width: 302px; height: 422px; position: absolute;">
+                                                <iframe src="https://www.google.com/recaptcha/api/fallback?k=6LdKHlcUAAAAAGgrRg639ZPqtaNP3JMny-izMjMX
+                                                             "
+                                                        frameborder="0" scrolling="no"
+                                                        style="width: 302px; height:422px; border-style: none;">
+                                                </iframe>
+                                            </div>
+                                        </div>
+                                        <div style="width: 300px; height: 60px; border-style: none;
+                                                    bottom: 12px; left: 25px; margin: 0px; padding: 0px; right: 25px;
+                                                    background: #f9f9f9; border: 1px solid #c1c1c1; border-radius: 3px;">
+                                            <textarea id="g-recaptcha-response" name="g-recaptcha-response"
+                                                      class="g-recaptcha-response"
+                                                      style="width: 250px; height: 40px; border: 1px solid #c1c1c1;
+                                                             margin: 10px 25px; padding: 0px; resize: none;" >
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                </noscript>
+                                <br/> 	
+                                <button id="submit" type="button" class="btn btn-success">Sign me up!</button>
+                            </form> <!--ENDS FORM-->
+                        </div> <!--ENDS MODAL-BODY-->
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div> <!-- ENDS MODAL-CONTENT-->
+                </div><!--ENDS MODAL DIALOG-->
+            </div> <!--ENDS MODAL-->
+
+            <div class="modal fade" id="succes_signup_modal" tabindex="-1" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header modal-header-success">
+                            <h4 style="color:white;" class="modal-title"> <i class="glyphicon glyphicon-thumbs-up"></i> Thanks! </h4>
+                        </div>
+                        <div class="modal-body succes_signup_modal">
+                            <h2><span id="spnUser"></span></h2>
+                            <p>Welcome you have successfully signed up to Superior Coin!</p>
+                            <br/>
+                            <br/>
+                            <button id="btnRedirect" type="button" class="btn btn-succes" data-dismiss="modal">OK</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+            <div class="modal fade" id="alert_modal" tabindex="-1" data-backdrop="static" data-keyboard="false">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header modal-header-error">
+                            <h3 style="color:black;" class="modal-title">Wait!</h3>
+                        </div>
+                        <div class="modal-body">
+                            <br/>
+                            <span id="alert_msg" style="color:black;"></span>
+                            <br/>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="btnSignAlert" type="button" type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            <br/><br/><br/><br/>
+
+            <div class="row">
+                <div class="col-sm-4 info-page">
+                    <img id="info-img" src="assets/img/info.png" alt="INFO_ICON" >
+                    <p>Superior Coin Faucet is a site where you can win money easier. The only thing you have to do, is sign up and collect coins every hour.</p>
+                </div> <!--ENDS INFO PAGE-->
+
+                <div class="col-sm-4 info-coins">
+                    <img id="coins-img" src="assets/img/coins.png" alt="COINS_ICON">
+                    <p>Superior Coin is a secure, private, untraceable currency. Unlike many crypto currencies that are derivatives of Bitcoin, Superior Coin is based on the CryptoNote protocol and possesses significant algorithmic differences relating to blockchain obfuscation.<p>
+                </div> <!--ENDS INFO COINS-->
+
+                <div class="col-sm-4 info-donate">
+                    <img id="donate-img" src="assets/img/donate.png" alt="DONATE_ICON">
+                    <p>You can also donate to our faucet You will be a STAR member of Superior Coin.<p>
+                </div> <!--ENDS INFO DONATE-->
+            </div><!--ENDS ROW-->
+            <br/><br/><br/><br/>
+
+            <div class="row">
+                <div class="col-sm-6 pool align-self-center">
+                    <h2>Pool</h2>
+                    <br/>
+                    <span id="spnPoolAmount" class="">200,000.00</span>
+                    <br/>
+                    <br/>
+                </div><!--ENDS POOL-->
+
+                <div class="widget-container col-xs-12 col-md-6">
+                    <div class="coinmarketcap-currency-widget" data-currencyid="2522" data-base="USD" data-secondary="BTC" data-ticker="true" data-rank="true" data-marketcap="false" data-volume="true" data-stats="USD" data-statsticker="true"></div>
+                </div> <!-- WIDGET ENDS -->
+            </div> <!--ENDS ROW-->
+            <br/><br/><br/><br/>
+
+        </div> <!-- ENDS CONTAINER-FLUID -->
+
+
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script>
+        <script src="js/bootstrap.bundle.min.js"></script>
+        <!--SCRIPTS-->
+        <script src="js/main.js"></script>
+        <script src="js/js.cookie.js"></script>
+    </body>
+
+    <footer class="footer-hero">
+
+        <div class="row ends">
+            <div class="container media-footer d-inline-flex ">
+                <div class="col-xs-2 col-md-2 media-krypto">
+                    <a href="https://kryptonia.io/"><img src="assets/img/krypto.png" alt="KRIPTO-PNG"></a>
+                </div>
+
+                <div class="col-xs-2 col-md-3 media-github">
+                    <a href="https://github.com/TheSuperiorCoin"><img src="assets/img/github.png" alt="GIT-ONG"></a>
+                </div>
+
+                <div class="col-xs-2 col-md-2 media-linked">
+                    <a href="https://www.linkedin.com/company/superior-coin/"><img src="assets/img/003-linkedin.png" alt="LINKD-PNG"></a>
+                </div>
+
+                <div class="col-xs-2 col-md-3 media-fb">
+                    <a href="https://www.facebook.com/TheSuperiorCoin/"><img src="assets/img/facebook.png" alt="FCB-PNG"></a>
+                </div>
+
+                <div class="col-xs-2 col-md-2 media-tw">
+                    <a href="https://twitter.com/superiorcoins"><img src="assets/img/twitter.png" alt="TWITTER-PNG"></a>
+                </div>
+
+            </div> <!-- CONTAINER ENDS -->
+        </div> <!-- ROWS ENDS -->
+
+        <div class="footer-ends">
+            <h5>@Superior Coin Copyright 2018</h5>    
+        </div>
+
+        <div class="container links">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="title">
+                    Worldwide Offices
+                    <i class="fas fa-globe"></i>
+                    </div>
+                    <div>Philipines</div>
+                    <div>Belize</div>
+                    <div>Honduras</div>
+                    <div>USA</div> 
+                </div>
+                <div class="col-md-3">
+                    <div class="title">
+                    User Guide
+                    <i class="fas fa-map"></i>
+                    </div>
+                    <div><a href="https://superiorcoins.info/installing-the-superiorcoin-mining-app/">SuperiorCoin Windows Miner Installation</a></div>
+                    <div><a href="https://steemit.com/superiorcoin/@sydesjokes/install-superiorcoin-win64-gui-wallet-v0-12-0-0">Setting up the GUI Wallet</a></div>
+                    <div><a href="https://superiorcoins.info/adding-superiorcoin-sup-to-blockfolio-app/">Adding SUP on Blockfolio</a></div>
+                    <div><a href="https://steemit.com/blockchain/@sydesjokes/how-to-create-a-superior-coin-wallet-and-mine-superior-coin-with-minergate">Mine SUP using Minergate</a></div>
+                    <div><a href="https://steemit.com/superiorcoin/@sydesjokes/re-scanning-the-new-superior-coin-gui-wallet">Re-scanning GUI Wallet</a></div>
+                    <div><a href="https://www.youtube.com/watch?v=KcRQaD0vL-A&amp;t=175s">Kryptonia Task Creation</a></div>
+                    <div><a href="https://superiorcoins.info/kryptonia-user-guide/">Kryptonia Help Page</a></div>
+                </div>
+                <div class="col-md-3">
+                    <div class="title">
+                    Resources
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div><a href="http://minesuperiorcoin.net/">Browser Mining</a></div>
+                    <div><a href="http://superior-coin.info:8081/">Blockchain Explorer</a></div>
+                    <div><a href="http://superiorcoinpool.com/superior-wallet-generator.html">Wallet Generator</a></div>
+                    <div><a href="https://mysuperiorcoin.com/#!/">Online Wallet</a></div>
+                    <div><a href="https://github.com/TheSuperiorCoin/GUIwallet/releases">SuperiorCoin GUI</a></div>
+                    <div><a href="http://superiorcoinpool.com/">Mining Pool</a></div>
+                </div>
+                <div class="col-md-3">
+                    <div class="title">
+                    Social
+                    <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <div><a href="https://www.facebook.com/groups/superiorcoinmining/">Facebook Mining Group</a></div>
+                    <div><a href="https://www.facebook.com/Kryptoniaio/">Kryptonia Facebook</a></div>
+                    <div><a href="https://t.me/superiorcoin">Telegram</a></div>
+                    <div><a href="https://www.instagram.com/superiorcoin/">SUP Instagram</a></div>
+                    <div><a href="https://www.instagram.com/kryptonia.io/">Kryptonia Instagram</a></div>
+                    <div><a href="https://twitter.com/KRYPT0N1A">Kryptonia Twitter</a></div>
+                    <div><a href="https://bitcointalk.org/index.php?topic=2170457">Bitcoin Talk</a></div>
+                    <div><a href="https://steemit.com/@kryptonia">Kryptonia Steemit</a></div>
+                </div>
+            </div><!--ENDS ROW2-->
+        </div> <!--ENDS CONTAINER2-->
+
+    </footer>
+</html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href=""><style></style>
