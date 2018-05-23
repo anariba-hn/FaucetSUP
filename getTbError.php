@@ -10,7 +10,7 @@ $col =array(
     4   =>  'payments_date'
 );  //create column like table in database
 //$cnn = connexion include
-$sql ="SELECT * FROM vf_payments_succes";
+$sql ="SELECT * FROM vf_payments_error";
 $query=mysqli_query($cnn,$sql);
 
 $totalData=mysqli_num_rows($query);

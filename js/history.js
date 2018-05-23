@@ -44,61 +44,6 @@ function getTbError(){
     });
 }
 
-function setClaim(){
-    var address        = localStorage.getItem("walle");
-
-    $.post('./checkClaims.php',
-           {
-        user_address : address
-    }).done(function(data){
-        var values  = JSON.parse(data);
-        value  = values[0];
-        var     m  = parseInt(value);
-
-        if(data.status == 404)
-            alert(data.message);
-        else if ( m < 1) 
-        {
-            $wait = (1 - m);
-            alert("You have to wait "+$wait+" minutes to claim!")
-        }
-        else{
-
-            $.post('./setClaim.php',
-                   {
-                user_address : address
-            }).done(function(data){
-
-                $("#btnClaim").css("visibility", "hide");
-                $("#aClaim").css("color", "white");
-                $("#modal1").modal("hide");
-                window.location.reload();
-            });
-        }
-
-    });
-}
-
-function setPaid(){
-    var address     = localStorage.getItem("walle");
-
-    $.post('./setPaid.php',
-           {
-        user_address   : address
-    }).done(function(data){
-        if (data.status == 404)
-            alert(data.message);
-        else{
-            alert("Now You are avialable to tranfer your unlock-balance")
-            $("#btnClaim").css("visibility", "hide");
-            $("#aClaim").css("color", "white");
-            $("#modal1").modal("hide");
-            window.location.reload();
-        }
-    });
-
-}
-
 function setTransfer(){
     var address     = localStorage.getItem("walle");
     var destination = $('#destination').val();
@@ -154,18 +99,6 @@ function setTransfer(){
 $(document).ready(function(){
     //start once page is load
     getUser();
-
-    $("#btnClaim").click(function(){
-        alert("This could an Add-On");
-        window.open("https://www.youtube.com/watch?v=coVJIoQJx9Q", "Diseño Web", "width=300, height=200");
-        setClaim();
-    })
-
-    $("#btnPaid").click(function(){
-        alert("This could an Add-On");
-        window.open("https://www.youtube.com/watch?v=coVJIoQJx9Q", "Diseño Web", "width=300, height=200");
-        setPaid();
-    })
 
     $("#btnSend").click(function(){
         alert("This could an Add-On");
