@@ -20,29 +20,6 @@ function getUser(){
     });
 }
 
-function getTbSucces(){
-
-    var dataTable = $('#tb-succes').DataTable( {
-        "processing": true,
-        "serverSide": true,
-        "ajax": {
-            "url": "./getTbSucces.php",
-            "type": "post"
-        }
-    });
-}
-
-function getTbError(){
-
-    var dataTable = $('#tb-error').DataTable( {
-        "processing": true,
-        "serverSide": true,
-        "ajax": {
-            "url": "./getTbError.php",
-            "type": "post"
-        }
-    });
-}
 
 function setTransfer(){
     var address     = localStorage.getItem("walle");
