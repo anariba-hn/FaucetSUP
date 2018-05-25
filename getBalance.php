@@ -28,6 +28,10 @@ if($user_address != null)
 		    	{
 		    		$response = $row;
 		    	}
+
+		    	$response['status'] = 202;
+				$response['message'] = "Succes";
+
 		     }
 	 	 }
 	 	 else{

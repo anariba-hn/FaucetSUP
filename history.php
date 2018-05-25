@@ -103,7 +103,26 @@
                             $walle = $_COOKIE["walle"];
                         
                             $query = "SELECT * FROM vf_payments_succes WHERE user_id = '$walle'";
-                            if(!$result = mysqli_query($cnn, $query))
+
+                            #SETING PAGINATION VARIABLES
+                            $result = mysqli_query($cnn, $query);
+                            $num_rows = $result->num_rows;
+                            $per_page     = 5;
+                            $offset       = 0;
+                            $current_page = '';
+                        
+                            #CALCULATE THE PAGE LEFT TO SHOW 
+                            $no_off_page = ceil($num_rows / $per_page); //ceil function round int
+                            
+                            #LOGIC TO HANDLE DATA OUTPUT PER PAGINATION
+                            if(isset($_GET['page'])){
+                                $current_page = $_GET['page'];
+                                $offset = ($per_page * $current_page) - $per_page ;
+                            }
+                            
+                            #NEW QUERY WITH PARAMETERS
+                            $paginateData = "SELECT * FROM vf_payments_succes WHERE user_id = '$wallet' LIMIT " .$per_page. " OFFSET " .$offset. "";
+                            if(!$result = mysqli_query($cnn, $paginateData))
                                 exit(mysqli_error($cnn));
                 
                             while($row=mysqli_fetch_assoc($result))
@@ -121,6 +140,54 @@
                             
                         ?>
                     </table>
+
+                    <!--PAGINATION-->
+
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    <li class="<?php
+                                               if($current_page == 1 || $current_page == ''){echo 'disabled';}?> page-item">
+                                        <a class="page-link" href="<?php
+                                               if($current_page == 1 || $current_page == ''){
+                                                   echo " # ";
+                                               }else{
+                                                    echo "?page=". ($current_page - 1);   
+                                               }
+                                               ?>" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+                                    <?php for($x = 1; $x <= $no_off_page; $x ++): ?>
+                                    <li class="<?php
+                                               if($current_page == $x){
+                                                   echo 'active';
+                                               }
+                                               ?> page-item">
+                                        <a class="page-link" href="?page=<?php echo $x; ?>">
+                                            <?php echo $x; ?>
+                                        </a>
+                                    </li>
+                                    <?php endfor; ?>
+                                    <li class="<?php
+                                               if($current_page == $no_off_page){echo 'disabled';}?> page-item">
+                                        <a class="page-link" href="<?php
+                                               if($current_page == $no_off_page){
+                                                   echo " # ";
+                                               }elseif($current_page == ''){
+                                                   echo "?page=2";
+                                               }else{
+                                                    echo "?page=". ($current_page + 1);   
+                                               }
+                                               ?>" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <!-- ENDS PAGINATIONS -->
+
             </div>
             <!-- TABLE-RESPONSIVE ENDS -->
             
@@ -145,7 +212,27 @@
                                 $walle = $_COOKIE["walle"];
                                     
                                 $query2 = "SELECT * FROM vf_payments_error WHERE user_id = '$walle'";
-                                if(!$result = mysqli_query($cnn, $query2))
+
+                                #SETING PAGINATION VARIABLES
+                                $result = mysqli_query($cnn, $query);
+                                $num_rows_error = $result->num_rows;
+                                $per_page_error     = 5;
+                                $offset_error       = 0;
+                                $current_page_error = '';
+                            
+                                #CALCULATE THE PAGE LEFT TO SHOW 
+                                $no_off_page_error = ceil($num_rows_error / $per_page_error); //ceil function round int
+                                
+                                #LOGIC TO HANDLE DATA OUTPUT PER PAGINATION
+                                if(isset($_GET['page'])){
+                                    $current_page_error = $_GET['page'];
+                                    $offset_error = ($per_page_error * $current_page_error) - $per_page_error ;
+                                }
+                                
+                                #NEW QUERY WITH PARAMETERS
+                                $paginateDataError = "SELECT * FROM vf_payments_error WHERE user_id = '$wallet' LIMIT " .$per_page_error. " OFFSET " .$offset_error. "";
+
+                                if(!$result = mysqli_query($cnn, $paginateDataError))
                                     exit(mysqli_error($cnn));
 
                                 while($row=mysqli_fetch_assoc($result))
@@ -162,6 +249,54 @@
                             
                             ?>
                     </table>
+
+                    <!--PAGINATION-->
+
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    <li class="<?php
+                                               if($current_page_error == 1 || $current_page_error == ''){echo 'disabled';}?> page-item">
+                                        <a class="page-link" href="<?php
+                                               if($current_page_error == 1 || $current_page_error == ''){
+                                                   echo " # ";
+                                               }else{
+                                                    echo "?page=". ($current_page_error - 1);   
+                                               }
+                                               ?>" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+                                    <?php for($i = 1; $i <= $no_off_page_error; $i ++): ?>
+                                    <li class="<?php
+                                               if($current_page_error == $i){
+                                                   echo 'active';
+                                               }
+                                               ?> page-item">
+                                        <a class="page-link" href="?page=<?php echo $i; ?>">
+                                            <?php echo $i; ?>
+                                        </a>
+                                    </li>
+                                    <?php endfor; ?>
+                                    <li class="<?php
+                                               if($current_page_error == $no_off_page_error){echo 'disabled';}?> page-item">
+                                        <a class="page-link" href="<?php
+                                               if($current_page_error == $no_off_page_error){
+                                                   echo " # ";
+                                               }elseif($current_page_error == ''){
+                                                   echo "?page=2";
+                                               }else{
+                                                    echo "?page=". ($current_page_error + 1);   
+                                               }
+                                               ?>" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <!-- ENDS PAGINATIONS -->
+
             </div>
             <!-- TABLE-RESPONSIVE ENDS -->
             
