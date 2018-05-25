@@ -121,7 +121,7 @@
                             }
                             
                             #NEW QUERY WITH PARAMETERS
-                            $paginateData = "SELECT * FROM vf_payments_succes WHERE user_id = '$wallet' LIMIT " .$per_page. " OFFSET " .$offset. "";
+                            $paginateData = "SELECT * FROM vf_payments_succes WHERE user_id = '$walle' LIMIT " .$per_page. " OFFSET " .$offset. "";
                             if(!$result = mysqli_query($cnn, $paginateData))
                                 exit(mysqli_error($cnn));
                 
@@ -230,7 +230,7 @@
                                 }
                                 
                                 #NEW QUERY WITH PARAMETERS
-                                $paginateDataError = "SELECT * FROM vf_payments_error WHERE user_id = '$wallet' LIMIT " .$per_page_error. " OFFSET " .$offset_error. "";
+                                $paginateDataError = "SELECT * FROM vf_payments_error WHERE user_id = '$walle' LIMIT " .$per_page_error. " OFFSET " .$offset_error. "";
 
                                 if(!$result = mysqli_query($cnn, $paginateDataError))
                                     exit(mysqli_error($cnn));
