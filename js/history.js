@@ -20,6 +20,28 @@ function getUser(){
     });
 }
 
+function getBalance(){
+    if(!!Cookies.get('session'))
+        var address = localStorage.getItem("walle");
+
+    $.post('./getBalance.php', 
+    {
+        user_address : address
+    }).done(function(data){
+        if(data.status = 404)
+        {
+            alert(data.message);
+        }
+        else{
+
+            $("#spnClaim").text(data.wallet_claims);
+            $("#spnPaid").text(data.wallet_paids);
+            $("#spnWithdraws").text(data.wallet_withdraws);
+        }
+    });
+
+}
+
 
 function setTransfer(){
     var address     = localStorage.getItem("walle");

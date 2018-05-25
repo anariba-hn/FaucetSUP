@@ -31,9 +31,7 @@ function getBalance(){
             //START TIMER
             setTimer();
             $("#destination").val(address);
-            $("#spnClaim").text(data.wallet_claims);
-            $("#spnPaid").text(data.wallet_paids);
-
+    
         }
     });
 

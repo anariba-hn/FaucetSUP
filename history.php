@@ -75,7 +75,7 @@
             
             <div class="col-sm-3" style="text-align: center;">
                 <h5>Withdraws</h5>
-                <span id="spnPWithdraws">0</span>
+                <span id="spnWithdraws">0</span>
             </div>
         </div>
         <!-- ENDS ROW 2-->
@@ -102,7 +102,7 @@
                             #CATCHING THE COOKIE FROM SERVER SIDE
                             $walle = $_COOKIE["walle"];
                         
-                            $query = "SELECT * FROM vf_payments_succes WHERE payments_wallet = '$walle'";
+                            $query = "SELECT * FROM vf_payments_succes WHERE user_id = '$walle'";
                             if(!$result = mysqli_query($cnn, $query))
                                 exit(mysqli_error($cnn));
                 
@@ -144,7 +144,7 @@
                                 #CATCHING THE COOKIE FROM SERVER SIDE
                                 $walle = $_COOKIE["walle"];
                                     
-                                $query2 = "SELECT * FROM vf_payments_error WHERE payments_wallet = '$walle'";
+                                $query2 = "SELECT * FROM vf_payments_error WHERE user_id = '$walle'";
                                 if(!$result = mysqli_query($cnn, $query2))
                                     exit(mysqli_error($cnn));
 

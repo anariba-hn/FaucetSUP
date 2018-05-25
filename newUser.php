@@ -24,9 +24,6 @@ include ("./connex.php"); //include db connection. import $cnn variable.
     else
     {
 
-        #SET COOKIE ON SERVER
-        setcookie("walle", $user_address, time() + 846000);
-
     	$salted = "4566654jyttgdjgghjygg".$user_pw."yqwsx6890d"; //encryptin pw
         $hashed = hash("sha512", $salted); //encryptin pw
     	$query = "INSERT INTO users(user_name, user_email, user_pw, user_address, user_type) VALUES('$user_name','$user_email','$hashed','$user_address','$type')";
@@ -43,6 +40,10 @@ include ("./connex.php"); //include db connection. import $cnn variable.
 
             $data = mysqli_fetch_row($result);
             $user_id = (int) $data[0];
+
+            #SET COOKIE ON SERVER
+            setcookie("walle", $userid, time() + 846000);
+
             $query3 = "INSERT INTO wallet(wallet_balance,wallet_unlock,wallet_withdraws,wallet_paids,wallet_claims,user_id)VALUES(0, 0, 0, 0,0, '$user_id')";
             if(!$result = mysqli_query($cnn,$query3)) 
             {
