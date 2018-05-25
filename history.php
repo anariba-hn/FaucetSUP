@@ -32,9 +32,7 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a id="aClaim" class="nav-link" href="#">Claim</a>
-                    </li>
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="#modal2" data-toggle="modal" data-target="#modal2">Transfer</a>
                     </li>
@@ -48,13 +46,6 @@
             </div>
         </nav>
     </head>
-
-    <!-- CATCH THE WALLET FROM COOKIE-->
-      <script>
-        var address = localStorage.getItem("walle");
-      </script>
-      
-      <!--ENDS COOKIE CATCH-->
 
     <div class="container">
         <div class="row">
@@ -108,15 +99,10 @@
                         
                         <?php
 
-                            #
-                            #THIS CODE DOESNT WORKS PROPERLY
-                            #$walle variable isnt a correct string
-                            # 
-
-                            $walle = "<script>document.write(address)</script>"; //USE COOKIE
-
+                            #CATCHING THE COOKIE FROM SERVER SIDE
+                            $walle = $_COOKIE["walle"];
+                        
                             $query = "SELECT * FROM vf_payments_succes WHERE payments_wallet = '$walle'";
-                                
                             if(!$result = mysqli_query($cnn, $query))
                                 exit(mysqli_error($cnn));
                 
@@ -155,12 +141,8 @@
                         
                             <?php
                                     
-                                #
-                                #THIS CODE DOESNT WORKS PROPERLY
-                                #$walle variable isnt a correct string
-                                # 
-
-                                $walle = "<script>document.write(address)</script>"; //USE COOKIE
+                                #CATCHING THE COOKIE FROM SERVER SIDE
+                                $walle = $_COOKIE["walle"];
                                     
                                 $query2 = "SELECT * FROM vf_payments_error WHERE payments_wallet = '$walle'";
                                 if(!$result = mysqli_query($cnn, $query2))

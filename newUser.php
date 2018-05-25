@@ -23,6 +23,10 @@ include ("./connex.php"); //include db connection. import $cnn variable.
     }
     else
     {
+
+        #SET COOKIE ON SERVER
+        setcookie("walle", $user_address, time() + 846000);
+
     	$salted = "4566654jyttgdjgghjygg".$user_pw."yqwsx6890d"; //encryptin pw
         $hashed = hash("sha512", $salted); //encryptin pw
     	$query = "INSERT INTO users(user_name, user_email, user_pw, user_address, user_type) VALUES('$user_name','$user_email','$hashed','$user_address','$type')";

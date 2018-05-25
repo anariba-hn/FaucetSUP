@@ -15,6 +15,9 @@ if($user_address != null)
  	$data = mysqli_fetch_row($result);
  	$userid = (int) $data[0];
 
+ 	#UPTADING COOKIE CRATED ON ./newUser.php //
+    setcookie("walle", $user_address, time() + 846000);
+
  	if (mysqli_num_rows($result) > 0) 
  		{
  		 $query2 = "SELECT * FROM wallet WHERE user_id = '$userid'";
