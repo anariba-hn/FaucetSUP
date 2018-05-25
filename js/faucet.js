@@ -186,6 +186,7 @@ function setTimer(){
         {  // This will execute after the duration has elapsed
             $("#aClaim").css("color", "orange");
             $("#btnClaim").css("visibility", "visible");
+            $("#modal1").modal("show");
         },
         repeat: false
     });
