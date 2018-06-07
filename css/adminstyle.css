@@ -1,15 +1,55 @@
+body{
+    background-color: rgb(31, 50, 69);
+    color: orange;
+}
+
+h4{
+    font-weight: 100;
+}
+
 a{
     color: orange;
+}
+
+p{
+    color: white;
+    font-size: 2em;
+}
+
+span{
+    padding: 0.5em;
+    border: solid 1px;
+    border-radius: 60px;
+    border-color: white;
 }
 
 #logout{
    justify-content: flex-end;
 }
 
+#success{
+    font-size: 16px;
+}
+
+#getID{
+    visibility: hidden;
+}
+
+#msgAlert{
+    color: black;
+    font-size: 26px;
+    letter-spacing: 2px;
+}
+
 .nav a{
     margin-bottom: 30px;
     text-align: center;
-    color: black;
+    color: white;
+}
+
+.left-nav{
+    margin-top: 10px;
+    border: solid 1px;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link{
@@ -18,10 +58,63 @@ a{
 
 .users, .claims, .paids, .donated{
     width: 150px;
-    height: 100px;
+    /*height: 100px;*/
     border: 1px solid orange;
     border-radius: 10px;
     text-align: center;
     margin: 15px;
+    padding: 16px;
+    box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
+    font-weight: 100;
 }
+
+.settings{
+    text-align: center;
+}
+
+.settings input{
+    text-align: center;
+    margin-bottom: 10px;
+    border: none;
+}
+
+.settings button{
+    margin-bottom: 15px;
+}
+
+/*
+==========================================================================================
+INDEX ADMIN
+==========================================================================================
+*/
+
+
+.loginForm{
+    
+    padding: 25px;
+    text-align: center;
+    width: 250px;
+    margin: 0;
+    box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
+}
+
+.loginForm input{
+    text-align: center;
+}
+
+.form-group{
+    text-align: center;
+}
+
+.logo{
+    margin-top: 25%;
+    margin-bottom: 15px;
+    width: 350px;
+    margin-left: -50px;
+}
+
+.logo img{
+    width: 350px;
+}
+
 
