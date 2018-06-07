@@ -1,4 +1,4 @@
-<?php include("../connex.php"); 
+<?php include("./connex.php"); 
 
 if(isset($_POST['useradmin']))
 {
@@ -33,6 +33,7 @@ if(isset($_POST['useradmin']))
     <link rel="stylesheet" href="../css/adminstyle.css">
     <link rel="stylesheet" href="../css/jquery.dataTables.min.css">
     <title>Admin SUP</title>
+    <link rel="stylesheet" type="text/css" href="../assets/img/fsuper.png">
 
     <!-- SCRIPTS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -65,7 +66,7 @@ if(isset($_POST['useradmin']))
                 <div class="tab-pane fade show active" id="v-pills-dash" role="tabpanel" aria-labelledby="v-pills-home-tab">
 
                     <div class="row">
-                        <div class="container d-inline-flex">
+                        <div class="container dashboard">
                             <div class="col-xs-2 users">
                                 <p>Total Users</p>
                                 <span> 
@@ -123,62 +124,66 @@ if(isset($_POST['useradmin']))
                     <button type="button" class="btn btn-light"><a href="">Run Cron-Job</a></button>
                     <br/>
                     <br/>
-                    <table widh="100%" class="table table-hover">
-                        <thead>
-                            <tr>
-                                <td width="31%">ID</td>
-                                <td width="25%">Balance</td>
-                                <td width="34%">Status</td>
-                                <td width="34%">Wallet</td>
-                                <td width="50%">Date</td>
-                                <td width="25%">User</td>
-                            </tr>
-                        </thead>
+                    <div class="table-responsive">
+                        <table widh="100%" class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <td width="31%">ID</td>
+                                    <td width="25%">Balance</td>
+                                    <td width="34%">Status</td>
+                                    <td width="34%">Wallet</td>
+                                    <td width="50%">Date</td>
+                                    <td width="25%">User</td>
+                                </tr>
+                            </thead>
 
-                        <?php
-                        $query = "SELECT * FROM vf_payments";
-                        if(!$result = mysqli_query($cnn, $query))
-                                        exit(mysqli_error($cnn));
-                        while($row=mysqli_fetch_assoc($result))
-                                    {
-                                        echo "<tr>";
-                                            echo "<td>", $row['id_payments'], "</td>";
-                                            echo "<td>", $row['payments_balance'], "-SUP</td>";
-                                            echo "<td><p class=\"text-success\" id=\"success\">", $row['payments_status'], "</p></td>";
-                                            echo "<td>", $row['payments_wallet'], "</td>";
-                                            echo "<td>", $row['payments_date'], "</td>";
-                                            echo "<td>", $row['user_id'], "</td>";
-                                        echo "</tr>";
-                                    }
-                        ?>
-                    </table>
+                            <?php
+                            $query = "SELECT * FROM vf_payments";
+                            if(!$result = mysqli_query($cnn, $query))
+                                            exit(mysqli_error($cnn));
+                            while($row=mysqli_fetch_assoc($result))
+                                        {
+                                            echo "<tr>";
+                                                echo "<td>", $row['id_payments'], "</td>";
+                                                echo "<td>", $row['payments_balance'], "-SUP</td>";
+                                                echo "<td><p class=\"text-success\" id=\"success\">", $row['payments_status'], "</p></td>";
+                                                echo "<td>", $row['payments_wallet'], "</td>";
+                                                echo "<td>", $row['payments_date'], "</td>";
+                                                echo "<td>", $row['user_id'], "</td>";
+                                            echo "</tr>";
+                                        }
+                            ?>
+                        </table>
+                    </div> <!--TABLE RESPONSIVE ENDS-->
                 </div>
                 <div class="tab-pane fade" id="v-pills-donate" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                     <h3>Donates</h3>
-                    <table widh="100%" class="table table-hover">
-                        <tbody>
-                            <tr>
-                                <td width="31%">Amount</td>
-                                <td width="25%">Status</td>
-                                <td width="34%">Address</td>
-                                <td width="34%">Date</td>
-                                <td width="10%">User</td>
-                            </tr>
-                        </tbody>
+                       <div class="table-responsive">
+                        <table widh="100%" class="table table-hover">
+                            <tbody>
+                                <tr>
+                                    <td width="31%">Amount</td>
+                                    <td width="25%">Status</td>
+                                    <td width="34%">Address</td>
+                                    <td width="34%">Date</td>
+                                    <td width="10%">User</td>
+                                </tr>
+                            </tbody>
 
-                        <tbody>
-                            <tr></tr>
-                            <tr></tr>
-                            <tr></tr>
-                            <tr></tr>
-                            <tr></tr>
-                            <tr></tr>
-                            <tr></tr>
-                            <tr></tr>
-                            <tr></tr>
-                            <tr></tr>
-                        </tbody>
-                    </table>
+                            <tbody>
+                                <tr></tr>
+                                <tr></tr>
+                                <tr></tr>
+                                <tr></tr>
+                                <tr></tr>
+                                <tr></tr>
+                                <tr></tr>
+                                <tr></tr>
+                                <tr></tr>
+                                <tr></tr>
+                            </tbody>
+                        </table>
+                    </div> <!--TABLE RESPONSIVE ENDS-->   
                 </div>
                 <div class="tab-pane fade admins" id="v-pills-admins" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                     <br>
@@ -186,6 +191,7 @@ if(isset($_POST['useradmin']))
                     <button type="button" class="btn btn-outline-success" href="#modalNewAdmin" data-toggle="modal" data-target="#modalNewAdmin">New Admin</button>
                     <br/>
                     <br/>
+                    <div class="table-responsive">
                     <table widh="100%" class="table table-hover">
                         <thead>
                             <tr>
@@ -212,7 +218,7 @@ if(isset($_POST['useradmin']))
                         ?>
 
                     </table>
-
+                    </div> <!--ENDS TABLE RESPONSIVE-->
                 </div>
                 <div class="tab-pane fade settings" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                     <h3>Settings</h3>
