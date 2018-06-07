@@ -1,17 +1,23 @@
 <?php include("../connex.php"); 
 
-$admin = $_POST['useradmin'];
-$pw    = $_POST['pass'];
-
-$query = "SELECT user_password FROM admincenter WHERE user_admin = '$admin'";
-if(!$result = mysqli_query($cnn, $query))
-exit(mysqli_error($cnn));
-$data = mysqli_fetch_row($result);
-$dbPass = (string) $data[0];
-
-if($pw != $dbPass)
+if(isset($_POST['useradmin']))
 {
- header("Location: ./index.html");
+    $admin = $_POST['useradmin'];
+    $pw    = $_POST['pass'];
+
+        $query = "SELECT user_password FROM admincenter WHERE user_admin = '$admin'";
+        if(!$result = mysqli_query($cnn, $query))
+        exit(mysqli_error($cnn));
+        $data = mysqli_fetch_row($result);
+        $dbPass = (string) $data[0];
+
+    if($pw != $dbPass)
+    {
+     header("Location: ../admincenter/index.html");
+    }
+    
+}else{
+    header("Location: ../admincenter/index.html");
 }
 
 ?>
