@@ -1,5 +1,5 @@
 <?php
-include ("./connex.php");
+include ("../connex.php");
 
 $userid = $_POST['user_id'];
 $response = array();

@@ -1,5 +1,5 @@
 <?php
-include ("./connex.php");
+include ("../connex.php");
 
 $option = $_POST['option'];
 $response = array();

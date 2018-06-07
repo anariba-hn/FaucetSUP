@@ -1,5 +1,5 @@
 <?php
-include ("./connex.php");
+include ("../connex.php");
 
 $name = $_POST['user_admin'];
 $pass = $_POST['user_password'];
