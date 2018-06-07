@@ -1,4 +1,4 @@
-<?php include("./connex.php"); 
+<?php include("../connex.php"); 
 
 if(isset($_POST['useradmin']))
 {
