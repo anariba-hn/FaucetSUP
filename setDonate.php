@@ -26,11 +26,10 @@ if(isset($action))
     {
         $integ = $walletFaucet->integratedAddress();
         $integResult = json_decode($integ);
-        $integAddress = $integResult->{'integrated_address'}
         #PREPARE STRING FROM JSON SPLIT RESPONSE
-		#list($msg, $wallet) = explode(':', $integResult->{'integrated_address'});
+		list($wallet) = explode(':', $integResult->{'integrated_address'});
 		#DELETE SPACES FROM STRING
-		#$integAddress = str_replace(' ', '', $wallet);
+		$integAddress = str_replace(' ', '', $wallet);
         
         $query2 = "INSERT INTO donation(integrated) VALUES('$integAddress')";
         if(!$result = mysqli_query($cnn, $query2))
