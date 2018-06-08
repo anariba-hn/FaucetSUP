@@ -9,28 +9,33 @@ $response = array();
 
 if(isset($action))
 {
+    #
+    ##CREATE AN INTEGRATED ADDRESS AND PARSE JSON RESPONSE 
+    #
+    $integ = $walletFaucet->integratedAddress();
+    $integResult = json_decode($integ);
+    #PREPARE STRING FROM JSON SPLIT RESPONSE
+    list($wallet) = explode(':', $integResult->{'integrated_address'});
+    #DELETE SPACES FROM STRING
+    $integAddress = str_replace(' ', '', $wallet);
+
     if($action == 1)
     {
         $name = $_POST['name'];
         $email = $_POST['email'];
-        
-        $query = "INSERT INTO donation(name, email) VALUES('$name', '$email')";
+
+        $query = "INSERT INTO donation(name, email, integrated) VALUES('$name', '$email', '$integratedAddress')";
         if(!$result = mysqli_query($cnn, $query))
             exit(mysqli_error($cnn));
         else{
-            $response['message'] = "Succes.";
-    	    $response['status']  = 200; 
+            $response['address'] = $integAddress;
+            $response['message'] = "Succes";
+            $response['status']  = 200;
         }
     }
     
     if($action == 2)
     {
-        $integ = $walletFaucet->integratedAddress();
-        $integResult = json_decode($integ);
-        #PREPARE STRING FROM JSON SPLIT RESPONSE
-		list($wallet) = explode(':', $integResult->{'integrated_address'});
-		#DELETE SPACES FROM STRING
-		$integAddress = str_replace(' ', '', $wallet);
         
         $query2 = "INSERT INTO donation(integrated) VALUES('$integAddress')";
         if(!$result = mysqli_query($cnn, $query2))

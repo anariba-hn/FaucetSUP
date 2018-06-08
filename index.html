@@ -44,7 +44,25 @@
                 <br/>
                 <button id="btnLogIn" type="button" type="button" class="goBtn btn btn-dark">GO</button>
                 <button id="btnSignUp" class="btn btn-dark upBtn" type="button" data-toggle="modal" data-target="#modal1">Sign Up</button>
+                <br/><br/>
+                <button class="btn btn-warning" data-toggle="modal" data-target="#donate_modal">Donate Here</button>
+                <br/><br/><br/>
             </div> <!-- ENDS SUP-IMG-->
+
+            <div class="row">
+                <div class="col-sm-6 pool align-self-center">
+                    <h2>Faucet Balance</h2>
+                    <br/>
+                    <span id="spnPoolAmount" class="">200,000.00</span>
+                    <br/>
+                    <br/>
+                </div><!--ENDS POOL-->
+
+                <div class="widget-container col-xs-12 col-md-6">
+                    <div class="coinmarketcap-currency-widget" data-currencyid="2522" data-base="USD" data-secondary="BTC" data-ticker="true" data-rank="true" data-marketcap="false" data-volume="true" data-stats="USD" data-statsticker="true"></div>
+                </div> <!-- WIDGET ENDS -->
+            </div> <!--ENDS ROW-->
+            <br/><br/><br/>
 
             <div class="modal fade" id="modal1">
                 <div class="modal-dialog">
@@ -188,6 +206,28 @@
               </div> <!--ENDS MODAL DONATE DIALOG-->
             </div> <!--DONATE MODAL ENDS-->
 
+            <div class="modal fade" id="succesDonate_modal" tabindex="-1" role="dialog" data-keyboard="false">
+              <div class="modal-dialog">
+                <div class="modal-content donate-modal">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Donation Completed by:</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form class="donateForm">
+                          <br/>
+                          <p>This Integrated address is attach with your information. Copy and complete your donation</p>
+                          <input type="text" id="integAddress" class="IntegAddress">
+                          <br/>
+                          <i id="cp" class="fas fa-copy"></i>
+                    </form>
+                  </div> <!--ENDS MODAL DONATE BODY-->
+                </div> <!--ENDS MODAL DONATE CONTENT-->
+              </div> <!--ENDS MODAL DONATE DIALOG-->
+            </div> <!--DONATE MODAL ENDS-->
+
             <div class="modal fade" id="anonymus_modal" tabindex="-1" role="dialog" data-keyboard="false">
               <div class="modal-dialog">
                 <div class="modal-content donate-modal">
@@ -196,12 +236,13 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
-                    <span id="msgDonate"></span>
                   </div>
                   <div class="modal-body">
                     <form class="donateForm">
                           <br/>
                           <input type="text" id="integAddress" class="IntegAddress">
+                          <br/>
+                          <i id="cp" class="fas fa-copy"></i>
                           <small id="walletHelp" class="form-text text-muted">Copy this Integrated Address and make your Anonymus donation.</small>
                           <br/>
                     </form>
@@ -224,24 +265,8 @@
                 <div class="col-sm-4 info-donate">
                     <img id="donate-img" src="assets/img/donate.png" alt="DONATE_ICON">
                     <p>You can also donate to our faucet You will be a STAR member of Superior Coin.<p>
-                    <button class="btn btn-warning" data-toggle="modal" data-target="#donate_modal">Donate Here</button>
                 </div> <!--ENDS INFO DONATE-->
             </div><!--ENDS ROW-->
-            <br/><br/><br/><br/>
-
-            <div class="row">
-                <div class="col-sm-6 pool align-self-center">
-                    <h2>Pool</h2>
-                    <br/>
-                    <span id="spnPoolAmount" class="">200,000.00</span>
-                    <br/>
-                    <br/>
-                </div><!--ENDS POOL-->
-
-                <div class="widget-container col-xs-12 col-md-6">
-                    <div class="coinmarketcap-currency-widget" data-currencyid="2522" data-base="USD" data-secondary="BTC" data-ticker="true" data-rank="true" data-marketcap="false" data-volume="true" data-stats="USD" data-statsticker="true"></div>
-                </div> <!-- WIDGET ENDS -->
-            </div> <!--ENDS ROW-->
             <br/><br/><br/><br/>
 
         </div> <!-- ENDS CONTAINER-FLUID -->

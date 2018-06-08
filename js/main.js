@@ -37,7 +37,7 @@ function verifyUser(){
     var cpass  = $('#cpass').val();
     var wallet = $('#user_address').val();
     var msg    = $('#msg');
-    var result = validate();
+    var result = validate(email);
 
     if (name == '') 
     { 
@@ -158,8 +158,8 @@ function validateEmail(email) {
     return re.test(email);
 }
 
-function validate(){
-    var email = $("#user_email").val();
+function validate(email){
+
     if (validateEmail(email))
         return true;
     else
@@ -195,11 +195,11 @@ function donate(action){
     
     var name  = $("#donateName").val();
     var email = $("#donateEmail").val();
+    var result = validate(email);
     var act  = action;
     
     if(action == 2)
     {
-        alert("You generated an Integrated Address.")
         
         $.post('./setDonate.php',{
             action : act
@@ -208,9 +208,9 @@ function donate(action){
             if(data.status != 200)
                 alert("Ups something happens! " + data.message)
             else{
-                $("#anonymus_modal").modal("show");
-                $("#integAddress").val(data.address);
                 $("#donate_modal").modal("hide");
+                $("#anonymus_modal").modal("show");
+                $("integAddress").val(data.address);
             }
         });
     }
@@ -218,6 +218,8 @@ function donate(action){
         $("#msgDonate").text("Please enter your name. If you don't want to share your information make an Anonymus donation.");
     else if(email == '')
         $("#msgDonate").text("Please enter your email. If you don't want to share your information make an Anonymus donation.");
+    else if(!result)
+        $("#msgDonate").text("Please enter a Valid email address.");
     else if(action == 1)
     {
         
@@ -227,12 +229,12 @@ function donate(action){
             action : act
         }).done(function(data){
             
-            if(data.status == 404)
+            if(data.status != 200)
                 alert("Ups something happens! " + data.message)
             else{
                 $("#donate_modal").modal("hide");
-                $("#alert_msg").text("Welcome to Superior-Star Members. Process Completed");
-                $("#alert_modal").modal("show");
+                $("#succesDonate_modal").modal("show");
+                $("integAddress").val(data.address);   
             }
         });   
     }
@@ -269,4 +271,5 @@ $(document).ready(function(){
     $("#btnAnonymus").click(function(){
         donate(2);
     })
+
 });
