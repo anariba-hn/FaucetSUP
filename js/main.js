@@ -209,7 +209,8 @@ function donate(action){
                 alert("Ups something happens! " + data.message)
             else{
                 $("#anonymus_modal").modal("show");
-                $("integAddress").val(data.address);
+                $("#integAddress").val(data.address);
+                $("#donate_modal").modal("hide");
             }
         });
     }
