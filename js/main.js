@@ -191,6 +191,53 @@ function getPool(){
     xhttp.send();// SEND THE REQUEST
 }
 
+function donate(action){
+    
+    var name  = $("#donateName").val();
+    var email = $("#donateEmail").val();
+    var act  = action;
+    
+    if(action == 2)
+    {
+        alert("You generated an Integrated Address.")
+        
+        $.post('./setDonate.php',{
+            action : act
+        }).done(function(data){
+            
+            if(data.status != 200)
+                alert("Ups something happens! " + data.message)
+            else{
+                $("#anonymus_modal").modal("show");
+                $("integAddress").val(data.address);
+            }
+        });
+    }
+    else if(name == '')
+        $("#msgDonate").text("Please enter your name. If you don't want to share your information make an Anonymus donation.");
+    else if(email == '')
+        $("#msgDonate").text("Please enter your email. If you don't want to share your information make an Anonymus donation.");
+    else if(action == 1)
+    {
+        
+        $.post('./setDonate.php',{
+            name : name,
+            email : email,
+            action : act
+        }).done(function(data){
+            
+            if(data.status == 404)
+                alert("Ups something happens! " + data.message)
+            else{
+                $("#donate_modal").modal("hide");
+                $("#alert_msg").text("Welcome to Superior-Star Members. Process Completed");
+                $("#alert_modal").modal("show");
+            }
+        });   
+    }
+    
+}
+
 $(document).ready(function(){
 
     getPool();
@@ -212,5 +259,13 @@ $(document).ready(function(){
     $("btnSignAlert").click(function(){
         $("#alert_modal").modal("hide");
         $("#succes_signup_modal").modal("show");
+    })
+
+    $("#btnDonate").click(function(){
+        donate(1);
+    })
+    
+    $("#btnAnonymus").click(function(){
+        donate(2);
     })
 });

@@ -75,12 +75,9 @@
 }
 
 #msg{
-    padding: 5px;
-    font-size: 0.9em;
-    text-align: center;
-    color: black;
-    border-radius: 15px;
-    background-color: red;
+    0.2em;
+    color: red;
+    text-shadow: 0px 0px 20px black;
     visibility:hidden;
 }
 
@@ -355,4 +352,26 @@ footer a{
       -1px 1px 0 hsla(180, 100%, 50%, 1)
     ;
   }  
+}
+
+.donate-modal{
+    text-align: center;
+}
+
+.donateForm{
+    text-align: center;
+}
+
+.donateForm button{
+    margin-left: 20px;
+}
+
+.donateWallet{
+    width: 350px;
+}
+
+#msgDonate{
+    0.2em;
+    color: red;
+    text-shadow: 0px 0px 20px black;
 }
