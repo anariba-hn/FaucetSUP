@@ -241,6 +241,26 @@ function donate(action){
     
 }
 
+function copyText(action){
+
+    if(action == 1)
+    {
+         var copyText = document.getElementById("integAddress");
+         copyText.select();
+         document.execCommand("copy");
+         alert("Copied the text: " + copyText.value);
+    }
+
+    if(action == 2)
+    {
+         var copyText = document.getElementById("integAddressAnonymus");
+         copyText.select();
+         document.execCommand("copy");
+         alert("Copied the text: " + copyText.value);
+    }
+    
+}
+
 $(document).ready(function(){
 
     getPool();
@@ -270,6 +290,14 @@ $(document).ready(function(){
     
     $("#btnAnonymus").click(function(){
         donate(2);
+    })
+
+    $("#cp1").click(function(){
+        copyText(1);
+    })
+
+    $("#cp2").click(function(){
+        copyText(2);
     })
 
 });
