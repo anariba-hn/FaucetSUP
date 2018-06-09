@@ -24,7 +24,7 @@ if(isset($action))
         $name = $_POST['name'];
         $email = $_POST['email'];
 
-        $query = "INSERT INTO donation(name, email, integrated) VALUES('$name', '$email', '$integratedAddress')";
+        $query = "INSERT INTO donation(name, email, integrated) VALUES('$name', '$email', '$integAddress')";
         if(!$result = mysqli_query($cnn, $query))
             exit(mysqli_error($cnn));
         else{
