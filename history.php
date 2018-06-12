@@ -391,31 +391,29 @@
 <footer class="footer-hero">
 
     <div class="row ends">
-        <div class="container media-footer d-inline-flex">
-            <div class="col-xs-2 col-md-2 media-krypto">
-                <a href="https://kryptonia.io/"><img src="assets/img/krypto.png" alt="KRIPTO-PNG"></a>
-            </div>
+            <div class="container media-footer d-inline-flex ">
+                <div class="col-xs-2 col-md-2 media-krypto">
+                    <a href="https://kryptonia.io/"><img src="assets/img/krypto.png" alt="KRIPTO-PNG"></a>
+                </div>
 
-            <div class="col-xs-2 col-md-3 media-github">
-                <a href="https://github.com/TheSuperiorCoin"><img src="assets/img/github.png" alt="GIT-ONG"></a>
-            </div>
+                <div class="col-xs-2 col-md-2 media-linked">
+                    <a href="https://www.linkedin.com/company/superior-coin/"><img src="assets/img/003-linkedin.png" alt="LINKD-PNG"></a>
+                </div>
 
-            <div class="col-xs-2 col-md-2 media-linked">
-                <a href="https://www.linkedin.com/company/superior-coin/"><img src="assets/img/003-linkedin.png" alt="LINKD-PNG"></a>
-            </div>
+                <div class="col-xs-2 col-md-3 media-github">
+                    <a href="https://superior-coin.com"><img src="./assets/img/fsuper.png" alt="SUP-PNG"></a>
+                </div>
 
-            <div class="col-xs-2 col-md-3 media-fb">
-                <a href="https://www.facebook.com/TheSuperiorCoin/"><img src="assets/img/facebook.png" alt="FCB-PNG"></a>
-            </div>
+                <div class="col-xs-2 col-md-3 media-fb">
+                    <a href="https://www.facebook.com/TheSuperiorCoin/"><img src="assets/img/facebook.png" alt="FCB-PNG"></a>
+                </div>
 
-            <div class="col-xs-2 col-md-2 media-tw">
-                <a href="https://twitter.com/superiorcoins"><img src="assets/img/twitter.png" alt="TWITTER-PNG"></a>
-            </div>
+                <div class="col-xs-2 col-md-2 media-tw">
+                    <a href="https://twitter.com/superiorcoins"><img src="assets/img/twitter.png" alt="TWITTER-PNG"></a>
+                </div>
 
-        </div>
-        <!-- CONTAINER ENDS -->
-    </div>
-    <!-- ROWS ENDS -->
+            </div> <!-- CONTAINER ENDS -->
+        </div> <!-- ROWS ENDS -->
 
     <div class="footer-ends">
         <h5>@Superior Coin Copyright 2018</h5>

@@ -97,9 +97,6 @@ $query2 = "SELECT user_pw FROM users WHERE id_user = '$userid'";
 		        $response['status'] = 200;
 			}
 
-	header('Content-type: application/json; charset=utf8');
-	echo json_encode($response);
-
     } 
     else{
     	$response['flag']    = 1;
