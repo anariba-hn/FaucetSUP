@@ -158,7 +158,7 @@ function setTransfer(){
             }
             else{
 
-                $("#modal4").modal("show");
+                $("#succes_tranfer_modal").modal("show");
                 
             }
         });

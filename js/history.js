@@ -28,7 +28,7 @@ function getBalance(){
     {
         user_address : address
     }).done(function(data){
-        if(data.status = 404)
+        if(data.status == 404)
         {
             alert(data.message);
         }

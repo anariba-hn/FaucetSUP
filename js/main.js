@@ -210,7 +210,7 @@ function donate(action){
             else{
                 $("#donate_modal").modal("hide");
                 $("#anonymus_modal").modal("show");
-                $("#integAddressAnonymus").val(data.address);
+                $("integAddress").val(data.address);
             }
         });
     }
@@ -222,7 +222,8 @@ function donate(action){
         $("#msgDonate").text("Please enter a Valid email address.");
     else if(action == 1)
     {
-        
+        $("#succesDonate_modal").modal("show");
+
         $.post('./setDonate.php',{
             name : name,
             email : email,
