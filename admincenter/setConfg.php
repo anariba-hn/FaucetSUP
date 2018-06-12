@@ -11,7 +11,7 @@ if(isset($option))
         $reward = $_POST['reward'];
         if(isset($reward))
         {
-            $query = "UPDATE confg SET reward = '$reward'";
+            $query = "UPDATE confg SET value = '$reward' WHERE id_confg = '1'";
             if(!$result = mysqli_query($cnn, $query))
                 exit(mysqli_error($cnn));
             else{
@@ -30,7 +30,7 @@ if(isset($option))
         $time = $_POST['time'];
         if(isset($time))
         {
-            $query = "UPDATE confg SET time = '$time'";
+            $query = "UPDATE confg SET value = '$time' WHERE id_confg = '2'";
             if(!$result = mysqli_query($cnn, $query))
                 exit(mysqli_error($cnn));
             else{
@@ -41,6 +41,24 @@ if(isset($option))
         }else{
             $response['status'] = 404;
             $response['message'] = "Time not set properly";
+        }
+    }
+
+    if($option == '3')
+    {
+        $href = $_POST['ref'];
+        if(isset($href))
+        {
+            $query = "UPDATE confg SET value = '$href' WHERE id_confg = '3'";
+            if(!$result = mysqli_query($cnn, $query))
+                exit(mysqli_error($cnn));
+            else{
+                $response['status'] = 200;
+                $response['message'] = "Succes";
+            }
+        }else{
+            $response['status'] = 404;
+            $response['message'] = "Href not set properly";
         }
     }
     

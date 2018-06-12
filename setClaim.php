@@ -1,8 +1,8 @@
 <?php 
 include ("./connex.php"); //include db connection. import $cnn variable.
 $user_address   =  $_POST['user_address'];
-$succes = false; // flag
-$claim = 1; // pool reward
+$reward         =  $_POST['reward']; // set on confg.php
+$succes         = false; // flag
 $response       =  array(); // json_response 
 //  $cnn     = include
 
@@ -31,7 +31,7 @@ if ($user_address != null)
 
     $data2 = mysqli_fetch_row($result);
     $old_balance = (int) $data2[0];
-    $new_balance = $old_balance + $claim;
+    $new_balance = $old_balance + $reward;
 
     if(mysqli_num_rows($result)>0)
     {

@@ -75,6 +75,7 @@ function deleteAdmin(){
 function setCnfg(action){
     var reward = $("#reward").val();
     var time = $("#time").val();
+    var ref  = $("#href").val();
     
     if(action == 1 && reward != null)
         {
@@ -96,7 +97,18 @@ function setCnfg(action){
                 window.location.reload();
             });
             
-        }else{
+        }
+    else if(action == 3 && ref != null)
+        {
+            $.post('../admincenter/setConfg.php',{
+                option : action,
+                ref    : ref
+            }).done(function(){
+                alert(data.message);
+                window.location.reload();
+            });
+        }
+        else{
             alert("Not action completed.");
         }
     
@@ -150,6 +162,10 @@ $(document).ready(function(){
     
     $("#btnTime").click(function(){
         setCnfg(2);
+    })
+
+    $("#btnRef").click(function(){
+        setCnfg(3);
     })
     
     $("#btnlogOut").click(function(){

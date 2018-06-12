@@ -233,6 +233,11 @@ if(isset($_POST['useradmin']))
                         <input type="number" name="timeSet" id="time">
                         <br/>
                         <button id="btnTime" type="button">Save</button>
+                        <br/>
+                        <h4>Set new AddOn - href.</h4>
+                        <input type="text" name="href" id="href">
+                        <br/>
+                        <button id="btnRef" type="button">Save</button>
                     </form>
 
                 </div>

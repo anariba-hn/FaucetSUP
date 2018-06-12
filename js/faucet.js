@@ -52,37 +52,45 @@ function getBalance(){
 }
 
 function setClaim(){
-    var address        = localStorage.getItem("walle");
+    var address = localStorage.getItem("walle");
 
-    $.post('./checkClaims.php',
-           {
-        user_address : address
-    }).done(function(data){
-        var values  = JSON.parse(data);
-        value  = values[0];
-        var     m  = parseInt(value);
+    //PROMISE TO CATCH THE CONFG DB DATA
+    promiseConfig = getConfg(1);
+    promiseConfig.then(function(value) {
 
-        if(data.status == 404)
-            alert(data.message);
-        else if ( m < 1) 
-        {
-            $wait = (1 - m);
-            alert("You have to wait "+$wait+" minutes to claim!")
-        }
-        else{
+            var reward = value;
 
-            $.post('./setClaim.php',
-                   {
-                user_address : address
+            $.post('./checkClaims.php',
+               {
+            user_address : address
             }).done(function(data){
+            var values  = JSON.parse(data);
+            value  = values[0];
+            var     m  = parseInt(value);
 
-                $("#btnClaim").css("visibility", "hide");
-                $("#aClaim").css("color", "white");
-                $("#modal1").modal("hide");
-                window.location.reload();
-            });
-        }
+            if(data.status == 404)
+                alert(data.message);
+            else if ( m < 1)
+            {
+                $wait = (1 - m);
+                alert("You have to wait "+$wait+" minutes to claim!")
+            }
+            else{
 
+                $.post('./setClaim.php',
+                       {
+                    user_address : address,
+                    reward       : reward
+                }).done(function(data){
+
+                    $("#btnClaim").css("visibility", "hide");
+                    $("#aClaim").css("color", "white");
+                    $("#modal1").modal("hide");
+                    window.location.reload();
+                });
+            }
+
+        });
     });
 }
 
@@ -179,42 +187,80 @@ function getTbPayments(){
 
 function setTimer(){
 
-    $('#spnTimer').timer({
-        countdown: true,
-        duration: '1m',      // This will start the countdown from 3 mins 40 seconds
-        callback: function() 
-        {  // This will execute after the duration has elapsed
-            $("#aClaim").css("color", "orange");
-            $("#btnClaim").css("visibility", "visible");
-            $("#modal1").modal("show");
-        },
-        repeat: false
+        promiseConfig = getConfg(2);
+        promiseConfig.then(function(value) {
+        var time = value;
+
+            $('#spnTimer').timer({
+            countdown: true,
+            duration: time + 'm',      // This will start the countdown from 3 mins 40 seconds
+            callback: function()
+            {  // This will execute after the duration has elapsed
+                $("#aClaim").css("color", "orange");
+                $("#btnClaim").css("visibility", "visible");
+                $("#modal1").modal("show");
+            },
+            repeat: false
+        });
     });
 }
 
+function getConfg(action){
+
+         return new Promise(function(resolve, reject) {
+        $.post('./getConfg.php',{
+            option : action
+
+        }).done(function(data){
+
+            if(data.status == 404)
+                alert("Ups ! something happends: " + data.message);
+            else{
+                var value = data.value;
+                resolve(value) ;
+            }
+        });
+    });
+}
 
 $(document).ready(function(){
     //start once page is load
     getBalance();
     getTbPayments();
+
     $('[data-toggle="tooltip"]').tooltip();
 
     $("#btnClaim").click(function(){
-        alert("This could an Add-On");
-        window.open("https://www.youtube.com/watch?v=coVJIoQJx9Q", "Diseño Web", "width=300, height=200");
-        setClaim();
+
+            promiseConfig = getConfg(3);
+            promiseConfig.then(function(value) {
+            var ref = value;
+            window.open(ref, "Diseño Web", "width=500, height=300");
+            setClaim();
+
+        });
     })
 
     $("#btnPaid").click(function(){
-        alert("This could an Add-On");
-        window.open("https://www.youtube.com/watch?v=coVJIoQJx9Q", "Diseño Web", "width=300, height=200");
-        setPaid();
+
+            promiseConfig = getConfg(3);
+            promiseConfig.then(function(value) {
+            var ref = value;
+            window.open(ref, "Diseño Web", "width=500, height=300");
+            setPaid();
+
+        });
     })
 
     $("#btnSend").click(function(){
-        alert("This could an Add-On");
-         window.open("https://www.youtube.com/watch?v=coVJIoQJx9Q", "Diseño Web", "width=500, height=300");
-        setTransfer();
+
+        promiseConfig = getConfg(3);
+            promiseConfig.then(function(value) {
+            var ref = value;
+            window.open(ref, "Diseño Web", "width=500, height=300");
+            setTransfer();
+
+        });
     })
 
     $("#btnClose").click(function(){
