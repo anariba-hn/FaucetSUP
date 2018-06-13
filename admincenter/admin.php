@@ -33,7 +33,7 @@ if(isset($_POST['useradmin']))
     <link rel="stylesheet" href="../css/adminstyle.css">
     <link rel="stylesheet" href="../css/jquery.dataTables.min.css">
     <title>Admin SUP</title>
-    <link rel="stylesheet" type="image/png" href="../assets/img/fsuper.png">
+    <link rel="shortcut icon" type="image/png" href="../assets/img/sup-logo.png">
 
     <!-- SCRIPTS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
