@@ -114,7 +114,26 @@ function setCnfg(action){
     
 }
 
+function getConfg(){
+    var action = 4;
+
+    $.post('../getConfg.php',{
+        option : action
+    }).done(function(data){
+
+        if(data.status != 200)
+            alert("Ups ! something happends: " + data.message);
+        else{
+            $("#reward").val(data.reward);
+            $("#time").val(data.time);
+            $("#href").val(data.href);
+        }
+    });
+}
+
 $(document).ready(function(){
+
+    getConfg();
 
     $(document).on('click', '.edit_data', function(){
         var adminID = $(this).attr("id");

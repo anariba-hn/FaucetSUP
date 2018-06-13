@@ -98,6 +98,7 @@ function setTransfer(){
 $(document).ready(function(){
     //start once page is load
     getUser();
+    getBalance();
 
     $("#btnSend").click(function(){
         alert("This could an Add-On");

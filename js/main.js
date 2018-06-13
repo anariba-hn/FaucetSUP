@@ -210,7 +210,7 @@ function donate(action){
             else{
                 $("#donate_modal").modal("hide");
                 $("#anonymus_modal").modal("show");
-                $("integAddress").val(data.address);
+                $("#integAddressAnonymus").val(data.address);
             }
         });
     }
@@ -235,11 +235,11 @@ function donate(action){
             else{
                 $("#donate_modal").modal("hide");
                 $("#succesDonate_modal").modal("show");
-                $("#integAddress").val(data.address);   
+                $("#integAddress").val(data.address);
             }
         });   
     }
-    
+
 }
 
 function copyText(action){
@@ -259,7 +259,7 @@ function copyText(action){
          document.execCommand("copy");
          alert("Copied the text: " + copyText.value);
     }
-    
+
 }
 
 $(document).ready(function(){
