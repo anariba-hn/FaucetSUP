@@ -15,16 +15,18 @@ if(isset($action))
     $integ = $walletFaucet->integratedAddress();
     $integResult = json_decode($integ);
     #PREPARE STRING FROM JSON SPLIT RESPONSE
-    list($wallet) = explode(':', $integResult->{'integrated_address'});
+    list($a) = explode(':', $integResult->{'integrated_address'});
+    list($p) = explode(':', $integResult->{'payment_id'});
     #DELETE SPACES FROM STRING
-    $integAddress = str_replace(' ', '', $wallet);
+    $integAddress = str_replace(' ', '', $a);
+    $integPayment = str_replace(' ', '', $p);
 
     if($action == 1)
     {
         $name = $_POST['name'];
         $email = $_POST['email'];
 
-        $query = "INSERT INTO donation(name, email, integrated) VALUES('$name', '$email', '$integAddress')";
+        $query = "INSERT INTO donation(name, email, integrated, payment_id) VALUES('$name', '$email', '$integAddress', '$integPayment')";
         if(!$result = mysqli_query($cnn, $query))
             exit(mysqli_error($cnn));
         else{
@@ -37,7 +39,7 @@ if(isset($action))
     if($action == 2)
     {
         
-        $query2 = "INSERT INTO donation(integrated) VALUES('$integAddress')";
+        $query2 = "INSERT INTO donation(integrated, payment_id) VALUES('$integAddress','$integPayment')";
         if(!$result = mysqli_query($cnn, $query2))
             exit(mysqli_error($cnn));
         else{

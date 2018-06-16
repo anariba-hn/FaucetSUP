@@ -193,7 +193,7 @@ function setTimer(){
 
             $('#spnTimer').timer({
             countdown: true,
-            duration: time + 'm',      // This will start the countdown from 3 mins 40 seconds
+            duration: time + 'm',      // This will start the countdown timeset from adminPanel
             callback: function()
             {  // This will execute after the duration has elapsed
                 $("#aClaim").css("color", "orange");

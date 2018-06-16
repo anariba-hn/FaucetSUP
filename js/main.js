@@ -280,7 +280,7 @@ $(document).ready(function(){
         window.open("https://www.youtube.com/watch?v=coVJIoQJx9Q", "Diseño Web", "width=300, height=200");
     })
 
-    $("btnSignAlert").click(function(){
+    $("#btnSignAlert").click(function(){
         $("#alert_modal").modal("hide");
         $("#succes_signup_modal").modal("show");
     })
