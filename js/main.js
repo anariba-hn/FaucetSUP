@@ -3,8 +3,11 @@ function logIn(){
 
     if(address == '')
     {
-        $("#alert_msg").text("You need enter a Walled/Email Address");
-        $("#alert_modal").modal("show");
+        //$("#alert_msg").text("You need enter a Walled/Email Address");
+        //$("#alert_modal").modal("show");
+        $("#txtWallet").focus();
+        $("#logMsg").text("You need enter a Walled/Email Address ");
+        Errorlog();
     }
     else
     {
@@ -15,8 +18,11 @@ function logIn(){
                 {
             if(data.status == 404)
             {
-                $("#alert_msg").text("This Address does not exist, please Sign-Up first");
-                $("#alert_modal").modal("show");
+                //$("#alert_msg").text("This Address does not exist, please Sign-Up first");
+                //$("#alert_modal").modal("show");
+                $("#txtWallet").focus();
+                $("#logMsg").text("This Address does not exist, please Sign-Up first");
+                Errorlog();
             }
             else
             {	
@@ -41,44 +47,58 @@ function verifyUser(){
 
     if (name == '') 
     { 
-        $("#msg").css("visibility", "visible");
-        msg.text("Your Name is Requiered! Please enter your Name or Username");
+        //$("#msg").css("visibility", "visible");
+        //msg.text("Your Name is Requiered! Please enter your Name or Username");
+        $("#logMsg").text("Your Name is Requiered! Please enter your Name or Username");
+        Errorlog();
         $('#user_name').focus();
     }
     else if(email == '')
     {
-        $("#msg").css("visibility", "visible");
-        msg.text("Your Email is Requiered! Please enter a valid Email");
+        //$("#msg").css("visibility", "visible");
+        //msg.text("Your Email is Requiered! Please enter a valid Email");
+        $("#logMsg").text("Your Email is Requiered. Please enter a valid Email");
+        Errorlog();
         $('#user_email').focus();
     }
     else if(!result)
     {
-        $("#msg").css("visibility", "visible");
-        msg.text("Enter a valid email!");
+        //$("#msg").css("visibility", "visible");
+        //msg.text("Enter a valid email!");
+        $("#logMsg").text("Enter a valid email!");
+        Errorlog();
         $("#user_email").focus();	
     }
     else if(pw == '')
     {
-        $("#msg").css("visibility", "visible");
-        msg.text("Password is Requiered! Please enter your Password this will be encrypted");
+        //$("#msg").css("visibility", "visible");
+        //msg.text("Password is Requiered! Please enter your Password this will be encrypted");
+        $("#logMsg").text("Password is Requiered! Please enter your Password this will be encrypted");
+        Errorlog();
         $('#user_pw').focus();
     }
     else if(cpass == '' || pw != cpass)
     {
-        $("#msg").css("visibility", "visible");
-        msg.text("Please enter the same Password");
+        //$("#msg").css("visibility", "visible");
+        //msg.text("Please enter the same Password");
+        $("#logMsg").text("Please enter the same Password");
+        Errorlog();
         $('#cpass').focus();
     }
     else if(wallet == '')
     {
-        $("#msg").css("visibility", "visible");
-        msg.text("Please a Wallet Address is Requiered");
+        //$("#msg").css("visibility", "visible");
+        //msg.text("Please a Wallet Address is Requiered");
+        $("#logMsg").text("Please a Wallet Address is Requiered");
+        Errorlog();
         $('#user_address').focus();
     }
     else if(wallet.length != 95)
     {
-        $("#msg").css("visibility", "visible");
-        msg.text("Please enter a Valid Wallet Address");
+        //$("#msg").css("visibility", "visible");
+        //msg.text("Please enter a Valid Wallet Address");
+        $("#logMsg").text("Please enter a Valid Wallet Address");
+        Errorlog();
         $('#user_address').focus();
     }
     else
@@ -104,20 +124,26 @@ function verifyUser(){
 
                         if(data.user_email == email)
                         {
-                            $("msg").css("visibility", "visible");
-                            $("#msg").text("There is an account registered whith this email");
+                            //$("msg").css("visibility", "visible");
+                            //$("#msg").text("There is an account registered whith this email");
+                            $("#logMsg").text("There is an account registered whith this email");
+                            Errorlog();
                             $("#user_email").focus();
                         }
                         else if(data.user_address == wallet)
                         {
-                            $("#msg").css("visibility", "visible");
-                            $("#msg").text("There is an account registered with this wallet address");
+                            //$("#msg").css("visibility", "visible");
+                            //$("#msg").text("There is an account registered with this wallet address");
+                            $("#logMsg").text("There is an account registered with this wallet address");
+                            Errorlog();
                             $("#user_address").focus();
                         }         
                         else if(data.status == 404)
                         {
-                            $("#msg").css("visibility", "visible");
-                            $("#msg").text(data.message);  
+                            //$("#msg").css("visibility", "visible");
+                            //$("#msg").text(data.message);
+                            $("#logMsg").text(data.message);
+                            Errorlog();
                         }
                         else
                         {   
@@ -143,8 +169,10 @@ function verifyUser(){
 
                 }
                 else{
-                    $("#msg").css("visibility", "visible");
-                    msg.text("Are you a robot? Then select the reCaptcha !!");
+                    //$("#msg").css("visibility", "visible");
+                    //msg.text("Are you a robot? Then select the reCaptcha !!");
+                    $("#logMsg").text("Are you a robot? Then select the reCaptcha !!");
+                    Errorlog();
                     $("#g-recaptcha-response").focus();
                 }
             }
@@ -214,12 +242,22 @@ function donate(action){
             }
         });
     }
-    else if(name == '')
-        $("#msgDonate").text("Please enter your name. If you don't want to share your information make an Anonymus donation.");
-    else if(email == '')
-        $("#msgDonate").text("Please enter your email. If you don't want to share your information make an Anonymus donation.");
-    else if(!result)
-        $("#msgDonate").text("Please enter a Valid email address.");
+    else if(name == ''){
+        //$("#msgDonate").text("Please enter your name. If you don't want to share your information make an Anonymus donation.");
+        $("#logMsg").text("Please enter your name. If you don't want to share your information make an Anonymus donation.");
+        Errorlog();
+    }
+
+    else if(email == ''){
+        //$("#msgDonate").text("Please enter your email. If you don't want to share your information make an Anonymus donation.");
+        $("#logMsg").text("Please enter your email. If you don't want to share your information make an Anonymus donation.");
+        Errorlog();
+    }
+
+    else if(!result){//$("#msgDonate").text("Please enter a Valid email address.");
+        $("#logMsg").text("Please enter a Valid email address.");
+        Errorlog();}
+
     else if(action == 1)
     {
         $("#succesDonate_modal").modal("show");
@@ -262,6 +300,16 @@ function copyText(action){
 
 }
 
+function Errorlog(){
+
+    $("#errorLog").fadeIn(300);
+
+    setTimeout(function(){
+        $("#errorLog").fadeOut(300);
+    }, 3500)
+
+}
+
 $(document).ready(function(){
 
     getPool();
@@ -282,7 +330,7 @@ $(document).ready(function(){
 
     $("#btnSignAlert").click(function(){
         $("#alert_modal").modal("hide");
-        $("#succes_signup_modal").modal("show");
+        //$("#succes_signup_modal").modal("show");
     })
 
     $("#btnDonate").click(function(){

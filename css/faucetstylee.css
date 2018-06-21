@@ -74,13 +74,6 @@
     font-size: 18px;
 }
 
-#msg{
-    0.2em;
-    color: red;
-    text-shadow: 0px 0px 20px black;
-    visibility:hidden;
-}
-
 .succes_signup_modal{
     text-align: center;
 }
@@ -300,4 +293,30 @@ footer a{
     0.2em;
     color: red;
     text-shadow: 0px 0px 20px black;
+}
+
+#msg{
+    0.2em;
+    color: red;
+    text-shadow: 0px 0px 20px black;
+    visibility:hidden;
+}
+
+.errorlog{
+    text-align: center;
+    color: white;
+    font-size: 1.2em;
+    letter-spacing: 2px;
+    width: 100%;
+    background-color: rgba(255, 0, 0, 0.81);
+
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    height: auto;
+    z-index: 2000;
+    overflow: inherit;
+    display: none;
+
 }
