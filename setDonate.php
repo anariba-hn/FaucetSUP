@@ -33,8 +33,9 @@ if(isset($action))
     {
         $name = $_POST['name'];
         $email = $_POST['email'];
+        $hyper = $_POST['hyper'];
 
-        $query = "INSERT INTO donation(name, email, integrated, payment_id, block) VALUES('$name', '$email', '$integAddress', '$integPayment', '$height')";
+        $query = "INSERT INTO donation(name, email, integrated, payment_id, block, hyperlink) VALUES('$name', '$email', '$integAddress', '$integPayment', '$height', '$hyper')";
         if(!$result = mysqli_query($cnn, $query))
             exit(mysqli_error($cnn));
         else{

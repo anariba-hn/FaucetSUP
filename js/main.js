@@ -223,6 +223,7 @@ function donate(action){
     
     var name  = $("#donateName").val();
     var email = $("#donateEmail").val();
+    var hyper = $("#hyper").val();
     var result = validate(email);
     var act  = action;
     
@@ -265,6 +266,7 @@ function donate(action){
         $.post('./setDonate.php',{
             name : name,
             email : email,
+            hyper : hyper,
             action : act
         }).done(function(data){
             
