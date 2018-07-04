@@ -24,7 +24,8 @@ if(isset($action))
     #
     ## SAVE CURRENT BLOCK 
     #
-    $height = $walletFaucet->getHeight();
+    $jsonHeight = $walletFaucet->getHeight();
+    $height = json_decode($jsonHeight);
 
     if($action == 1)
     {
