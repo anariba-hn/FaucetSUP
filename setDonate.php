@@ -21,12 +21,17 @@ if(isset($action))
     $integAddress = str_replace(' ', '', $a);
     $integPayment = str_replace(' ', '', $p);
 
+    #
+    ## SAVE CURRENT BLOCK 
+    #
+    $height = $walletFaucet->getHeight();
+
     if($action == 1)
     {
         $name = $_POST['name'];
         $email = $_POST['email'];
 
-        $query = "INSERT INTO donation(name, email, integrated, payment_id) VALUES('$name', '$email', '$integAddress', '$integPayment')";
+        $query = "INSERT INTO donation(name, email, integrated, payment_id, block) VALUES('$name', '$email', '$integAddress', '$integPayment', '$height')";
         if(!$result = mysqli_query($cnn, $query))
             exit(mysqli_error($cnn));
         else{
@@ -39,7 +44,7 @@ if(isset($action))
     if($action == 2)
     {
         
-        $query2 = "INSERT INTO donation(integrated, payment_id) VALUES('$integAddress','$integPayment')";
+        $query2 = "INSERT INTO donation(integrated, payment_id, block) VALUES('$integAddress','$integPayment', '$height')";
         if(!$result = mysqli_query($cnn, $query2))
             exit(mysqli_error($cnn));
         else{

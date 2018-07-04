@@ -9,7 +9,7 @@ include("./connex.php");
 	{
 		$query = "SELECT * FROM users WHERE user_email = '$user_address' or user_address = '$user_address'";
 		if (!$result = mysqli_query($cnn, $query))
-        exit(mysqli_error($conn));
+        exit(mysqli_error($cnn));
 	    if(mysqli_num_rows($result) > 0)
 	    {
 	    	while($row = mysqli_fetch_assoc($result))
