@@ -26,7 +26,7 @@ if(isset($action))
     #
     $jsonHeight = $walletFaucet->getHeight();
     $block = json_decode($jsonHeight);
-    $height = (int)$block;
+    $height = (int)$block->height;
 
 
     if($action == 1)
