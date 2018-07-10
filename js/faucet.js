@@ -231,14 +231,27 @@ $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
 
     $("#btnClaim").click(function(){
-
+            /*
             promiseConfig = getConfg(3);
             promiseConfig.then(function(value) {
             var ref = value;
             window.open(ref, "Diseño Web", "width=500, height=300");
             setClaim();
 
-        });
+        });*/
+
+            $.post('./getHyperlinks.php',{
+
+            }).done(function (data) {
+                if(data.status == 404)
+                    alert("Ups ! something happends: " + data.message);
+                else{
+
+                    var href = data.hyper;
+                    window.open(href, "Diseño Web", "width=500, height=300");
+                    setClaim();
+                }
+            });
     })
 
     $("#btnPaid").click(function(){
