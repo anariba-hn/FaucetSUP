@@ -1,8 +1,8 @@
 <?php
 
-require "../vendor/autoload.php";
+require "/var/www/html/vendor/autoload.php";
 
-include ("./connex.php");
+include ("/var/www/html/connex.php");
 
 use Superior\Wallet;
 $wallet = new Superior\Wallet();
