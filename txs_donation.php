@@ -205,7 +205,6 @@ if(!empty($integArray) && count($bulk) > 0)
                 if(mysqli_num_rows($result6) > 0)
                 {
                     $row5 = mysqli_fetch_row($result6);
-                    echo "<br />" . $row5[0] . $email . "<br />";
                     $sups = (int)$row5[0] + $amount;
                 }else{
                     $sups = $amount;

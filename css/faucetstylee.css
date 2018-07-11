@@ -124,6 +124,7 @@
     background-color: #343a40;;
     height: auto;
     width: auto ;
+    margin: auto;
 }
 
 .footer-ends{
@@ -143,29 +144,17 @@
     margin-bottom: 20px;
 }
 
-.media-krypto img{
+.media-icon img{
     max-width: 50px;
     max-height: 50px;
 }
 
-.media-github img{
-    max-width: 50px;
-    max-height: 50px;
-}
+@media only screen and (max-width: 600px){
 
-.media-linked img{
-    max-width: 50px;
-    max-height: 50px;
-}
-
-.media-fb img{
-    max-width: 50px;
-    max-height: 50px;
-}
-
-.media-tw img{
-    max-width: 50px;
-    max-height: 50px;
+    .media-icon img{
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
 }
 
 footer .title{
