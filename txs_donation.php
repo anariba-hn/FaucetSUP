@@ -72,7 +72,8 @@ if(mysqli_num_rows($result) > 0)
 #
 ## PREPARE ARRAY OF PAYMETSID ON DONATION DB TO COMPARE WITH THE BULKPAYMENTS FUNCTION
 #
-#$block = (int)$runBlock - 1000;
+$jsonBulk = $wallet->getBulkPayments($paymentID, $runBlock);
+$bulk = json_decode($jsonBulk);
 
 $query = "SELECT * FROM donation WHERE block >= '$runBlock'";
 if (!$result = mysqli_query($cnn, $query))
@@ -87,12 +88,38 @@ if(mysqli_num_rows($result) > 0)
 }
 
 #
+## VERIFY IF TX ALREADY EXIST ON TABLE
+#
+if(count($bulk) > 0)
+{
+    foreach($bulk->payments as $value => $payments)
+    {
+        #PREPARE THE PAYMENT ID WITHOUT ZEROS AT FRONT OR END
+        $pid = $payments->payment_id;
+        $tags = strip_tags($pid);
+        $explode = trim($tags, "0");
+
+        $request = "SELECT * FROM get_tx_in WHERE tx_hash = '$payments->tx_hash' ";
+        if(!$result = mysqli_query($cnn, $request))
+            exit(mysqli_error($cnn));
+        if(mysqli_num_rows($result) > 0)
+        {
+            if(($key = array_search($explode, $integArray)) !== false)
+            {
+                unset($integArray[$key]);
+                echo "<br /><h2>THIS PAYMENTS ID WILL BE OMITTED BECAUSE WAS PROCESS BEFORE</h2><br />";
+                echo "<br />". $explode . "<br />";
+            }
+        }
+    }
+}
+
+
+#
 ## LOOP THE BULKPAYMENT AND SAVE ON TX_IN DB
 #
-$jsonBulk = $wallet->getBulkPayments($paymentID, $runBlock);
-$bulk = json_decode($jsonBulk);
 
-if(!empty($integArray))
+if(!empty($integArray) && count($bulk) > 0)
 {
     foreach($bulk->payments as $value => $payments)
     {
