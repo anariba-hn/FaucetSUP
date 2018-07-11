@@ -50,6 +50,25 @@
     text-align: center;
 }
 
+.hero-content a{
+    color: black;
+}
+
+.hero-content a:hover{
+    color: #6a4809;
+}
+
+@media only screen and (max-width: 600px){
+
+    .hero-content a{
+        color: #6a4809;
+    }
+
+    hero-content a:hover{
+    color: #6a4809;
+    }
+}
+
 .hero-content input[type="text"]{
     width: 300px;
     text-align: center;
