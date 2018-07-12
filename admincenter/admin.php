@@ -1,9 +1,11 @@
+<?php session_start()?>
 <?php include("../connex.php"); 
 
 if(isset($_POST['useradmin']))
 {
     $admin = $_POST['useradmin'];
     $pw    = $_POST['pass'];
+    $sesion = $_SESSION[$admin];
 
         $query = "SELECT user_password FROM admincenter WHERE user_admin = '$admin'";
         if(!$result = mysqli_query($cnn, $query))
@@ -16,7 +18,10 @@ if(isset($_POST['useradmin']))
      header("Location: ../admincenter/index.html");
     }else{
         #SET COOKIE ON SERVER
-        #setcookie("admin", $admin, time() + 846000);
+        if(empty($sesion))
+        {
+            header("Location: ../admincenter/index.html");
+        }
     }
     
 }else{
