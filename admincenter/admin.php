@@ -6,7 +6,7 @@ if(isset($_POST['useradmin']))
     $admin = $_POST['useradmin'];
     $pw    = $_POST['pass'];
     $sesion = $_SESSION[$admin];
-
+    echo $sesion;
         $query = "SELECT user_password FROM admincenter WHERE user_admin = '$admin'";
         if(!$result = mysqli_query($cnn, $query))
         exit(mysqli_error($cnn));
@@ -18,9 +18,10 @@ if(isset($_POST['useradmin']))
      header("Location: ../admincenter/index.html");
     }else{
         #SET COOKIE ON SERVER
+        echo $sesion;
         if(empty($sesion))
         {
-            header("Location: ../admincenter/index.html");
+            #header("Location: ../admincenter/index.html");
         }
     }
     
