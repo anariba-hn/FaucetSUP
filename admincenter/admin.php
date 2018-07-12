@@ -166,16 +166,38 @@ if(isset($_POST['useradmin']))
                                     <td width="10%">Donor_ID</td>
                                     <td width="20%">Block</td>
                                     <td width="35%">Date_TX</td>
-                                    <td width="10%">Lod_ID</td>
+                                    <td width="10%">Log_ID</td>
                                     <td width="20%">Amount</td>
-                                    <td width="40%">TX_Hash</td>
+                                    <td width="100%">TX_Hash</td>
                                 </tr>
                             </thead>
 
                             <?php
+
                             $query = "SELECT * FROM get_tx_in";
                             if(!$result = mysqli_query($cnn, $query))
                                             exit(mysqli_error($cnn));
+
+                            #SETING PAGINATION VARIABLES
+                            $num_rows = $result->num_rows;
+                            $per_page     = 5;
+                            $offset       = 0;
+                            $current_page = '';
+                        
+                            #CALCULATE THE PAGE LEFT TO SHOW 
+                            $no_off_page = ceil($num_rows / $per_page); //ceil function round int
+                            
+                            #LOGIC TO HANDLE DATA OUTPUT PER PAGINATION
+                            if(isset($_GET['page'])){
+                                $current_page = $_GET['page'];
+                                $offset = ($per_page * $current_page) - $per_page ;
+                            }
+
+                            #NEW QUERY WITH PARAMETERS
+                            $paginateData = "SELECT * FROM get_tx_in LIMIT " .$per_page. " OFFSET " .$offset. "";
+                            if(!$result = mysqli_query($cnn, $paginateData))
+                                exit(mysqli_error($cnn));
+                            
                             while($row=mysqli_fetch_assoc($result))
                                         {
                                             echo "<tr>";
@@ -191,6 +213,53 @@ if(isset($_POST['useradmin']))
                             ?>
 
                         </table>
+
+                        <!--PAGINATION-->
+
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination justify-content-center">
+                                    <li class="<?php
+                                               if($current_page == 1 || $current_page == ''){echo 'disabled';}?> page-item">
+                                        <a class="page-link" href="<?php
+                                               if($current_page == 1 || $current_page == ''){
+                                                   echo " # ";
+                                               }else{
+                                                    echo "?page=". ($current_page - 1);   
+                                               }
+                                               ?>" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+                                    <?php for($x = 1; $x <= $no_off_page; $x ++): ?>
+                                    <li class="<?php
+                                               if($current_page == $x){
+                                                   echo 'active';
+                                               }
+                                               ?> page-item">
+                                        <a class="page-link" href="?page=<?php echo $x; ?>">
+                                            <?php echo $x; ?>
+                                        </a>
+                                    </li>
+                                    <?php endfor; ?>
+                                    <li class="<?php
+                                               if($current_page == $no_off_page){echo 'disabled';}?> page-item">
+                                        <a class="page-link" href="<?php
+                                               if($current_page == $no_off_page){
+                                                   echo " # ";
+                                               }elseif($current_page == ''){
+                                                   echo "?page=2";
+                                               }else{
+                                                    echo "?page=". ($current_page + 1);   
+                                               }
+                                               ?>" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <!-- ENDS PAGINATIONS -->
                     </div> <!--TABLE RESPONSIVE ENDS-->   
                 </div>
                 <div class="tab-pane fade admins" id="v-pills-admins" role="tabpanel" aria-labelledby="v-pills-settings-tab">
