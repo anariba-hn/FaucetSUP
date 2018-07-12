@@ -104,7 +104,7 @@ function setCnfg(action){
             $.post('../admincenter/setConfg.php',{
                 option : action,
                 ref    : ref
-            }).done(function(){
+            }).done(function(data){
                 alert(data.message);
                 window.location.reload();
             });
@@ -114,7 +114,7 @@ function setCnfg(action){
         $.post('../admincenter/setConfg.php',{
                 option        : action,
                 cron_mount    : cron
-            }).done(function(){
+            }).done(function(data){
                 alert(data.message);
                 window.location.reload();
             });
