@@ -300,7 +300,7 @@ $(document).ready(function(){
 
                 var href = data.hyper;
                 window.open(href, "Diseño Web", "width=500, height=300");
-                setClaim();
+                setPaid();
             }
         });
     })
@@ -325,7 +325,7 @@ $(document).ready(function(){
 
                 var href = data.hyper;
                 window.open(href, "Diseño Web", "width=500, height=300");
-                setClaim();
+                setTransfer();
             }
         });
     })

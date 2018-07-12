@@ -38,7 +38,7 @@
                         <a class="nav-link" href="#modal2" data-toggle="modal" data-target="#modal2">Transfer</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#modal3" data-toggle="modal" data-target="#">MyHistory</a>
+                        <a class="nav-link" href="#modal3" data-toggle="modal" data-target="#">My History</a>
                     </li>
                     <li class="nav-item">
                         <a id="btnLogOut" class="nav-link" href="#">Log Out</a>
