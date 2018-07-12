@@ -75,6 +75,14 @@ if(isset($option))
         else{
             $data3 = mysqli_fetch_row($result);
             $response['href'] = $data3[0];
+        }
+
+        $query4 = "SELECT value FROM confg WHERE id_confg = '4'";
+        if(!$result = mysqli_query($cnn, $query4))
+            exit(mysqli_error($cnn));
+        else{
+            $data4 = mysqli_fetch_row($result);
+            $response['cron'] = $data4[0];
             $response['status'] = 200;
             $response['message'] = "Succes";
         }

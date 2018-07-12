@@ -138,6 +138,7 @@ function getConfg(){
             $("#reward").val(data.reward);
             $("#time").val(data.time);
             $("#href").val(data.href);
+            $("#cron").val(data.cron);
         }
     });
 }
