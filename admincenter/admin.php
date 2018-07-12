@@ -1,6 +1,6 @@
 <?php include("../connex.php"); 
 
-if(isset($_POST['useradmin']) || isset($admin = $_COOKIE["admin"];))
+if(isset($_POST['useradmin']) || isset($admin = $_COOKIE["admin"]))
 {
     $admin = $_POST['useradmin'];
     $pw    = $_POST['pass'];
