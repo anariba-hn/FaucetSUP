@@ -15,7 +15,7 @@ if(!$result = mysqli_query($cnn, $sql))
 	exit(mysqli_error($cnn))
 else{
 	$data = mysqli_fetch_row($result);
-	$requestcount = $data[0];
+	$requestcount = (int)$data[0];
 }
 
 
