@@ -2,7 +2,7 @@
 
 require "/var/www/html/vendor/autoload.php";
 
-include ("/var/www/html/connex.php");
+include ("/var/www/html/FaucetSUP/connex.php");
 
 use Superior\Wallet;
 $wallet = new Superior\Wallet();
