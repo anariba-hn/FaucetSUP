@@ -7,8 +7,20 @@ include ("/var/www/html/FaucetSUP/connex.php");
  use Superior\Wallet;
  $walletFaucet = new Superior\Wallet();
  
+#
+## GET THE CRON-COUNT-AMOUNT FROM CONFG DB
+#
+$sql = "SELECT value FROM confg WHERE id_confg = '4'";
+if(!$result = mysqli_query($cnn, $sql))
+	exit(mysqli_error($cnn))
+else{
+	$data = mysqli_fetch_row($result);
+	$requestcount = $data[0];
+}
+
+
  //$cnn = include
- $requestcount      = 10; // set manualy for now
+ //$requestcount      = set variable from admindcenter
  $response          = array(); //json_response
  $cron_address      = array(); //address to transfer
  $cron_amounts      = array(); //amount to transfer

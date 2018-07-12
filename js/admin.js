@@ -76,6 +76,7 @@ function setCnfg(action){
     var reward = $("#reward").val();
     var time = $("#time").val();
     var ref  = $("#href").val();
+    var cron = $("#cron-transfer").val();
     
     if(action == 1 && reward != null)
         {
@@ -108,7 +109,17 @@ function setCnfg(action){
                 window.location.reload();
             });
         }
-        else{
+    else if(action == 4 && cron != null)
+    {
+        $.post('../admincenter/setConfg.php',{
+                option        : action,
+                cron_mount    : cron
+            }).done(function(){
+                alert(data.message);
+                window.location.reload();
+            });
+    }
+    else{
             alert("Not action completed.");
         }
     
@@ -185,6 +196,10 @@ $(document).ready(function(){
 
     $("#btnRef").click(function(){
         setCnfg(3);
+    })
+
+    $("#btnCron").click(function(){
+        setCnfg(4);
     })
     
     $("#btnlogOut").click(function(){

@@ -234,6 +234,11 @@ if(isset($_POST['useradmin']))
                         <br/>
                         <button id="btnTime" type="button">Save</button>
                         <br/>
+                        <h4>Set Cron-Transfer Amount</h4>
+                        <input type="number" name="cron-transfer" id="cron-transfer">
+                        <br/>
+                        <button id="btnCron" type="button">Save</button>
+                        <br/>
                         <h4>Set new AddOn - href.</h4>
                         <input type="text" name="href" id="href">
                         <br/>

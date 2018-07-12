@@ -16,7 +16,7 @@ if(isset($option))
                 exit(mysqli_error($cnn));
             else{
                 $response['status'] = 200;
-                $response['message'] = "Succes";
+                $response['message'] = "Success";
             }
             
         }else{
@@ -35,7 +35,7 @@ if(isset($option))
                 exit(mysqli_error($cnn));
             else{
                 $response['status'] = 200;
-                $response['message'] = "Succes";
+                $response['message'] = "Success";
             }
             
         }else{
@@ -54,12 +54,31 @@ if(isset($option))
                 exit(mysqli_error($cnn));
             else{
                 $response['status'] = 200;
-                $response['message'] = "Succes";
+                $response['message'] = "Success";
             }
         }else{
             $response['status'] = 404;
             $response['message'] = "Href not set properly";
         }
+    }
+
+    if ($option == '4') 
+    {
+       $cron_mount = $_POST['cron_mount'];
+       if(isset($cron_mount))
+       {
+
+            $query = "UPDATE confg SET value = '$cron-transfer' WHERE id_confg = '4' ";
+            if(!$result = mysqli_query($cnn, $query))
+                exit(mysqli_error($cnn));
+            else{
+                $response['status'] = 200;
+                $response['message'] = "Success";
+            }
+       }else{
+            $response['status'] = 404;
+            $response['message'] = "Cron-Transfer-Amount not set properly";
+       }
     }
     
 }else{
