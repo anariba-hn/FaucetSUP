@@ -76,7 +76,7 @@ function setCnfg(action){
     var reward = $("#reward").val();
     var time = $("#time").val();
     var ref  = $("#href").val();
-    var cron = $("#cron-transfer").val();
+    var cron = $("#cron").val();
     
     if(action == 1 && reward != null)
         {

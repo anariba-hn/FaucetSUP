@@ -235,7 +235,7 @@ if(isset($_POST['useradmin']))
                         <button id="btnTime" type="button">Save</button>
                         <br/>
                         <h4>Set Cron-Transfer Amount</h4>
-                        <input type="number" name="cron-transfer" id="cron-transfer">
+                        <input type="number" name="cron-transfer" id="cron">
                         <br/>
                         <button id="btnCron" type="button">Save</button>
                         <br/>
