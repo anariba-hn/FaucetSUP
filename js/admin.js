@@ -110,18 +110,18 @@ function setCnfg(action){
             });
         }
     else if(action == 4 && cron != null)
-    {
-        $.post('../admincenter/setConfg.php',{
-                option        : action,
-                cron_mount    : cron
-            }).done(function(data){
-                alert(data.message);
-                window.location.reload();
-            });
-    }
-    else{
-            alert("Not action completed.");
+        {
+            $.post('../admincenter/setConfg.php',{
+                    option  : action,
+                    cron    : cron
+                }).done(function(data){
+                    alert(data.message);
+                    window.location.reload();
+                });
         }
+        else{
+                alert("Not action completed.");
+            }
     
 }
 

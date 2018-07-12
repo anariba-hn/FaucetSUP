@@ -64,11 +64,11 @@ if(isset($option))
 
     if ($option == '4') 
     {
-       $cron_mount = $_POST['cron_mount'];
+       $cron_mount = $_POST['cron'];
        if(isset($cron_mount))
        {
 
-            $query = "UPDATE confg SET value = '$cron-transfer' WHERE id_confg = '4' ";
+            $query = "UPDATE confg SET value = '$cron_mount' WHERE id_confg = '4' ";
             if(!$result = mysqli_query($cnn, $query))
                 exit(mysqli_error($cnn));
             else{
