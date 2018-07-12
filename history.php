@@ -70,7 +70,7 @@
             </div>
 
             <div class="col-sm-3" style="text-align: center;">
-                <h5>Paids</h5>
+                <h5>Paid</h5>
                 <span id="spnPaid">0</span>
             </div>
             
@@ -84,7 +84,7 @@
         <div class="payments-container">
             <div class="table-responsive succes-tbl">
                <br/>
-               <h2>Succes Transfer</h2>
+               <h2>Succesfully Transferred</h2>
                 <table widh="100%" class="table table-hover" id="tb-succes">
                         <tbody>
                             <tr>
@@ -194,7 +194,7 @@
             
             <div class="table-responsive error-tbl">
                <br/>
-               <h2>Error Transfer</h2>
+               <h2>Transfer Errors</h2>
                 <table widh="100%" class="table table-hover" id="tb-error">
                         <tbody>
                             <tr>
@@ -313,30 +313,29 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Tranfers</h5>
+                    <h5 class="modal-title">Tranfers Amount</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             <br/>
-                            <span id="msg"></span>
                         </button>
                 </div>
                 <div class="modal-body">
                     <form>
                         <form id="form">
                             <div class="form-group">
-                                <label for="destination">Account Destination</label>
+                                <label for="destination" id="account">Account Destination</label>
                                 <input type="text" id="destination" placeholder="Wallet Address" class="form-control" required />
                             </div>
                             <!--FORM-GRTOUP ENDS-->
 
                             <div class="form-group">
-                                <label for="amount">Amount</label>
+                                <label for="amount" id="mount">Amount</label>
                                 <input type="text" id="amount" placeholder="100,000.00 SUP" class="form-control" required/>
                             </div>
                             <!--FORM-GROUP ENDS-->
 
                             <div class="form-group">
-                                <label for="vpass">Password</label>
+                                <label for="vpass" id="pass">Password</label>
                                 <input type="password" id="vpass" placeholder="Match password" class="form-control" required/>
                             </div>
                             <!--FORM-GROUP ENDS-->
@@ -377,6 +376,16 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- succes modal -->
+
+    <!--ERROR LOG DIV-->
+
+        <div id="errorLog" class="errorlog">
+            <div class="error-hero">
+                <i class="fas fa-exclamation-triangle"><span id="logMsg"> ErrorLog</span></i>
+            </div>
+        </div>
+
+        <!--ENDS ERROR LOG-->
 
     <!--SCRIPTS-->
     <script src="js/jquery.dataTables.min.js"></script>

@@ -50,16 +50,22 @@ function setTransfer(){
     var amount      = $('#amount').val();
     var msg         = $('#msg');
 
+    $("#account").css("color","black");
+    $("#mount").css("color","black");
+    $("#pass").css("color","black");
+
     if(destination.length != 95)
     {
-        $("#msg").css("visibility", "visible");
-        msg.text("Please enter a Valid Wallet Address");
+        $("#logMsg").text("Please enter a Valid Wallet Address");
+        Errorlog();
+        $("#account").css("color","red");
         $('#destination').focus();
     }
     else if(amount == 0)
     {
-        $("#msg").css("visibility", "visible");
-        msg.text("Please enter a higher amount");
+        $("#logMsg").text("Please enter a higher amount");
+        Errorlog();
+        $("#mount").css("color","red");
         $('#amount').focus();
     }
     else{
@@ -75,14 +81,16 @@ function setTransfer(){
 
             if(data.flag == 1)
             {
-                $("#msg").css("visibility", "visible");
-                msg.text(data.message);
+                $("#logMsg").text(data.message);
+                Errorlog();
+                $("#pass").css("color","red");
                 $('#vpass').focus();
             }
             else if(data.flag == 2)
             {
-                $("#msg").css("visibility", "visible");
-                msg.text(data.message);
+                $("#logMsg").text("Please enter a higher amount");
+                Errorlog();
+                $("#mount").css("color","red");
                 $('#amount').focus();
             }
             else{
@@ -93,6 +101,16 @@ function setTransfer(){
         });
 
     }
+}
+
+function Errorlog(){
+
+    $("#errorLog").fadeIn(300);
+
+    setTimeout(function(){
+        $("#errorLog").fadeOut(300);
+    }, 3500)
+
 }
 
 $(document).ready(function(){

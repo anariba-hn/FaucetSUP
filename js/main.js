@@ -45,12 +45,19 @@ function verifyUser(){
     var msg    = $('#msg');
     var result = validate(email);
 
+    $("#first_name").css("color","black");
+    $("#email").css("color","black");
+    $("#pass").css("color","black");
+    $("#cpasss").css("color","black");
+    $("#walletLog").css("color","black");
+
     if (name == '') 
     { 
         //$("#msg").css("visibility", "visible");
         //msg.text("Your Name is Requiered! Please enter your Name or Username");
         $("#logMsg").text("Your Name is Requiered! Please enter your Name or Username");
         Errorlog();
+        $("#first_name").css("color","red");
         $('#user_name').focus();
     }
     else if(email == '')
@@ -59,6 +66,7 @@ function verifyUser(){
         //msg.text("Your Email is Requiered! Please enter a valid Email");
         $("#logMsg").text("Your Email is Requiered. Please enter a valid Email");
         Errorlog();
+        $("#email").css("color","red");
         $('#user_email').focus();
     }
     else if(!result)
@@ -67,14 +75,16 @@ function verifyUser(){
         //msg.text("Enter a valid email!");
         $("#logMsg").text("Enter a valid email!");
         Errorlog();
-        $("#user_email").focus();	
+        $("#email").css("color","red");
+        $("#user_email").focus();
     }
     else if(pw == '')
     {
         //$("#msg").css("visibility", "visible");
         //msg.text("Password is Requiered! Please enter your Password this will be encrypted");
-        $("#logMsg").text("Password is Requiered! Please enter your Password this will be encrypted");
+        $("#logMsg").text("Password is Requiered! Please enter your Password");
         Errorlog();
+        $("#pass").css("color","red");
         $('#user_pw').focus();
     }
     else if(cpass == '' || pw != cpass)
@@ -83,6 +93,7 @@ function verifyUser(){
         //msg.text("Please enter the same Password");
         $("#logMsg").text("Please enter the same Password");
         Errorlog();
+        $("#cpasss").css("color","red");
         $('#cpass').focus();
     }
     else if(wallet == '')
@@ -91,6 +102,7 @@ function verifyUser(){
         //msg.text("Please a Wallet Address is Requiered");
         $("#logMsg").text("Please a Wallet Address is Requiered");
         Errorlog();
+        $("#walletLog").css("color","red");
         $('#user_address').focus();
     }
     else if(wallet.length != 95)
@@ -99,6 +111,7 @@ function verifyUser(){
         //msg.text("Please enter a Valid Wallet Address");
         $("#logMsg").text("Please enter a Valid Wallet Address");
         Errorlog();
+        $("#walletLog").css("color","red");
         $('#user_address').focus();
     }
     else
@@ -128,6 +141,7 @@ function verifyUser(){
                             //$("#msg").text("There is an account registered whith this email");
                             $("#logMsg").text("There is an account registered whith this email");
                             Errorlog();
+                            $("#email").css("color","red");
                             $("#user_email").focus();
                         }
                         else if(data.user_address == wallet)
@@ -136,6 +150,7 @@ function verifyUser(){
                             //$("#msg").text("There is an account registered with this wallet address");
                             $("#logMsg").text("There is an account registered with this wallet address");
                             Errorlog();
+                            $("#walletLog").css("color","red");
                             $("#user_address").focus();
                         }         
                         else if(data.status == 404)

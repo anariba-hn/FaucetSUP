@@ -51,7 +51,7 @@
                             <a class="nav-link" href="#modal2" data-toggle="modal" data-target="#modal2">Transfer</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./history.php" >MyHistory</a>
+                            <a class="nav-link" href="./history.php" >My History</a>
                         </li>
                         <li class="nav-item">
                             <a id="btnLogOut" class="nav-link" href="#">Log Out</a>
@@ -71,7 +71,7 @@
                         <br/>
                     </div><!--BALANCE ENDS-->
 
-                    <div class="col unlock-balance rounded" data-toggle="tooltip" data-placement="top" title="With this you can transfer coins.">
+                    <div class="col unlock-balance rounded" data-toggle="tooltip" data-placement="top" title="Amount that can be withdrawn.">
                         <h4>Unlock-Balance</h4>
                         <span id="unlock-balance">0</span>
                         <img src="./assets/img/fsuper.png" alt="SUP-logo" style="width: 25px; height: 25px; margin-top: -8px;">
@@ -85,7 +85,7 @@
                     <span id=spnTimer></span>
                     <br/>
                     <br/>
-                    <h2>Once timer goes nil Claim option will be available</h2>
+                    <h2>Once timer goes to “0” claim option will be available</h2>
                     <br/>
                     <br/>
                 </div> <!--TIMER ENDS-->
@@ -131,7 +131,17 @@
             </div> <!--ENDS ROW-->
             <br/><br/><br/><br/>
 
-        </div> 
+        </div>
+
+        <!--ERROR LOG DIV-->
+
+        <div id="errorLog" class="errorlog">
+            <div class="error-hero">
+                <i class="fas fa-exclamation-triangle"><span id="logMsg"> ErrorLog</span></i>
+            </div>
+        </div>
+
+        <!--ENDS ERROR LOG-->
 
         <!-- Modal -->
         <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="modal1" aria-hidden="true">
@@ -170,28 +180,27 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Tranfers</h5>
+                        <h5 class="modal-title">Transfer Amount</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             <br/>
-                            <span id="msg"></span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <form>
                             <form id="form">
                                 <div class="form-group">
-                                    <label for="destination">Account Destination</label>
+                                    <label for="destination" id="account">Account Destination</label>
                                     <input type="text" id="destination" placeholder="Wallet Address" class="form-control" required />
                                 </div> <!--FORM-GRTOUP ENDS-->
 
                                 <div class="form-group">
-                                    <label for="amount">Amount</label>
+                                    <label for="amount" id="mount">Amount</label>
                                     <input type="text" id="amount" placeholder="100,000.00 SUP" class="form-control" required/>
                                 </div> <!--FORM-GROUP ENDS-->
 
                                 <div class="form-group">
-                                    <label for="vpass">Password</label>
+                                    <label for="vpass" id="pass">Password</label>
                                     <input type="password" id="vpass" placeholder="Match password" class="form-control" required/>
                                 </div> <!--FORM-GROUP ENDS-->
 
@@ -266,7 +275,7 @@
                                                 </div>
 
                                                 <div class="col-sm-4" style="text-align: center;">
-                                                    <h5>Paids</h5>
+                                                    <h5>Paid</h5>
                                                     <span id="spnPaid">0</span> 
                                                 </div>
                                             </div>

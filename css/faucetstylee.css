@@ -297,6 +297,10 @@ footer a{
     width: 350px;
 }
 
+.btnDonate{
+    margin-top: 10px;
+}
+
 #msgDonate{
     0.2em;
     color: red;
@@ -316,15 +320,24 @@ footer a{
     font-size: 1.2em;
     letter-spacing: 2px;
     width: 100%;
+    height: auto;
     background-color: rgba(255, 0, 0, 0.81);
 
     position: fixed;
+    padding: 10px 0px 10px 0px;
     left: 0px;
     right: 0px;
     bottom: 0px;
-    height: auto;
     z-index: 2000;
     overflow: inherit;
     display: none;
 
 }
+@media only screen and (max-width: 600px){
+
+    .errorlog{
+        font-size: 1em;
+        bottom: 25px;
+    }
+}
+

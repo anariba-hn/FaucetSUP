@@ -44,6 +44,13 @@
 
         <div class="container" id="page">
 
+            <!--ERROR LOG DIV-->
+            <div id="errorLog" class="errorlog">
+                <div class="error-hero">
+                    <i class="fas fa-exclamation-triangle"><span id="logMsg"> ErrorLog</span></i>
+                </div>
+            </div>
+
             <div class="col hero">
                 <h1>Welcome to Superior Faucet</h1>
             </div> <!--ENDS HERO-->
@@ -90,26 +97,26 @@
                         <div class="modal-body">
                             <form id="form">
                                 <div class="form-group">
-                                    <label for="first_name">First Name</label>
+                                    <label for="first_name" id="first_name">First Name</label>
                                     <input type="text" id="user_name" placeholder="Could be a Username" class="form-control" required />
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="email">Email Address</label>
+                                    <label for="email" id="email">Email Address</label>
                                     <input type="text" id="user_email" placeholder="Email Address" class="form-control" required/>
                                 </div>
 
                                 <div class="form-group" id="formpass">
-                                    <label for="pass">Password</label>
+                                    <label for="pass" id="pass">Password</label>
                                     <input type="password" id="user_pw" placeholder="Password" class="form-control" required />
                                 </div>
                                 <div class="form-group">
-                                    <label for="cpass">Repeat Password</label>
+                                    <label for="cpass" id="cpasss">Repeat Password</label>
                                     <input type="password" id="cpass" placeholder="Repeat Password" class="form-control" required />
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="user_address">Wallet Address</label>
+                                    <label for="user_address" id="walletLog">Wallet Address</label>
                                     <input type="text" id="user_address" placeholder="Wallet-Address" class="form-control" required />
                                 </div>		
                                 <br>
@@ -139,7 +146,7 @@
                                     </div>
                                 </noscript>
                                 <br/> 	
-                                <button id="submit" type="button" class="btn btn-success">Sign me up!</button>
+                                <button id="submit" type="button" class="btn btn-success">Sign Up!</button>
                             </form> <!--ENDS FORM-->
                         </div> <!--ENDS MODAL-BODY-->
 
@@ -190,7 +197,7 @@
               <div class="modal-dialog">
                 <div class="modal-content donate-modal">
                   <div class="modal-header">
-                    <h5 class="modal-title">Donate Section</h5>
+                    <h5 class="modal-title">Make Donation</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -285,12 +292,6 @@
             </div><!--ENDS ROW-->
             <br/><br/><br/><br/>
 
-        <!--ERROR LOG DIV-->
-        <div id="errorLog" class="errorlog">
-            <div class="error-hero">
-                <i class="fas fa-exclamation-triangle"><span id="logMsg"> ErrorLog</span></i>
-            </div>
-        </div>
 
         </div> <!-- ENDS CONTAINER-FLUID -->
 
