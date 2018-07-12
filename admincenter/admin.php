@@ -1,6 +1,6 @@
 <?php include("../connex.php"); 
 
-if(isset($_POST['useradmin']) || isset($admin = $_COOKIE["admin"]))
+if(isset($_POST['useradmin']))
 {
     $admin = $_POST['useradmin'];
     $pw    = $_POST['pass'];
@@ -16,7 +16,7 @@ if(isset($_POST['useradmin']) || isset($admin = $_COOKIE["admin"]))
      header("Location: ../admincenter/index.html");
     }else{
         #SET COOKIE ON SERVER
-        setcookie("admin", $admin, time() + 846000);
+        #setcookie("admin", $admin, time() + 846000);
     }
     
 }else{
