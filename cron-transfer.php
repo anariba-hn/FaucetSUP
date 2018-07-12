@@ -1,7 +1,8 @@
-<?php 
- include("/var/wwww/html/FaucetSUP/connex.php");
- //Superior-php functions
- require "/var/wwww/html/vendor/autoload.php";
+<?php
+
+require "/var/www/html/vendor/autoload.php";
+
+include ("/var/www/html/FaucetSUP/connex.php");
 
  use Superior\Wallet;
  $walletFaucet = new Superior\Wallet();
