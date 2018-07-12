@@ -54,7 +54,7 @@ if(isset($_POST['useradmin']))
             <div class="nav flex-column nav-pills left-nav" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <a class="nav-link active" id="v-pills-dash-tab" data-toggle="pill" href="#v-pills-dash" role="tab" aria-controls="v-pills-home" aria-selected="true"><i class="fas fa-chart-line"></i> Dashboard</a>
                 <a class="nav-link" id="v-pills-withdrawal-tab" data-toggle="pill" href="#v-pills-withdrawal" role="tab" aria-controls="v-pills-profile" aria-selected="false">Withdrawal</a>
-                <a class="nav-link" id="v-pills-donate-tab" data-toggle="pill" href="#v-pills-donate" role="tab" aria-controls="v-pills-messages" aria-selected="false">Donate</a>
+                <a class="nav-link" id="v-pills-donate-tab" data-toggle="pill" href="#v-pills-donate" role="tab" aria-controls="v-pills-messages" aria-selected="false">Donations</a>
                 <a class="nav-link" id="v-pills-admins-tab" data-toggle="pill" href="#v-pills-admins" role="tab" aria-controls="v-pills-messages" aria-selected="false">Admins</a>
                 <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
             </div>
@@ -97,7 +97,7 @@ if(isset($_POST['useradmin']))
                                  </span>
                             </div>
                             <div class="col-xs-2 paids">
-                                <p>Total Paids</p>
+                                <p>Total Paid</p>
                                 <span>
                                   <?php 
                                     
@@ -157,31 +157,39 @@ if(isset($_POST['useradmin']))
                     </div> <!--TABLE RESPONSIVE ENDS-->
                 </div>
                 <div class="tab-pane fade" id="v-pills-donate" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                    <h3>Donates</h3>
+                    <h3>Donations</h3>
                        <div class="table-responsive">
                         <table widh="100%" class="table table-hover">
-                            <tbody>
+                            <thead>
                                 <tr>
-                                    <td width="31%">Amount</td>
-                                    <td width="25%">Status</td>
-                                    <td width="34%">Address</td>
-                                    <td width="34%">Date</td>
-                                    <td width="10%">User</td>
+                                    <td width="10%">Id_TX</td>
+                                    <td width="10%">Donor_ID</td>
+                                    <td width="20%">Block</td>
+                                    <td width="35%">Date_TX</td>
+                                    <td width="10%">Lod_ID</td>
+                                    <td width="20%">Amount</td>
+                                    <td width="40%">TX_Hash</td>
                                 </tr>
-                            </tbody>
+                            </thead>
 
-                            <tbody>
-                                <tr></tr>
-                                <tr></tr>
-                                <tr></tr>
-                                <tr></tr>
-                                <tr></tr>
-                                <tr></tr>
-                                <tr></tr>
-                                <tr></tr>
-                                <tr></tr>
-                                <tr></tr>
-                            </tbody>
+                            <?php
+                            $query = "SELECT * FROM get_tx_in";
+                            if(!$result = mysqli_query($cnn, $query))
+                                            exit(mysqli_error($cnn));
+                            while($row=mysqli_fetch_assoc($result))
+                                        {
+                                            echo "<tr>";
+                                                echo "<td>", $row['id_tx'], "</td>";
+                                                echo "<td>", $row['donor_id'], "</td>";
+                                                echo "<td>", $row['block'], "</td>";
+                                                echo "<td>", $row['date_tx'], "</td>";
+                                                echo "<td>", $row['log_id'], "</td>";
+                                                echo "<td>", $row['amount'], "</td>";
+                                                echo "<td>", $row['tx_hash'], "</td>";
+                                            echo "</tr>";
+                                        }
+                            ?>
+
                         </table>
                     </div> <!--TABLE RESPONSIVE ENDS-->   
                 </div>
