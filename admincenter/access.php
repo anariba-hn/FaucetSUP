@@ -1,11 +1,13 @@
-<?php session_start()?>
 <?php
+session_start([
+    'cookie_lifetime' => 86400,
+]);
 
 if(isset($_POST['useradmin']))
 {
 	$admin = $_POST['useradmin'];
     $pw    = $_POST['pass'];
-    $sesion = $_SESSION['admin'];
+    $_SESSION['admin'] = $admin;
     
         $query = "SELECT user_password FROM admincenter WHERE user_admin = '$admin'";
         if(!$result = mysqli_query($cnn, $query))

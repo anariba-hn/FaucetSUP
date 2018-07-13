@@ -5,7 +5,6 @@ if(empty($_SESSION['admin']))
 {
     header("Location: ../admincenter/index.html");
 }
-
 ?>
 <html lang="en">
 
