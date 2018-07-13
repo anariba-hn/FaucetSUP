@@ -149,12 +149,7 @@ function logOut(){
     $.get('../admincenter/logout.php' ,{
 
     }).done(function(data){
-        if(data.status == 200)
-        {
-            alert("Loggin Out");
-        }else{
-            alert("INVALID CONNECTION");
-        }
+        alert("Loggin Out");
     });
 }
 
