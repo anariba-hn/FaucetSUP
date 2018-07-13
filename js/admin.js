@@ -143,7 +143,7 @@ function logOut(){
             alert("INVALID CONNECTION");
         }
     };
-    xhttp.open("GET","logout.php", true); //(METHOD,URL,BOOLEAN)
+    xhttp.open("GET","./logout.php", true); //(METHOD,URL,BOOLEAN)
     xhttp.send();// SEND THE REQUEST
 }
 
