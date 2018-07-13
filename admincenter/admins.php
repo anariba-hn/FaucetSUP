@@ -28,9 +28,6 @@ if(empty($_SESSION['admin']))
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#" >Admins</a>
-                </li>
                <li class="nav-item">
                     <a class="nav-link" href="../admincenter/dashboard.php" >Dashboard</a>
                 </li>
@@ -39,6 +36,9 @@ if(empty($_SESSION['admin']))
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../admincenter/donations.php">Donations</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" >Admins</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="../admincenter/settings.php">Settigs</a>
