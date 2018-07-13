@@ -1,6 +1,5 @@
-<?php session_start()?>
 <?php include("../connex.php"); 
-
+session_start();
 if(empty($_SESSION['admin']))
 {
     header("Location: ../admincenter/index.html");
@@ -29,7 +28,7 @@ if(empty($_SESSION['admin']))
     <head>
         <!-- As a link -->
         <nav class="navbar navbar-light bg-light d-flex justify-content-end">
-            <button id="btnlogOut" class="btn btn-warning">Log Out</button>
+            <button id="btnlogOut" class="btn btn-warning" action="../admincenter/logout.php">Log Out</button>
         </nav>
     </head>
     <!-- HEAD ENDS -->

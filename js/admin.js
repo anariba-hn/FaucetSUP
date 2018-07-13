@@ -204,7 +204,7 @@ $(document).ready(function(){
     })
     
     $("#btnlogOut").click(function(){
-        window.location.href = "../admincenter/index.html";
+        //window.location.href = "../admincenter/index.html";
     })
     
 });
