@@ -1,90 +1,19 @@
-body{
-    background-color: rgb(31, 50, 69);
-    color: orange;
-}
-
-h4{
-    font-weight: 100;
-}
-
-a{
-    color: orange;
-}
-
-p{
-    color: white;
-    font-size: 2em;
-}
-
-span{
-    padding: 0.5em;
-    border: solid 1px;
-    border-radius: 60px;
-    border-color: white;
-}
-
-#logout{
-   justify-content: flex-end;
-}
-
-#success{
-    font-size: 16px;
-}
-
-#getID{
-    visibility: hidden;
-}
-
-#msgAlert{
-    color: black;
-    font-size: 26px;
-    letter-spacing: 2px;
-}
-
-.nav a{
-    margin-bottom: 30px;
-    text-align: center;
-    color: white;
-}
-
-
-.left-nav{
-    margin-top: 10px;
-    border: solid 1px;
-}
-
-@media only screen and (max-width: 600px)
-{
-    .nav a{
-        font-size: 0.1em;
-        margin-left: -10px;
-    }
-    
-    .lef-nav{
-        display: block;
-    }
-    
-}
-
-
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
-    background-color: orange;
-}
 
 .dashboard{
     display: inline-flex;
+    justify-content: space-around;
 }
 
 @media only screen and (max-width: 600px)
 {
     .dashboard{
         display: block;
+        text-align: center;
     }
 }
 
 .users, .claims, .paids, .donated{
     width: 150px;
-    /*height: 100px;*/
     border: 1px solid orange;
     border-radius: 10px;
     text-align: center;
@@ -100,10 +29,6 @@ span{
         width: auto;
     }
     
-    .users p, .claims p, .paids p, .donated p{
-        
-        font-size: 1em;
-    }
 }
 
 .settings{
@@ -113,7 +38,7 @@ span{
 .settings input{
     text-align: center;
     margin-bottom: 10px;
-    border: none;
+    border-radius: 10px;
 }
 
 .settings button{
@@ -167,5 +92,3 @@ INDEX ADMIN
         margin: auto;
     }
 }
-
-
