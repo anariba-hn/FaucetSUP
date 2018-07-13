@@ -42,7 +42,7 @@ if(empty($_SESSION['admin']))
                     <a class="nav-link" href="../admincenter/admins.php" >Admins</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="../admincenter/settings.php">Settigs</a>
+                    <a class="nav-link" href="../admincenter/settings.php">Settings</a>
                 </li>
                 <li class="nav-item">
                     <a id="btnLogOut" class="nav-link">Log Out</a>
