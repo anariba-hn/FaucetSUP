@@ -204,7 +204,7 @@ $(document).ready(function(){
     })
     
     $("#btnlogOut").click(function(){
-        logout();
+        logOut();
     })
     
 });
