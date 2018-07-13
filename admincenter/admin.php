@@ -1,5 +1,7 @@
-<?php include("../connex.php"); 
+<?php 
+include("../connex.php"); 
 session_start();
+
 if(empty($_SESSION['admin']))
 {
     header("Location: ../admincenter/index.html");
