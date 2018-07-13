@@ -20,7 +20,7 @@ if(isset($_POST['useradmin']))
     {
      header("Location: ../admincenter/index.html");
     }else{
-        	header("Location: ../admincenter/admins.php");
+        	header("Location: ../admincenter/dashboard.php");
     }
 
 }else{
