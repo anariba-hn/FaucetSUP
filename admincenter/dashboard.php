@@ -41,7 +41,7 @@ if(empty($_SESSION['admin']))
                     <a class="nav-link" href="../admincenter/settings.php">Settigs</a>
                 </li>
                 <li class="nav-item">
-                    <a id="btnLogOut" class="nav-link" href="#">Log Out</a>
+                    <a id="btnLogOut" class="nav-link">Log Out</a>
                 </li>
             </ul>
         </div>
