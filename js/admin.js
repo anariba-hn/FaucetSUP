@@ -203,7 +203,7 @@ $(document).ready(function(){
         setCnfg(3);
     })
     
-    $("#btnlogOut").click(function(){
+    $("#btnLogOut").click(function(){
         logOut();
     })
     

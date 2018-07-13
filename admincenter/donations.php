@@ -1,4 +1,12 @@
-<?php include("../connex.php"); ?>
+<?php
+include("../connex.php"); 
+session_start();
+
+if(empty($_SESSION['admin']))
+{
+    header("Location: ../admincenter/index.html");
+}
+?>
 <html lang="en">
 <head>
     <meta charset="utf-8">
