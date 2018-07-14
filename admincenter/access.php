@@ -1,8 +1,6 @@
 <?php
 include("../connex.php");
-session_start([
-    'cookie_lifetime' => 86400,
-]);
+session_start();
 
 if(isset($_POST['useradmin']))
 {
@@ -18,13 +16,13 @@ if(isset($_POST['useradmin']))
 
     if($pw != $dbPass)
     {
-     header("Location: ../admincenter/index.php");
+     header("Location: ../admincenter/index.html");
     }else{
         	header("Location: ../admincenter/dashboard.php");
     }
 
 }else{
-	header("Location: ../admincenter/index.php");	
+	header("Location: ../admincenter/index.html");	
 }
 
 ?>
