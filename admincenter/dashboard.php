@@ -4,7 +4,7 @@ session_start();
 
 if(empty($_SESSION['admin']))
 {
-    header("Location: ../admincenter/index.html");
+    header("Location: ../admincenter/index.php");
 }
 ?>
 <html lang="en">

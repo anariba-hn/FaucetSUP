@@ -18,13 +18,13 @@ if(isset($_POST['useradmin']))
 
     if($pw != $dbPass)
     {
-     header("Location: ../admincenter/index.html");
+     header("Location: ../admincenter/index.php");
     }else{
         	header("Location: ../admincenter/dashboard.php");
     }
 
 }else{
-	header("Location: ../admincenter/index.html");	
+	header("Location: ../admincenter/index.php");	
 }
 
 ?>
