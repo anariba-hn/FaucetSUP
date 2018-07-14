@@ -45,6 +45,13 @@
     margin-bottom: 15px;
 }
 
+.logOut{
+    
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
 /*
 ==========================================================================================
 INDEX ADMIN

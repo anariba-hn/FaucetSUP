@@ -143,16 +143,7 @@ function getConfg(){
         }
     });
 }
-/*
-function logOut(){
-    
-    $.get('../admincenter/logout.php' ,{
 
-    }).done(function(data){
-        alert("Loggin Out");
-    });
-}
-*/
 $(document).ready(function(){
 
     getConfg();
@@ -208,9 +199,5 @@ $(document).ready(function(){
     $("#btnCron").click(function(){
          setCnfg(4);
      })
-    
-    $("#btnLogOut").click(function(){
-        window.location.href = "../admincenter/index.html";
-    })
     
 });

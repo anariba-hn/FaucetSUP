@@ -45,7 +45,9 @@ if(empty($_SESSION['admin']))
                     <a class="nav-link" href="../admincenter/settings.php">Settings</a>
                 </li>
                 <li class="nav-item">
-                    <a id="btnLogOut" class="nav-link">Log Out</a>
+                   <form action="../admincenter/logout.php">
+                    <button id="btnLogOut" class="nav-link logOut">Log Out</button>
+                    </form>
                 </li>
             </ul>
         </div>
