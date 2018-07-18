@@ -89,7 +89,7 @@ if(empty($_SESSION['admin']))
 
             while($row=mysqli_fetch_assoc($result))
                         {
-                            echo "<tr id='", $row['email'], "' >";
+                            echo "<tr id='", $row['rel_id'], "' >";
                                 echo "<td class='details-control'></td>";
                                 echo "<td>", $row['name'], "</td>";
                                 echo "<td>", $row['email'], "</td>";

@@ -35,7 +35,21 @@ if(isset($action))
         $email = $_POST['email'];
         $hyper = $_POST['hyper'];
 
-        $query = "INSERT INTO donation(name, email, integrated, payment_id, block, hyperlink) VALUES('$name', '$email', '$integAddress', '$integPayment', '$height', '$hyper')";
+        #
+        ##COLLECT THE LAST ID - PLUS ONE - TO MAKE AN UNIQUE DONOR_ID 
+        #
+        $special = "SELECT id_donor FROM get_donor_list order by id DESC limit 1";
+        if (!$result = mysqli_query($cnn, $special))
+            exit(mysqli_error($cnn));
+        if(mysqli_num_rows($result) > 0)
+        {
+            $data = mysqli_fetch_row($result);
+            $donor_id = (int)$data[0] + 1;
+        }else{
+            $donor_id = 1; //for the first donation
+        }
+
+        $query = "INSERT INTO donation(name, email, integrated, payment_id, block, hyperlink, donor_id) VALUES('$name', '$email', '$integAddress', '$integPayment', '$height', '$hyper', '$donor_id')";
         if(!$result = mysqli_query($cnn, $query))
             exit(mysqli_error($cnn));
         else{
@@ -43,12 +57,28 @@ if(isset($action))
             $response['message'] = "Succes";
             $response['status']  = 200;
         }
+
+        #
+        ## IF EMAIL ALREADY EXIST ON DONOR_LIST WILL UPDATE DONOR_ID FROM LAST DONATION
+        #
+        $slq = "SELECT rel_id FROM get_donor_list WHERE email = '$email'";
+        if(!$result = mysqli_query($cnn, $sql))
+            exit(mysqli_error($cnn));
+        if(mysqli_num_rows($result) > 0)
+        {
+            $data = mysqli_fetch_row($result);
+            $rel_id = (int)$data[0];
+
+            $update = "UPDATE donation SET donor_id = '$rel_id' WHERE integrated = '$integPayment'";
+            if(!$result = mysqli_query($cnn, $update))
+                exit(mysqli_error($cnn));
+        }
     }
     
     if($action == 2)
     {
-        
-        $query2 = "INSERT INTO donation(integrated, payment_id, block) VALUES('$integAddress','$integPayment', '$height')";
+        //SET A DEFAULT DONOR_ID AS ZERO FOR ANONYMUS DONATIONS
+        $query2 = "INSERT INTO donation(integrated, payment_id, block, donor_id) VALUES('$integAddress','$integPayment', '$height', '0')";
         if(!$result = mysqli_query($cnn, $query2))
             exit(mysqli_error($cnn));
         else{

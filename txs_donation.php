@@ -153,22 +153,13 @@ if(!empty($integArray) && count($bulk) > 0)
         if(in_array($explode, $integArray))
         {
             #
-            ##HANDLE ANONYMUS DONATIONS GRUOP BY SINGLE UNIQUE ID
+            ##PREPARE FIELDS FOR GET_TX_IN
             #
-            $query = "SELECT email FROM donation WHERE payment_id = '$explode'";
+            $query = "SELECT donor_id FROM donation WHERE payment_id = '$explode'";
             if(!$result = mysqli_query($cnn, $query))
                 exit(mysqli_error($cnn));
             $row = mysqli_fetch_row($result);
-            $mail = $row[0]; 
-            if($mail == "" or $mail == null)
-                $id = 0;
-            else{
-                $query2 = "SELECT id FROM donation WHERE payment_id = '$explode'";
-                if(!$result2 = mysqli_query($cnn, $query2))
-                exit(mysqli_error($cnn));
-                $row = mysqli_fetch_row($result2);
-                $id = (int)$row[0]; 
-            }
+            $donor_id = (int)$row[0]; 
 
             $query3 = "SELECT id_log FROM get_tx_log WHERE next_run_block = '$nextRun'";
             if(!$result3 = mysqli_query($cnn, $query3))
@@ -180,7 +171,7 @@ if(!empty($integArray) && count($bulk) > 0)
             $amount    = number_format((int)$payments->amount / 100000000);
             $tx_hash   = $payments->tx_hash;
 
-            $insert = "INSERT INTO get_tx_in (donor_id, block, date_tx, log_id, amount, tx_hash) VALUES('$id', '$jsonBlock','$datetx' , '$logId','$amount', '$tx_hash')";
+            $insert = "INSERT INTO get_tx_in (donor_id, block, date_tx, log_id, amount, tx_hash) VALUES('$donor_id', '$jsonBlock','$datetx' , '$logId','$amount', '$tx_hash')";
             if (!$result4 = mysqli_query($cnn, $insert))
             {
                 echo "<br /><h2>PaymentID: </h2>" . $pid . " not be insertet on get_tx_in";
@@ -246,7 +237,7 @@ if(!empty($integArray) && count($bulk) > 0)
                         echo "<br />" . $explode;
                     }
                 }else{
-                    $update2 = "INSERT INTO get_donor_list (name, email, date_create, sup, txs) VALUES('$name', '$email', now(), '$sups', '$donorTx')";
+                    $update2 = "INSERT INTO get_donor_list (rel_id, name, email, date_create, sup, txs) VALUES('$donor_id' ,'$name', '$email', now(), '$sups', '$donorTx')";
                     if (!$result10 = mysqli_query($cnn, $update2))
                         exit(mysqli_error($cnn));
                     else{
