@@ -152,6 +152,32 @@ if(!empty($integArray) && count($bulk) > 0)
 
         if(in_array($explode, $integArray))
         {
+
+            #
+            ## VERIFY IF EMAIL ALREADY EXIST ON DONOR_LIST WILL UPDATE DONOR_ID FROM LAST DONATION
+            #
+            $query5 = "SELECT email FROM donation WHERE payment_id = '$explode'";
+            if(!$result5 = mysqli_query($cnn, $query5))
+                exit(mysqli_error($cnn));
+            if(mysqli_num_rows($result5)> 0)
+            {
+                $row4 = mysqli_fetch_row($result5);
+                $email = $row4[0];
+            }
+            
+            $sql = "SELECT rel_id FROM get_donor_list WHERE email = '$email'";
+            if(!$result = mysqli_query($cnn, $sql))
+                exit(mysqli_error($cnn));
+            if(mysqli_num_rows($result) > 0)
+            {
+                $data = mysqli_fetch_row($result);
+                $rel_id = (int)$data[0];
+
+                $update = "UPDATE donation SET donor_id = '$rel_id' WHERE integrated = '$integPayment'";
+                if(!$result = mysqli_query($cnn, $update))
+                    exit(mysqli_error($cnn));
+            }
+
             #
             ##PREPARE FIELDS FOR GET_TX_IN
             #
@@ -191,15 +217,6 @@ if(!empty($integArray) && count($bulk) > 0)
                 {
                     $row3 = mysqli_fetch_row($result4);
                     $name = $row3[0];
-                }
-
-                $query5 = "SELECT email FROM donation WHERE payment_id = '$explode'";
-                if(!$result5 = mysqli_query($cnn, $query5))
-                    exit(mysqli_error($cnn));
-                if(mysqli_num_rows($result5)> 0)
-                {
-                    $row4 = mysqli_fetch_row($result5);
-                    $email = $row4[0];
                 }
 
                 $query6 = "SELECT sup FROM get_donor_list WHERE email = '$email' ";
