@@ -1,4 +1,17 @@
 
+h3{
+    margin-left: 15px;
+}
+
+a{
+    color: #e8aa00;
+    text-decoration: none;
+}
+
+a:hover{
+    color: #e8aa00;
+}
+
 .dashboard{
     display: inline-flex;
     justify-content: space-around;

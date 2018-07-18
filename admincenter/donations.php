@@ -12,17 +12,18 @@ if(empty($_SESSION['admin']))
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="../css/adminstylee.css">
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
         <!-- Bootstrap TABLE -->
-        <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.css" />
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.css" />
+        <!-- CSS -->
+        <link rel="stylesheet" href="../css/adminstylee.css">
         <!-- SCRIPTS -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="http://cdn.datatables.net/responsive/1.0.1/js/dataTables.responsive.min.js"></script>
-        <script src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/1.0.1/js/dataTables.responsive.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 
         <title>Dashboard</title>
 
@@ -113,7 +114,7 @@ if(empty($_SESSION['admin']))
             function format(dataSource) {
                 var html = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
                 $.each(dataSource, function(index, dat) {
-                    // alert(dat[index]);
+                    
 
                     for (i = 0; i < dat.length; i++) {
 
@@ -124,7 +125,7 @@ if(empty($_SESSION['admin']))
                         html += '<tr>' +
                             '<td>Block: ' + x + '</td>' +
                             '<td>Amount: ' + y + '</td>' +
-                            '<td>Tx_Hash: ' + z + '</td>' +
+                            '<td>Tx_Hash: <a href=http://superior-coin.info:8081/tx/'+z+'>' + z + '</a></td>' +
                             '</tr>';
                     }
                 });
