@@ -13,22 +13,7 @@ $col = array(
 	//3 => 'tx_hash'
 );
 
-#
-##CONDITION TO KNOW EMPTY KEY
-#
-if($key == "")
-	$response = 0; // ZERO ITS A DEFAULT ID VALUE FOR ANONYMUS DONATIONS
-else{
-	$sql1 = "SELECT id FROM donation WHERE email = '$key'";
-	if(!$result = mysqli_query($cnn, $sql1))
-		exit(mysqli_error($cnn));
-	else{
-		$test = mysqli_fetch_row($result); 
-		$response = $test[0];
-	}
-}
-
-$sql = "SELECT block, amount, tx_hash FROM get_tx_in WHERE donor_id = '$response'";
+$sql = "SELECT block, amount, tx_hash FROM get_tx_in WHERE donor_id = '$key'";
 $query = mysqli_query($cnn, $sql);
 $totalData = mysqli_num_rows($query);
 $totalFilter = $totalData;
