@@ -69,7 +69,7 @@ if(isset($action))
             $data = mysqli_fetch_row($result);
             $rel_id = (int)$data[0];
 
-            $update = "UPDATE donation SET donor_id = '$rel_id' WHERE integrated = '$integPayment'";
+            $update = "UPDATE donation SET donor_id = '$rel_id' WHERE payment_id = '$integPayment'";
             if(!$result = mysqli_query($cnn, $update))
                 exit(mysqli_error($cnn));
         }
