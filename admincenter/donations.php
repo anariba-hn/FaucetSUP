@@ -5,161 +5,167 @@ session_start();
 if(empty($_SESSION['admin']))
 {
     header("Location: ../admincenter/index.html");
-}
-?>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap CSS -->
+}?>
+    <html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="../css/adminstylee.css">
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        <!-- Bootstrap TABLE -->
+        <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.css" />
         <!-- SCRIPTS -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <title>Dashboard</title>
-</head>
 
-<body>
-    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="http://cdn.datatables.net/responsive/1.0.1/js/dataTables.responsive.min.js"></script>
+        <script src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+
+        <title>Dashboard</title>
+
+        <style>
+            @import url('//cdn.datatables.net/1.10.2/css/jquery.dataTables.css');
+            td.details-control {
+                background: url('http://www.datatables.net/examples/resources/details_open.png') no-repeat center center;
+                cursor: pointer;
+            }
+
+            tr.shown td.details-control {
+                background: url('http://www.datatables.net/examples/resources/details_close.png') no-repeat center center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="../admincenter/dashboard.php">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../admincenter/withdrawals.php">Withdrawals</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Donations</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../admincenter/admins.php" >Admins</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../admincenter/settings.php">Settings</a>
-                </li>
-                <li class="nav-item">
-                   <form action="../admincenter/logout.php">
-                    <button id="btnLogOut" class="nav-link logOut">Log Out</button>
-                    </form>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    
-    <h3>Donations</h3>
-       <div class="table-responsive">
-        <table widh="100%" class="table table-hover">
-            <thead>
-                <tr>
-                    <td width="10%">Id_TX</td>
-                    <td width="10%">Donor_ID</td>
-                    <td width="20%">Block</td>
-                    <td width="35%">Date_TX</td>
-                    <td width="10%">Log_ID</td>
-                    <td width="20%">Amount</td>
-                    <td width="100%">TX_Hash</td>
-                </tr>
-            </thead>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../admincenter/dashboard.php">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../admincenter/withdrawals.php">Withdrawals</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../admincenter/admins.php">Admins</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../admincenter/settings.php">Settigs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a id="btnLogOut" class="nav-link" href="#">Log Out</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
-            <?php
+        <h3>Donations</h3>
+        <div class="table-responsive">
+            <table id="tblDonation" widh="100%" class="display table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <td width="3%"></td>
+                        <td width="10%">Name</td>
+                        <td width="20%">Email</td>
+                        <td width="40%">Date_Update</td>
+                        <td width="10%">Total SUP</td>
+                        <td width="10%">TXS</td>
+                    </tr>
+                </thead>
 
-            $query = "SELECT * FROM get_tx_in";
+                <?php
+
+            $query = "SELECT * FROM get_donor_list";
             if(!$result = mysqli_query($cnn, $query))
-                            exit(mysqli_error($cnn));
-
-            #SETING PAGINATION VARIABLES
-            $num_rows = $result->num_rows;
-            $per_page     = 5;
-            $offset       = 0;
-            $current_page = '';
-
-            #CALCULATE THE PAGE LEFT TO SHOW 
-            $no_off_page = ceil($num_rows / $per_page); //ceil function round int
-
-            #LOGIC TO HANDLE DATA OUTPUT PER PAGINATION
-            if(isset($_GET['page'])){
-                $current_page = $_GET['page'];
-                $offset = ($per_page * $current_page) - $per_page ;
-            }
-
-            #NEW QUERY WITH PARAMETERS
-            $paginateData = "SELECT * FROM get_tx_in LIMIT " .$per_page. " OFFSET " .$offset. "";
-            if(!$result = mysqli_query($cnn, $paginateData))
                 exit(mysqli_error($cnn));
 
             while($row=mysqli_fetch_assoc($result))
                         {
-                            echo "<tr>";
-                                echo "<td>", $row['id_tx'], "</td>";
-                                echo "<td>", $row['donor_id'], "</td>";
-                                echo "<td>", $row['block'], "</td>";
-                                echo "<td>", $row['date_tx'], "</td>";
-                                echo "<td>", $row['log_id'], "</td>";
-                                echo "<td>", $row['amount'], "</td>";
-                                echo "<td>", $row['tx_hash'], "</td>";
+                            echo "<tr id='", $row['email'], "' >";
+                                echo "<td class='details-control'></td>";
+                                echo "<td>", $row['name'], "</td>";
+                                echo "<td>", $row['email'], "</td>";
+                                echo "<td>", $row['date_update'], "</td>";
+                                echo "<td>", $row['sup'], "</td>";
+                                echo "<td>", $row['txs'], "</td>";
                             echo "</tr>";
                         }
-            ?>
+                    ?>
 
-        </table>
+                    <tbody>
+                        <tr data-key-1="Val 1"></tr>
+                        <tr data-key-2="Val 2"></tr>
+                    </tbody>
 
-        <!--PAGINATION-->
+            </table>
 
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                    <li class="<?php
-                               if($current_page == 1 || $current_page == ''){echo 'disabled';}?> page-item">
-                        <a class="page-link" href="<?php
-                               if($current_page == 1 || $current_page == ''){
-                                   echo " # ";
-                               }else{
-                                    echo "?page=". ($current_page - 1);   
-                               }
-                               ?>" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-                    <?php for($x = 1; $x <= $no_off_page; $x ++): ?>
-                    <li class="<?php
-                               if($current_page == $x){
-                                   echo 'active';
-                               }
-                               ?> page-item">
-                        <a class="page-link" href="?page=<?php echo $x; ?>">
-                            <?php echo $x; ?>
-                        </a>
-                    </li>
-                    <?php endfor; ?>
-                    <li class="<?php
-                               if($current_page == $no_off_page){echo 'disabled';}?> page-item">
-                        <a class="page-link" href="<?php
-                               if($current_page == $no_off_page){
-                                   echo " # ";
-                               }elseif($current_page == ''){
-                                   echo "?page=2";
-                               }else{
-                                    echo "?page=". ($current_page + 1);   
-                               }
-                               ?>" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <!-- ENDS PAGINATIONS -->
-    </div> <!--TABLE RESPONSIVE ENDS--> 
-    
-    <!--SCRIPTS-->
-    <script src="../js/admin.js"></script>
-    <script src="../js/bootstrap.bundle.js"></script>
-</body>
-</html>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        </div>
+        <!--TABLE RESPONSIVE ENDS-->
+
+        <script>
+            function format(dataSource) {
+                var html = '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">';
+                $.each(dataSource, function(index, dat) {
+                    // alert(dat[index]);
+
+                    for (i = 0; i < dat.length; i++) {
+
+                        var x = dat[i]['block'];
+                        var y = dat[i]['amount'];
+                        var z = dat[i]['hash'];
+
+                        html += '<tr>' +
+                            '<td>Block: ' + x + '</td>' +
+                            '<td>Amount: ' + y + '</td>' +
+                            '<td>Tx_Hash: ' + z + '</td>' +
+                            '</tr>';
+                    }
+                });
+
+                return html += '</table>';
+            }
+
+            $(function() {
+
+                var table = $('#tblDonation').DataTable({});
+
+                // Add event listener for opening and closing details
+                $('#tblDonation').on('click', 'td.details-control', function() {
+                    var tr = $(this).closest('tr');
+                    var row = table.row(tr);
+                    var key = $(this).closest('tr')[0].id;
+                    console.log(key);
+
+                    if (row.child.isShown()) {
+                        // This row is already open - close it
+                        row.child.hide();
+                        tr.removeClass('shown');
+                    } else {
+
+                        // Open this row
+                        $.post('./getInnerDonation.php', {
+                            key: key
+                        }).done(function(data) {
+                            var arr = jQuery.parseJSON(data);
+                            row.child(format(arr)).show();
+                            tr.addClass('shown');
+                        });
+                    }
+                });
+            });
+        </script>
+
+        <!--SCRIPTS-->
+        <script src="../js/admin.js"></script>
+        <script src="../js/bootstrap.bundle.js"></script>
+    </body>
+
+    </html>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">

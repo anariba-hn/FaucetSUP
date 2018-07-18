@@ -152,11 +152,23 @@ if(!empty($integArray) && count($bulk) > 0)
 
         if(in_array($explode, $integArray))
         {
-            $query2 = "SELECT id FROM donation WHERE payment_id = '$explode'";
-            if(!$result2 = mysqli_query($cnn, $query2))
+            #
+            ##HANDLE ANONYMUS DONATIONS GRUOP BY SINGLE UNIQUE ID
+            #
+            $query = "SELECT email FROM donation WHERE payment_id = '$explode'";
+            if(!$result = mysqli_query($cnn, $query))
                 exit(mysqli_error($cnn));
-            $row = mysqli_fetch_row($result2);
-            $id = (int)$row[0];
+            $row = mysqli_fetch_row($result);
+            $mail = $row[0]; 
+            if($mail == "" or $mail == null)
+                $id = 0;
+            else{
+                $query2 = "SELECT id FROM donation WHERE payment_id = '$explode'";
+                if(!$result2 = mysqli_query($cnn, $query2))
+                exit(mysqli_error($cnn));
+                $row = mysqli_fetch_row($result2);
+                $id = (int)$row[0]; 
+            }
 
             $query3 = "SELECT id_log FROM get_tx_log WHERE next_run_block = '$nextRun'";
             if(!$result3 = mysqli_query($cnn, $query3))
