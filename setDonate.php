@@ -61,7 +61,7 @@ if(isset($action))
         #
         ## IF EMAIL ALREADY EXIST ON DONOR_LIST WILL UPDATE DONOR_ID FROM LAST DONATION
         #
-        $slq = "SELECT rel_id FROM get_donor_list WHERE email = '$email'";
+        $sql = "SELECT rel_id FROM get_donor_list WHERE email = '$email'";
         if(!$result = mysqli_query($cnn, $sql))
             exit(mysqli_error($cnn));
         if(mysqli_num_rows($result) > 0)
