@@ -38,7 +38,7 @@ if(isset($action))
         #
         ##COLLECT THE LAST ID - PLUS ONE - TO MAKE AN UNIQUE DONOR_ID 
         #
-        $special = "SELECT id_donor FROM get_donor_list order by id_donor DESC limit 1";
+        $special = "SELECT id FROM donation order by id DESC limit 1";
         if (!$result = mysqli_query($cnn, $special))
             exit(mysqli_error($cnn));
         if(mysqli_num_rows($result) > 0)
