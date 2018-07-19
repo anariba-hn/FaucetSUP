@@ -120,6 +120,8 @@ if(empty($_SESSION['admin']))
                     <tr>
                         <td width="10%">User</td>
                         <td width="20%">Email</td>
+                        <td width="10%">Balance</td>
+                        <td width="10%">Unlock</td>
                         <td width="40%">Wallet</td>
                         <td width="10%">Withdrawals</td>
                         <td width="10%">Paid</td>
@@ -128,7 +130,7 @@ if(empty($_SESSION['admin']))
                 </thead>
 
                 <?php
-                $query = "SELECT us.user_name, us.user_email, us.user_address, wa.wallet_withdraws, wa.wallet_paids, wa.wallet_claims FROM users AS us JOIN wallet AS wa ON us.id_user = wa.user_id;";
+                $query = "SELECT us.user_name, us.user_email, wa.wallet_balance, wa.wallet_unlock, us.user_address, wa.wallet_withdraws, wa.wallet_paids, wa.wallet_claims FROM users AS us JOIN wallet AS wa ON us.id_user = wa.user_id;";
                 if(!$result = mysqli_query($cnn, $query))
                     exit(mysqli_error($cnn));
 
@@ -137,6 +139,8 @@ if(empty($_SESSION['admin']))
                             echo "<tr>";
                                 echo "<td>", $row['user_name'], "</td>";
                                 echo "<td>", $row['user_email'], "</td>";
+                                echo "<td>", $row['wallet_balance'], "</td>";
+                                echo "<td>", $row['wallet_unlock'], "</td>";
                                 echo "<td>", $row['user_address'], "</td>";
                                 echo "<td>", $row['wallet_withdraws'], "</td>";
                                 echo "<td>", $row['wallet_paids'], "</td>";
@@ -150,8 +154,10 @@ if(empty($_SESSION['admin']))
     </div>
     
     <!--SCRIPTS-->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
     <script src="../js/admin.js"></script>
-    <script src="../js/bootstrap.bundle.js"></script>
-</body>
+    <script src="../js/bootstrap.bundle.js"></script></body>
 </html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
