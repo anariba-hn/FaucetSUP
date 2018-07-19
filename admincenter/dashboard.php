@@ -152,6 +152,12 @@ if(empty($_SESSION['admin']))
             </table>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#tblUsers').DataTable();
+        } );
+    </script>
     
     <!--SCRIPTS-->
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
