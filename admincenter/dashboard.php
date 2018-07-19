@@ -14,6 +14,8 @@ if(empty($_SESSION['admin']))
     <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="../css/adminstylee.css">
         <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
         <!-- SCRIPTS -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -122,7 +124,7 @@ if(empty($_SESSION['admin']))
                         <td width="10%">User</td>
                         <td width="20%">Email</td>
                         <td width="40%">Wallet</td>
-                        <td width="10%">Wihdrawals</td>
+                        <td width="10%">Withdrawals</td>
                         <td width="10%">Paid</td>
                         <td width="10%">Claims</td>
                     </tr>
@@ -136,7 +138,6 @@ if(empty($_SESSION['admin']))
                 while($row=mysqli_fetch_assoc($result))
                         {
                             echo "<tr>";
-                                echo "<td class='details-control'></td>";
                                 echo "<td>", $row['user_name'], "</td>";
                                 echo "<td>", $row['user_email'], "</td>";
                                 echo "<td>", $row['user_address'], "</td>";
@@ -151,7 +152,16 @@ if(empty($_SESSION['admin']))
         </div>
     </div>
     
+    <script>
+        $(document).ready(function() {
+            $('#tblUsers').DataTable();
+        } );
+    </script>
+    
     <!--SCRIPTS-->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
     <script src="../js/admin.js"></script>
     <script src="../js/bootstrap.bundle.js"></script>
 </body>
