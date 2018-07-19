@@ -15,15 +15,12 @@ if(empty($_SESSION['admin']))
         <link rel="stylesheet" href="../css/bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
         <!-- Bootstrap TABLE -->
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.2/css/jquery.dataTables.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
         <!-- CSS -->
         <link rel="stylesheet" href="../css/adminstylee.css">
         <!-- SCRIPTS -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="https://cdn.datatables.net/responsive/1.0.1/js/dataTables.responsive.min.js"></script>
-        <script src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 
         <title>Dashboard</title>
 
@@ -164,6 +161,9 @@ if(empty($_SESSION['admin']))
         </script>
 
         <!--SCRIPTS-->
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
         <script src="../js/admin.js"></script>
         <script src="../js/bootstrap.bundle.js"></script>
     </body>
