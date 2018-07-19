@@ -69,7 +69,7 @@ if(empty($_SESSION['admin']))
 
         <h3>Donations</h3>
         <div class="table-responsive">
-            <table id="tblDonation" widh="100%" class="display table table-striped table-bordered table-hover">
+            <table id="tblDonation" width="100%" class="display table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
                         <td width="3%"></td>

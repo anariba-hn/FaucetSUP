@@ -100,8 +100,54 @@ if(empty($_SESSION['admin']))
 
             <div class="col-xs-2 donated">
                 <p>Total Donated</p>
-                <span>0</span>
+                <span>
+                <?php
+                $query4 = "SELECT count(*) AS total FROM get_tx_in";
+                if(!$result = mysqli_query($cnn, $query4))
+                    exit(mysqli_error($cnn));
+                $data4 = mysqli_fetch_row($result);
+                echo $total_donated = (int)$data4[0];
+                ?>
+                </span>
             </div>
+        </div> <!-- EDNS CONTAINER -->
+    </div> <!-- EDNS ROW -->
+
+    <div class="container mytable">
+        <div class="table-responsive">
+            <table id="tblUsers" width="100%" class="display table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <td width="3%"></td>
+                        <td width="10%">User</td>
+                        <td width="20%">Email</td>
+                        <td width="40%">Wallet</td>
+                        <td width="10%">Wihdrawals</td>
+                        <td width="10%">Paid</td>
+                        <td width="10%">Claims</td>
+                    </tr>
+                </thead>
+
+                <?php
+                $query = "SELECT us.user_name, us.user_email, us.user_address, wa.wallet_withdraws, wa.wallet_paids, wa.wallet_claims FROM users AS us JOIN wallet AS wa ON us.id_user = wa.user_id;";
+                if(!$result = mysqli_query($cnn, $query))
+                    exit(mysqli_error($cnn));
+
+                while($row=mysqli_fetch_assoc($result))
+                        {
+                            echo "<tr>";
+                                echo "<td class='details-control'></td>";
+                                echo "<td>", $row['user_name'], "</td>";
+                                echo "<td>", $row['user_email'], "</td>";
+                                echo "<td>", $row['user_address'], "</td>";
+                                echo "<td>", $row['wallet_withdraws'], "</td>";
+                                echo "<td>", $row['wallet_paids'], "</td>";
+                                echo "<td>", $row['wallet_claims'], "</td>";
+                            echo "</tr>";
+                        }
+                ?>
+
+            </table>
         </div>
     </div>
     

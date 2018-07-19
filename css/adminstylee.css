@@ -65,6 +65,14 @@ a:hover{
     cursor: pointer;
 }
 
+#tblUsers tr,td{
+    text-align: center;
+}
+
+.mytable{
+    margin-top: 50px;
+}
+
 /*
 ==========================================================================================
 INDEX ADMIN
