@@ -133,7 +133,7 @@
                                     echo "<td>", $row['payments_balance'], "-SUP</td>";
                                     echo "<td><p class=\"text-success\">", $row['payments_status'], "</p></td>";
                                     echo "<td>", $row['payments_wallet'], "</td>";
-                                    echo "<td><a href='http://superior-coin.info:8081/tx/'".$row['payments_hash']."'>", $row['payments_hash'], "</a></td>";
+                                    echo "<td><a href='http://superior-coin.info:8081/tx/".$row['payments_hash']."'>", $row['payments_hash'], "</a></td>";
                                     echo "<td>", $row['payments_date'], "</td>";
                                     echo "<td>", $row['user_id'], "</td>";
                                 echo "</tr>";
