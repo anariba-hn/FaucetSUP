@@ -90,7 +90,7 @@ if(mysqli_num_rows($result) > 0)
 #
 ## VERIFY IF TX ALREADY EXIST ON TABLE
 #
-if(count($bulk) > 0)
+if(isset($bulk))
 {
     foreach($bulk->payments as $value => $payments)
     {
@@ -119,7 +119,7 @@ if(count($bulk) > 0)
 ## LOOP THE BULKPAYMENT AND SAVE ON TX_IN DB
 #
 
-if(!empty($integArray) && count($bulk) > 0)
+if(!empty($integArray) && isset($bulk))
 {
     foreach($bulk->payments as $value => $payments)
     {
