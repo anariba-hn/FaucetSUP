@@ -11,7 +11,8 @@ The Donation script logic evaluate wich donation comes with information and take
 
 The project count with an [admincenter] section where can take full reports of Users, Claims, Paid, Withdrawals, Donation, and General Settings.
 
-Users are avialable to Log-in or Sign-up with a SuperiorCoin Wallet Address.
+Users are avialable to Log-in with a 95 charts Wallet Address. However every Transactions it's pre-evaluated, if this one is not valid it will go to a [error-transfer.tbl] and the amount will be returned to the [Unlock-Balance].<br/>
+Log-in or Sign-Up only needs your Wallet Address or Email Address. Password will be request on each transaction.<br/><br/>
 
 ## The Superior Coin
 Copyright (c) 2018, TheSuperioriorCoin Project
@@ -60,8 +61,15 @@ Change the port comunication with yours in `/vendor/thesuperiorcoin/superior-php
 
   
  * Set your DB importing: <br/><br/>
-`superiorf.sql` file and modify the `connex.php` file. <br><br/>
+`superiorf.sql` file and modify the `connex.php` file. <br/><br/>
   
  * Clone the repository: <br/><br/>
 `-sudo git clone /var/www/html/https://github.com/anariba-hn/FaucetSUP.git` <br/><br/>
-    
+ 
+ * There are two files needs Cron to run or do it manually<br/>
+ `cron-transfer.php`  and  `txs_donation.php` on main directory. <br/><br/>
+ On Linux: <br/>
+ `sudo nano /etc/crontab` Here you set the time of preference for your jobs. <br/>
+ You could visit crontab.guru site to learn about crons sintaxys: https://crontab.guru/#*_*_*_*_* <br/><br/>
+ Give all permissions to  `FaucetSUP` directory and use the long path in your cron.<br/>
+ `* * * * root php /var/www/html/FaucetSUP/cron-transfer.php`. <br/><br/>
