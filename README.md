@@ -37,19 +37,19 @@ Copyright (c) 2018, Thesuperiorcoin Project
   * Install and set the SuperiorCoin daemon: https://github.com/TheSuperiorCoin/TheSuperiorCoin 
   
   Enter `TheSuperiorCoin/build/release/bin ` <br/>
-`- sudo ./superiord --detach`  for backgorund run. <br/>
+`- sudo ./superiord --detach`  for backgorund run. <br/><br/>
   Create a main faucet wallet <br/>
-`- sudo ./superior-wallet-cli` to create a new wallet. <br/> 
+`- sudo ./superior-wallet-cli` to create a new wallet. <br/> <br/>
   If you prefer a oldest wallet <br/>
-`- sudo ./superior-wallet-cli --electrum-seed arg` and paste your 25 seed words.<br/>
+`- sudo ./superior-wallet-cli --electrum-seed arg` and paste your 25 seed words.<br/><br/>
   Establish the rpc connection <br/>
-`-sudo nohup ./superior-wallet-rpc --rpc-bind-port [port instead] --wallet-file [wallet name instead] --password [password instead] --disable-rpc-login &` NOTICE: BlockChain has to be up to date. <br/>  
+`-sudo nohup ./superior-wallet-rpc --rpc-bind-port [port instead] --wallet-file [wallet name instead] --password [password instead] --disable-rpc-login &` NOTICE: BlockChain has to be up to date. <br/><br/>  
   
  * Install vendor: https://github.com/TheSuperiorCoin/superior-php <br/>
-`- composer require thesuperiorcoin/superior-php` <br/>
-Move the `vendor` directory into `/var/www/html/` main directory. <br>
-Change the port communication in  `/vendor/thesuperiorcoin/superior-php/src/# `.<br/>
-`-sudo nano Wallet.php` <br/>
+`- composer require thesuperiorcoin/superior-php` <br/><br/>
+Move the `vendor` directory into `/var/www/html/` main directory. <br><br/>
+Change the port communication in  `/vendor/thesuperiorcoin/superior-php/src/# `.<br/><br/>
+`-sudo nano Wallet.php` <br/><br/>
 
   
  * Set your DB importing: <br/>
@@ -61,6 +61,6 @@ Change the port communication in  `/vendor/thesuperiorcoin/superior-php/src/# `.
  * There are two files needs Cron to run or do it manually<br/>
  `cron-transfer.php`  and  `txs_donation.php` on main directory. <br/><br/>
  On Linux: <br/>
- `sudo nano /etc/crontab` Here you set the time of preference for your jobs. <br/>
- You could visit crontab.guru site to learn about crons sintaxys: https://crontab.guru/#*_*_*_*_* <br/>
+ `sudo nano /etc/crontab` Here you set the time of preference for your jobs. <br/><br/>
+ You could visit crontab.guru site to learn about crons sintaxys: https://crontab.guru/#*_*_*_*_* <br/><br/>
  `* * * * root php /var/www/html/FaucetSUP/cron-transfer.php` - Give all permissions to  `FaucetSUP` directory.<br/><br/>
