@@ -63,12 +63,10 @@ function setClaim(){
             $.ajax({
                 type : 'POST',
                 url  : '../captcha.php',
-                data : "g-recaptcha-response=" + grecaptcha.getResponse(),
-                succes : function(data)
-                {
-                    if(data.status == 404)
+                data : "g-recaptcha-response=" + grecaptcha.getResponse()  
+            }).done(function(data){
+                if(data.status == 404)
                     {
-
                         $.post('../checkClaims.php',
                         {
                         user_address : address
@@ -106,7 +104,8 @@ function setClaim(){
                         Errorlog();
                         $("#g-recaptcha-response").focus();
                     }
-                }
+            }).fail(function(data){
+                alert(data);
             });
     });
 }
