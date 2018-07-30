@@ -119,7 +119,7 @@ function setPaid(){
         data    :   "g-recaptcha-response=" + grecaptcha.getResponse()
     }).done(function(data){
 
-        if(data.status == 400)
+        if(data.status == 404)
             {
                 $.post('../setPaid.php',
                    {
