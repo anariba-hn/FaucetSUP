@@ -62,14 +62,14 @@ function setClaim(){
 
             $.ajax({
                 type    : 'POST',
-                url     : './captcha.php',
+                url     : '../captcha.php',
                 data    : "g-recaptcha-response=" + grecaptcha.getResponse(),
                 succes  : function(data)
                 {
                     if(data.status == 404)
                     {
 
-                        $.post('./checkClaims.php',
+                        $.post('../checkClaims.php',
                         {
                         user_address : address
                         }).done(function(data){
@@ -86,7 +86,7 @@ function setClaim(){
                         }
                         else{
 
-                            $.post('./setClaim.php',
+                            $.post('../setClaim.php',
                             {
                             user_address : address,
                             reward       : reward
@@ -116,13 +116,13 @@ function setPaid(){
 
     $.ajax({
         type    :   'POST',
-        url     :   './captcha.php',
+        url     :   '../captcha.php',
         data    :   "g-recaptcha-response=" + grecaptcha.getResponse(),
         succes  : function(data)
         {
             if(data.status == 400)
             {
-                $.post('./setPaid.php',
+                $.post('../setPaid.php',
                    {
                     user_address   : address
                     }).done(function(data){
@@ -177,7 +177,7 @@ function setTransfer(){
     }
     else{
 
-        $.post('./setPayments.php',
+        $.post('../setPayments.php',
                {
             user_address   : address,
             user_pw        : user_pw,
@@ -256,7 +256,7 @@ function setTimer(){
 function getConfg(action){
 
          return new Promise(function(resolve, reject) {
-        $.post('./getConfg.php',{
+        $.post('../getConfg.php',{
             option : action
 
         }).done(function(data){
@@ -298,7 +298,7 @@ $(document).ready(function(){
 
         });*/
 
-            $.post('./getHyperlinks.php',{
+            $.post('../getHyperlinks.php',{
 
             }).done(function (data) {
                 if(data.status == 404)
@@ -323,7 +323,7 @@ $(document).ready(function(){
 
         });*/
 
-        $.post('./getHyperlinks.php',{
+        $.post('../getHyperlinks.php',{
 
         }).done(function (data) {
             if(data.status == 404)
@@ -348,7 +348,7 @@ $(document).ready(function(){
 
         });*/
 
-        $.post('./getHyperlinks.php',{
+        $.post('../getHyperlinks.php',{
 
         }).done(function (data) {
             if(data.status == 404)
