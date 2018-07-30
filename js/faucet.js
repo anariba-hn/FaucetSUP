@@ -63,7 +63,7 @@ function setClaim(){
             $.ajax({
                 type : 'POST',
                 url  : '../captcha.php',
-                data : "g-recaptcha-response2=" + grecaptcha.getResponse(),
+                data : "g-recaptcha-response=" + grecaptcha.getResponse(),
                 succes : function(data)
                 {
                     if(data.status == 404)
