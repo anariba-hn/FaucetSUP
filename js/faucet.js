@@ -61,10 +61,10 @@ function setClaim(){
             var reward = value;
 
             $.ajax({
-                type    : 'POST',
-                url     : '../captcha.php',
-                data    : "g-recaptcha-response=" + grecaptcha.getResponse(),
-                succes  : function(data)
+                type : 'POST',
+                url  : '../captcha.php',
+                data : "g-recaptcha-response=" + grecaptcha.getResponse(),
+                succes : function(data)
                 {
                     if(data.status == 404)
                     {
