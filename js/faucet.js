@@ -116,10 +116,10 @@ function setPaid(){
     $.ajax({
         type    :   'POST',
         url     :   '../captcha.php',
-        data    :   "g-recaptcha-response=" + grecaptcha.getResponse(),
-        succes  : function(data)
-        {
-            if(data.status == 400)
+        data    :   "g-recaptcha-response=" + grecaptcha.getResponse()
+    }).done(function(data){
+
+        if(data.status == 400)
             {
                 $.post('../setPaid.php',
                    {
@@ -140,8 +140,9 @@ function setPaid(){
                 Errorlog();
                 $("#g-recaptcha-response").focus();
             }
-        }
 
+    }).fail(function(data){
+        alert(data);
     });
 }
 
