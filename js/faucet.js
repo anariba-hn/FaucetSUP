@@ -60,58 +60,90 @@ function setClaim(){
 
             var reward = value;
 
-            $.post('./checkClaims.php',
-               {
-            user_address : address
-            }).done(function(data){
-            var values  = JSON.parse(data);
-            value  = values[0];
-            var     m  = parseInt(value);
+            $.ajax({
+                type    : 'POST',
+                url     : './captcha.php',
+                data    : "g-recaptcha-response=" + grecaptcha.getResponse(),
+                succes  : function(data)
+                {
+                    if(data.status == 404)
+                    {
 
-            if(data.status == 404)
-                alert(data.message);
-            else if ( m < 1)
-            {
-                $wait = (1 - m);
-                alert("You have to wait "+$wait+" minutes to claim!")
-            }
-            else{
+                        $.post('./checkClaims.php',
+                        {
+                        user_address : address
+                        }).done(function(data){
+                        var values  = JSON.parse(data);
+                        value  = values[0];
+                        var     m  = parseInt(value);
 
-                $.post('./setClaim.php',
-                       {
-                    user_address : address,
-                    reward       : reward
-                }).done(function(data){
+                        if(data.status == 404)
+                            alert(data.message);
+                        else if ( m < 1)
+                        {
+                            $wait = (1 - m);
+                            alert("You have to wait "+$wait+" minutes to claim!")
+                        }
+                        else{
 
-                    $("#btnClaim").css("visibility", "hide");
-                    $("#aClaim").css("color", "white");
-                    $("#modal1").modal("hide");
-                    window.location.reload();
-                });
-            }
+                            $.post('./setClaim.php',
+                            {
+                            user_address : address,
+                            reward       : reward
+                            }).done(function(data){
 
-        });
+                            $("#btnClaim").css("visibility", "hide");
+                            $("#aClaim").css("color", "white");
+                            $("#modal1").modal("hide");
+                            window.location.reload();
+                            });
+                        }
+
+                    });
+
+                    }else{
+                        $("#logMsg").text("Are you a robot? Then select the reCaptcha !!");
+                        Errorlog();
+                        $("#g-recaptcha-response").focus();
+                    }
+                }
+            });
     });
 }
 
 function setPaid(){
     var address     = localStorage.getItem("walle");
 
-    $.post('./setPaid.php',
-           {
-        user_address   : address
-    }).done(function(data){
-        if (data.status == 404)
-            alert(data.message);
-        else{
-            alert("Now You are avialable to tranfer your unlock-balance")
-            $("#btnClaim").css("visibility", "hide");
-            $("#aClaim").css("color", "white");
-            $("#modal1").modal("hide");
-            window.location.reload();
+    $.ajax({
+        type    :   'POST',
+        url     :   './captcha.php',
+        data    :   "g-recaptcha-response=" + grecaptcha.getResponse(),
+        succes  : function(data)
+        {
+            if(data.status == 400)
+            {
+                $.post('./setPaid.php',
+                   {
+                    user_address   : address
+                    }).done(function(data){
+                    if (data.status == 404)
+                        alert(data.message);
+                    else{
+                        alert("Now You are avialable to tranfer your unlock-balance")
+                        $("#btnClaim").css("visibility", "hide");
+                        $("#aClaim").css("color", "white");
+                        $("#modal1").modal("hide");
+                        window.location.reload();
+                    }
+                });
+            }else{
+                $("#logMsg").text("Are you a robot? Then select the reCaptcha !!");
+                Errorlog();
+                $("#g-recaptcha-response").focus();
+            }
         }
-    });
 
+    });
 }
 
 function setTransfer(){

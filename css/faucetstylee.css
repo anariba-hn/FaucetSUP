@@ -275,6 +275,16 @@ footer a{
     text-align: center;
 }
 
+.captcha-container{
+    display: flex;
+    width: auto;
+    height: auto;
+}
+
+.captcha-container .claim-captcha{
+    margin: auto;
+}
+
 /*LAST CHANGES*/
 
 .succes_signup_modal{
