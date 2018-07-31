@@ -324,6 +324,10 @@ footer a{
     visibility:hidden;
 }
 
+.IntegAddress{
+    width: 100%;
+}
+
 .errorlog{
     text-align: center;
     color: white;
