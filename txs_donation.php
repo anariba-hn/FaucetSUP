@@ -194,7 +194,7 @@ if(!empty($integArray) && isset($bulk))
             $logId = (int)$row2[0];
 
             $jsonBlock = (int)$payments->block_height;
-            $amount    = number_format((int)$payments->amount / 100000000);
+            $amount    = number_format($payments->amount / 100000000, 0, "", "");
             $tx_hash   = $payments->tx_hash;
 
             $insert = "INSERT INTO get_tx_in (donor_id, block, date_tx, log_id, amount, tx_hash) VALUES('$donor_id', '$jsonBlock','$datetx' , '$logId','$amount', '$tx_hash')";
