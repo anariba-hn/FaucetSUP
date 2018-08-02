@@ -42,7 +42,7 @@ include ("./connex.php"); //include db connection. import $cnn variable.
             $user_id = (int) $data[0];
 
             #SET COOKIE ON SERVER
-            setcookie("walle", $userid, time() + 846000);
+            setcookie("walle", $user_id, time() + 846000);
 
             $query3 = "INSERT INTO wallet(wallet_balance,wallet_unlock,wallet_withdraws,wallet_paids,wallet_claims,user_id)VALUES(0, 0, 0, 0,0, '$user_id')";
             if(!$result = mysqli_query($cnn,$query3)) 
