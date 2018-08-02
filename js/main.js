@@ -105,7 +105,7 @@ function verifyUser(){
         $("#walletLog").css("color","red");
         $('#user_address').focus();
     }
-    else if(wallet.length != 95)
+    else if(wallet.length != 95 || wallet.length != 106)
     {
         //$("#msg").css("visibility", "visible");
         //msg.text("Please enter a Valid Wallet Address");
