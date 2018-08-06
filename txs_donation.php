@@ -72,10 +72,10 @@ if(mysqli_num_rows($result) > 0)
 #
 ## PREPARE ARRAY OF PAYMETSID ON DONATION DB TO COMPARE WITH THE BULKPAYMENTS FUNCTION
 #
-$jsonBulk = $wallet->getBulkPayments($paymentID, $runBlock);
+echo $jsonBulk = $wallet->getBulkPayments($paymentID, $runBlock);
 $bulk = json_decode($jsonBulk);
 
-$query = "SELECT * FROM donation WHERE block >= '$runBlock'";
+$query = "SELECT * FROM donation WHERE block <= '$runBlock'";
 if (!$result = mysqli_query($cnn, $query))
     exit(mysqli_error($cnn));
 if(mysqli_num_rows($result) > 0)
@@ -90,7 +90,7 @@ if(mysqli_num_rows($result) > 0)
 #
 ## VERIFY IF TX ALREADY EXIST ON TABLE
 #
-if(isset($bulk))
+if(!empty($bulk))
 {
     foreach($bulk->payments as $value => $payments)
     {
@@ -119,7 +119,7 @@ if(isset($bulk))
 ## LOOP THE BULKPAYMENT AND SAVE ON TX_IN DB
 #
 
-if(!empty($integArray) && isset($bulk))
+if(!empty($integArray) && !empty($bulk))
 {
     foreach($bulk->payments as $value => $payments)
     {

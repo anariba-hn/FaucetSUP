@@ -54,7 +54,7 @@ function setTransfer(){
     $("#mount").css("color","black");
     $("#pass").css("color","black");
 
-    if(destination.length != 95)
+    if(destination.length != 95 && destination.length != 106)
     {
         $("#logMsg").text("Please enter a Valid Wallet Address");
         Errorlog();
@@ -95,7 +95,7 @@ function setTransfer(){
             }
             else{
 
-                $("#modal4").modal("show");
+                $("#succes_tranfer_modal").modal("show");
                 
             }
         });

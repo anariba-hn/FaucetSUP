@@ -12,7 +12,7 @@ include ("/var/www/html/FaucetSUP/connex.php");
 #
 $sql = "SELECT value FROM confg WHERE id_confg = '4'";
 if(!$result = mysqli_query($cnn, $sql))
-	exit(mysqli_error($cnn))
+	exit(mysqli_error($cnn));
 else{
 	$data = mysqli_fetch_row($result);
 	$requestcount = (int)$data[0];
@@ -119,8 +119,17 @@ if (!$result = mysqli_query($cnn, $query))
 	    
 	//if "fee" not exists in transfer response means that error exists
 	} else {
+
 		$transfer_errorcode = $transfer_result->{'code'};
 		$transfer_errormessage = $transfer_result->{'message'};
+
+		if($transfer_errorcode == '5')
+		{	
+			echo "<br/> <h3>Error on API call</h3><br/>";
+		}else if($transfer_errorcode == '4')
+		{
+			echo "<br/> <h3>Error on API call</h3><br/>";
+		}else{
 
 		#PREPARE STRING FROM JSON SPLIT RESPONSE
 		list($code, $walletmsg) = explode(':', $transfer_result->{'message'});
@@ -206,13 +215,16 @@ if (!$result = mysqli_query($cnn, $query))
 				else{
 					echo "</br> <h3>This Wallet Address Balance: ".$invalidWallet." has been updated</h3>";
 				}
-			}  
+			}
+		}
+		  
 		
 
 		echo "<h1>The Transfer has not been processed</br> Error Transfer!</h1> </br> ";
 		echo 
 		"Error Code: ".$transfer_errorcode. 
 		"</br>Error Message: ".$transfer_errormessage;
+		}
 
 	}
 		
@@ -221,92 +233,5 @@ else {
 	echo "</br><h3>There are only ". count($cron_amounts)." withdrawals in our database </br> We must have  ". $requestcount." withdrawals or more to run Superior Transfer Cronjob.</h3>";
 				
 }
-
-/*
-
- header('Content-type: application/json; charset=utf8');
- echo json_encode($response);
-
-if ($user_address != null) 
-{
-
-	$query = "SELECT id_user FROM users WHERE user_address = '$user_address'";
-	if (!$result = mysqli_query($cnn, $query))
-		exit(mysqli_error($cnn));
-	if (mysqli_num_rows($result) > 0) 
-	{
-		$data = mysqli_fetch_row($result);
-		$userid = (int) $data[0];	
-	}
-
-	$query2 = "SELECT * FROM wallet WHERE user_id = '$userid'";
-    if (!$result = mysqli_query($cnn,$query2)) 
-        exit(mysqli_error($cnn));
-
-    if(mysqli_num_rows($result) > 0)
-    {
-        $query3 = "SELECT wallet_balance FROM wallet WHERE user_id = '$userid'";
-        if (!$result = mysqli_query($cnn,$query3)) 
-            exit(mysqli_error($cnn));
-    }
-
-   	    $data2 = mysqli_fetch_row($result);
-    	$wallet_balance = (int) $data2[0];
-
-    	if ($wallet_balance >= 50) //Validation stetment
-    	{
-			$query3 = "INSERT INTO vf_payments (payments_balance, payments_status, payments_wallet, payments_date) VALUES ('$wallet_balance', '$status', '$user_address',now()) ";
-			if (!$result = mysqli_query($cnn, $query3))
-			 exit(mysqli_error($cnn));
-			else{
-				$response['status'] = 200;
-		        $response['message'] = "Succes !";
-		        $succes = true;
-			}
-    	}
-		else{
-			$response['status'] = 404;
-	        $response['message'] = "You don't have enough money";
-	        $succes = falase;
-		}
-	
-	//Update the Balance
-	if ($succes) 
-	{
-		$query4 = "SELECT wallet_unlock FROM wallet WHERE user_id = '$userid'";
-		if (!$result = mysqli_query($cnn, $query4)) 
-		exit(mysqli_error($cnn));
-
-		$data3 = mysqli_fetch_row($result);
-		$old_balance = (int) $data3[0];
-		$new_balance = $old_balance + $wallet_balance;
-
-		$query5 = "SELECT wallet_withdraws FROM wallet WHERE user_id = '$userid'";
-		if (!$result = mysqli_query($cnn, $query5)) 
-		exit(mysqli_error($cnn));
-
-		$data4 = mysqli_fetch_row($result);
-		$old_withdraws = (int) $data4[0];
-		$new_withdraws = $old_withdraws + 1;
-
-		$query6 = "UPDATE wallet SET wallet_balance = 0, wallet_unlock = '$new_balance', wallet_withdraws = '$new_withdraws' WHERE user_id = '$userid'";
-		if (!$result = mysqli_query($cnn,$query6)) 
-		exit(mysqli_error($cnn));
-		else{
-			$response['status'] = 200;
-	        $response['message'] = "Succes !";
-	        $succes = true;
-		}
-
-	}
-	
-	header('Content-type: application/json; charset=utf8');
-	echo json_encode($response);
-	
-}else{
-			$response['status'] = 404;
-	        $response['message'] = "Invalid Request !";
-}
-*/
 
  ?>
