@@ -90,10 +90,18 @@ function setClaim(){
                             reward       : reward
                             }).done(function(data){
 
-                            $("#btnClaim").css("visibility", "hide");
-                            $("#aClaim").css("color", "white");
-                            $("#modal1").modal("hide");
-                            window.location.reload();
+                            if(data.status == 404)
+                            {
+                                 $("#logMsg").text(data.message);
+                                 Errorlog();
+                                 alert("An Error appeared the page will be reload");
+                            }else{
+                                    $("#btnClaim").css("visibility", "hide");
+                                    $("#aClaim").css("color", "white");
+                                    $("#modal1").modal("hide");
+                                    window.location.reload();
+                                }    
+                     
                             });
                         }
 
