@@ -224,7 +224,7 @@ if (!$result = mysqli_query($cnn, $query))
 		echo 
 		"Error Code: ".$transfer_errorcode. 
 		"</br>Error Message: ".$transfer_errormessage;
-		}
+		
 
 	}
 		
