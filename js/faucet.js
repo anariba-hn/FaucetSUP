@@ -65,9 +65,8 @@ function setClaim(){
                         {
                         user_address : address
                         }).done(function(data){
-                        var values  = JSON.parse(data);
-                        var     m  = parseInt(values[0]);
-                        var     t  = parseInt(values[1]);
+                        var     m  = data.minutes;
+                        var     t  = data.time;
 
                         if(data.status == 404)
                             alert(data.message);

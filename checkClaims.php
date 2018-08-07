@@ -27,7 +27,7 @@ if($user_address != null)
 		    exit(mysqli_error($cnn));
 		else{
 		    $data = mysqli_fetch_row($result);
-		    $time = $data[0];
+		    $time = (int)$data[0];
 		    $response['time'] = $time;
 }
 
