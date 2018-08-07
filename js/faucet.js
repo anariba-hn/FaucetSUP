@@ -54,12 +54,6 @@ function getBalance(){
 function setClaim(){
     var address = localStorage.getItem("walle");
 
-    //PROMISE TO CATCH THE CONFG DB DATA
-    promiseConfig = getConfg(1);
-    promiseConfig.then(function(value) {
-
-            var reward = value;
-
             $.ajax({
                 type : 'POST',
                 url  : '../captcha.php',
@@ -72,14 +66,14 @@ function setClaim(){
                         user_address : address
                         }).done(function(data){
                         var values  = JSON.parse(data);
-                        value  = values[0];
-                        var     m  = parseInt(value);
+                        var     m  = parseInt(values[0]);
+                        var     t  = parseInt(values[1]);
 
                         if(data.status == 404)
                             alert(data.message);
-                        else if ( m < 1)
+                        else if ( m < t)
                         {
-                            $wait = (1 - m);
+                            $wait = (t - m);
                             alert("You have to wait "+$wait+" minutes to claim!")
                         }
                         else{
@@ -87,7 +81,6 @@ function setClaim(){
                             $.post('../setClaim.php',
                             {
                             user_address : address,
-                            reward       : reward
                             }).done(function(data){
 
                             if(data.status == 404)
@@ -95,6 +88,7 @@ function setClaim(){
                                  $("#logMsg").text(data.message);
                                  Errorlog();
                                  alert("An Error appeared the page will be reload");
+                                 window.location.reload();
                             }else{
                                     $("#btnClaim").css("visibility", "hide");
                                     $("#aClaim").css("color", "white");
@@ -115,7 +109,6 @@ function setClaim(){
             }).fail(function(data){
                 alert(data);
             });
-    });
 }
 
 function setPaid(){
@@ -297,14 +290,6 @@ $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
 
     $("#btnClaim").click(function(){
-            /*
-            promiseConfig = getConfg(3);
-            promiseConfig.then(function(value) {
-            var ref = value;
-            window.open(ref, "Diseño Web", "width=500, height=300");
-            setClaim();
-
-        });*/
 
             $.post('../getHyperlinks.php',{
 
@@ -322,15 +307,6 @@ $(document).ready(function(){
 
     $("#btnPaid").click(function(){
 
-        /*
-        promiseConfig = getConfg(3);
-        promiseConfig.then(function(value) {
-        var ref = value;
-        window.open(ref, "Diseño Web", "width=500, height=300");
-        setClaim();
-
-        });*/
-
         $.post('../getHyperlinks.php',{
 
         }).done(function (data) {
@@ -346,15 +322,6 @@ $(document).ready(function(){
     })
 
     $("#btnSend").click(function(){
-
-        /*
-            promiseConfig = getConfg(3);
-            promiseConfig.then(function(value) {
-            var ref = value;
-            window.open(ref, "Diseño Web", "width=500, height=300");
-            setClaim();
-
-        });*/
 
         $.post('../getHyperlinks.php',{
 

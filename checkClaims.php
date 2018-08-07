@@ -20,7 +20,16 @@ if($user_address != null)
 
 		$data2 = mysqli_fetch_row($result2);
 		$minutes = (int) $data2[0];
-		$response = $minutes;
+		$response['minutes'] = $minutes;
+
+		$sql = "SELECT value FROM confg WHERE id_confg = '2'";
+		if(!$result = mysqli_query($cnn, $sql))
+		    exit(mysqli_error($cnn));
+		else{
+		    $data = mysqli_fetch_row($result);
+		    $time = $data[0];
+		    $response['time'] = $time;
+}
 
 	header('Content-type: application/json; charset=utf8');
 	echo json_encode($response);
