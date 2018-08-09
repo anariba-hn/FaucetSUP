@@ -67,7 +67,7 @@ include ("./connex.php"); //include db connection. import $cnn variable.
  Password: '.$user_pw.'
  ---------------------------------------------------------------------
  
- Please click this link to activate your account: http://localhost:8888/FaucetSUP/verify.php?email='.$user_email.'&hash='.$code.'
+ Please click this link to activate your account: https://faucet.the-superior-coin.net/verify.php?email='.$user_email.'&hash='.$code.'
  
  Learn How it works: https://steemit.com/superiorcoin/@joanstewart/how-new-faucet-for-superior-coin-works
  Check our Telegram SUP Channel: https://t.me/superiorcoin
