@@ -81,11 +81,55 @@
         </div>
         <!-- ENDS ROW 2-->
 
+        <div class="container payments-container">
+            <div class="table-responsive ">
+                <h2>Donations</h2>
+                <table width="100%" class="table table-hover">
+                    <tbody>
+                        <tr>
+                            <td>Hyperlink</td>
+                            <td>Live</td>
+                        </tr>
+                    </tbody>
+
+                    <?php
+                    #CATCHING THE COOKIE FROM SERVER SIDE
+                    $walle = $_COOKIE["walle"];
+
+                    $query = "SELECT user_email FROM users WHERE id_user = '$walle'";
+                    if(!$result = mysqli_query($cnn, $query))
+                        exit(mysqli_error($cnn));
+                    else{
+                        $data = mysqli_fetch_row($result);
+                        $email = $data[0];
+                        }
+
+                    $query2 = "SELECT * FROM donation WHERE email = '$email' AND hyperlink != '' AND amount != ''";
+                    if(!$result2 = mysqli_query($cnn, $query2))
+                        exit(mysqli_error($cnn));
+                    if(mysqli_num_rows($result2) > 0)
+                    {
+                        while($row = mysqli_fetch_assoc($result2))
+                        {
+                            echo "<tr>";
+                            echo "<td>", $row['hyperlink'], "</td>";
+                            echo "<td>", $row['amount'], " - Outputs</td>";
+                            echo "</tr>";
+                        }
+                    }else{
+
+                        echo "<p class=\"text-danger\">You do not have any donation yet</p>";
+                    }
+                    ?>
+                </table>
+            </div>
+        </div>
+
         <div class="payments-container">
             <div class="table-responsive succes-tbl">
                <br/>
                <h2>Succesfully Transferred</h2>
-                <table widh="100%" class="table table-hover" id="tb-succes">
+                <table width="100%" class="table table-hover" id="tb-succes">
                         <tbody>
                             <tr>
                                 <td width="10%">ID</td>
@@ -195,7 +239,7 @@
             <div class="table-responsive error-tbl">
                <br/>
                <h2>Transfer Errors</h2>
-                <table widh="100%" class="table table-hover" id="tb-error">
+                <table width="100%" class="table table-hover" id="tb-error">
                         <tbody>
                             <tr>
                                 <td width="10%">ID</td>

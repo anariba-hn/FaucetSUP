@@ -80,12 +80,12 @@ if (!$result = mysqli_query($cnn, $query))
 
 		for ($i=0; $i < $requestcount; $i++) {
 			
-			echo "</br>--> Running transfer number: " .$i. "/ with amount of:" .$cron_amounts[$i];
-				$cron_address[$i];
+			echo "</br>--> Running transfer number: " .$i. "/ with amount of:" .$cron_amounts[$i] . "address: ". $cron_address[$i];
+				
 			/*$db2->query("update tbl_withdrawal set status=1,reccode='".$hash_transfer."',fee=".$transfer_fee." where withdrawal_id=".$wid."");
 			*/
 		
-			$query2 = "SELECT id_user FROM users WHERE user_address = '$cron_address[$i]'";
+			$query2 = "SELECT user_id FROM vf_payments WHERE payments_wallet = '$cron_address[$i]'";
 		    if (!$result = mysqli_query($cnn,$query2)) 
 		        exit(mysqli_error($cnn));
 

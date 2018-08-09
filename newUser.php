@@ -13,7 +13,7 @@ include ("./connex.php"); //include db connection. import $cnn variable.
  {
 	$query = "SELECT * FROM users WHERE user_email = '$user_email' or user_address = '$user_address'";
 	if (!$result = mysqli_query($cnn, $query))
-        exit(mysqli_error($conn));
+        exit(mysqli_error($cnn));
     if(mysqli_num_rows($result) > 0)
     {
     	while($row = mysqli_fetch_assoc($result))
@@ -26,7 +26,8 @@ include ("./connex.php"); //include db connection. import $cnn variable.
 
     	$salted = "4566654jyttgdjgghjygg".$user_pw."yqwsx6890d"; //encryptin pw
         $hashed = hash("sha512", $salted); //encryptin pw
-    	$query = "INSERT INTO users(user_name, user_email, user_pw, user_address, user_type) VALUES('$user_name','$user_email','$hashed','$user_address','$type')";
+        $code   = md5(rand(0,1000)); //Generate random 32 character hash and assign it to a local variable. // Example output: f4552671f8909587cf485ea990207f3b
+    	$query = "INSERT INTO users(user_name, user_email, user_pw, user_address, registration, active) VALUES('$user_name','$user_email','$hashed','$user_address','$code', '$type')";
 
     	if(!$result = mysqli_query($cnn,$query)) 
     	{
@@ -49,11 +50,41 @@ include ("./connex.php"); //include db connection. import $cnn variable.
             {
                 exit(mysqli_error($cnn));
             }else{
+
+                #
+                ##START VERIFICATION EMAIL ADDRESS
+                #
+                $to      = $user_email; 
+                $subject = 'SignUp | Verification';
+                $message =
+ 'Thanks for sign up to Superior Coin Faucet ! 
+ 
+ Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.
+ 
+ --------------------------------------------------------------------- 
+ Username: '.$user_email.' 
+ Address : '.$user_address.' 
+ Password: '.$user_pw.'
+ ---------------------------------------------------------------------
+ 
+ Please click this link to activate your account: http://localhost:8888/FaucetSUP/verify.php?email='.$user_email.'&hash='.$code.'
+ 
+ Learn How it works: https://steemit.com/superiorcoin/@joanstewart/how-new-faucet-for-superior-coin-works
+ Check our Telegram SUP Channel: https://t.me/superiorcoin
+ SuperiorCoin: https://www.superior-coin.com/
+ Kryptonia: https://kryptonia.io/
+ 
+ ';
+
+                $headers = 'From:admin@superior.com' . "\r\n"; 
+                mail($to, $subject, $message, $headers); //Send the email
+
+                #JSON CREATE
                 $response['status'] = 200;
                 $response['message'] = "Succes !";
                 $succes = true;
             }
-    
+
         }
 
         if (!$succes) {

@@ -21,7 +21,7 @@ function logIn(){
                 //$("#alert_msg").text("This Address does not exist, please Sign-Up first");
                 //$("#alert_modal").modal("show");
                 $("#txtWallet").focus();
-                $("#logMsg").text("This Address does not exist, please Sign-Up first");
+                $("#logMsg").text("This Address does not exist or not have been activated, please Sign-Up first or check your mail box");
                 Errorlog();
             }
             else
@@ -340,8 +340,7 @@ $(document).ready(function(){
     })
 
     $("#btnRedirect").click(function(){
-        alert("This Could be an Add-on")
-        window.location.href = "faucet.html";
+        window.location.reload();
         window.open("https://www.youtube.com/watch?v=coVJIoQJx9Q", "Diseño Web", "width=300, height=200");
     })
 

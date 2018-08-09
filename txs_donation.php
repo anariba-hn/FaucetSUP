@@ -75,7 +75,7 @@ if(mysqli_num_rows($result) > 0)
 echo $jsonBulk = $wallet->getBulkPayments($paymentID, $runBlock);
 $bulk = json_decode($jsonBulk);
 
-$query = "SELECT * FROM donation WHERE block <= '$runBlock'";
+$query = "SELECT * FROM donation WHERE block >= '$runBlock'";
 if (!$result = mysqli_query($cnn, $query))
     exit(mysqli_error($cnn));
 if(mysqli_num_rows($result) > 0)
@@ -97,7 +97,7 @@ if(!empty($bulk))
         #PREPARE THE PAYMENT ID WITHOUT ZEROS AT FRONT OR END
         $pid = $payments->payment_id;
         $tags = strip_tags($pid);
-        $explode = trim($tags, "0");
+        $explode = substr($tags, 0, 16);
 
         $request = "SELECT * FROM get_tx_in WHERE tx_hash = '$payments->tx_hash' ";
         if(!$result = mysqli_query($cnn, $request))
@@ -126,7 +126,7 @@ if(!empty($integArray) && !empty($bulk))
         #PREPARE THE PAYMENT ID WITHOUT ZEROS AT FRONT OR END
         $pid = $payments->payment_id;
         $tags = strip_tags($pid);
-        $explode = trim($tags, "0");
+        $explode = substr($tags, 0, 16);
 
         #
         ##API CALL TO GET THE DONATION DATE PER EACH

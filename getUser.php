@@ -7,7 +7,7 @@ include("./connex.php");
 
 	if($user_address != null)
 	{
-		$query = "SELECT * FROM users WHERE user_email = '$user_address' or user_address = '$user_address'";
+		$query = "SELECT * FROM users WHERE user_email = '$user_address' or user_address = '$user_address' AND active = '1'";
 		if (!$result = mysqli_query($cnn, $query))
         exit(mysqli_error($cnn));
 	    if(mysqli_num_rows($result) > 0)

@@ -73,6 +73,43 @@ if(!empty($valid))
         $response['status'] = 200;
     }
 
+    #
+    ##VERIFY AMOUNT AND ANNOUNCE WITH AN EMAIL IF ITS GOIN TO DIE
+    #
+    $sql = "SELECT email FROM donation WHERE payment_id = '$rand'";
+    if(!$result = mysqli_query($cnn, $sql))
+            exit(mysqli_error($cnn));
+    else if($finalAmount <= 5){
+
+    $data3 = mysql_fetch_row($result);
+    $email = (string)$data3[0];
+                #
+                ##START ANNOUNCE EMAIL 
+                #
+                $to      = $email;
+                $subject = 'HyperLink | ANNOUNCE';
+                $message = 
+ 'Thanks for being a Superior Coin Star member ! 
+ 
+ Your Donation was processed on SuperiorCoin Faucet Site. Now this link will expire on the next: '.$finalAmount.' outputs. Feel free to make a new donation to keep promoting your site with us and build a better community. 
+
+ Best Regards, SuperiorCoin support.
+ 
+ --------------------------------------------------------------------- 
+ Hyperlink: '.$hyper.' 
+ Outputs to die: '.$finalAmount.' 
+ ---------------------------------------------------------------------
+ 
+ Check our Telegram SUP Channel: https://t.me/superiorcoin
+ SuperiorCoin: https://www.superior-coin.com/
+ Kryptonia: https://kryptonia.io/
+ 
+ ';
+
+        $headers = 'From:admin@superior.com' . "\r\n";
+        mail($to, $subject, $message, $headers); //Send the email
+    }
+
 }else{
     #
     ## IF DONATION ARRAY ITS EMPTY DEFAULT CONFG WILL BE SETTING

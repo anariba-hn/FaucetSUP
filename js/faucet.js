@@ -157,7 +157,7 @@ function setTransfer(){
     $("#mount").css("color","black");
     $("#pass").css("color","black");
 
-    if(destination.length != 95 && destinarion.lenght != 106)
+    if(destination.length != 95 && destination.length != 106)
     {
         //$("#msg").css("visibility", "visible");
         //msg.text("Please enter a Valid Wallet Address");
