@@ -1,13 +1,18 @@
 <?php 
 include ("./connex.php"); //include db connection. import $cnn variable.
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+require "/var/www/html/vendor/autoload.php";
 
-    $user_name    = $_POST['user_name'];
-    $user_email   = $_POST['user_email'];
-    $user_pw      = $_POST['user_pw'];
-    $user_address = $_POST['user_address'];
-    $succes  = false;
-    $response= array();
-    $type    = 0; //user_type will be 0 by default as player 1 will be donate member
+
+$mail = new PHPMailer(true);
+$user_name    = $_POST['user_name'];
+$user_email   = $_POST['user_email'];
+$user_pw      = $_POST['user_pw'];
+$user_address = $_POST['user_address'];
+$succes  = false;
+$response= array();
+$type    = 0; //user_type will be 0 by default as player 1 will be donate member
 //  $cnn     = include
  if($user_name != null && $user_email != null && $user_pw != null && $user_address != null)   
  {
@@ -50,7 +55,7 @@ include ("./connex.php"); //include db connection. import $cnn variable.
             {
                 exit(mysqli_error($cnn));
             }else{
-
+                try{
                 //Server settings
                 //$mail->SMTPDebug = 2;                               // Enable verbose debug output
                 $mail->isSMTP();                                      // Set mailer to use SMTP
@@ -159,7 +164,6 @@ include ("./connex.php"); //include db connection. import $cnn variable.
                 </html>
 
                 ';
-                
                 $mail->send();
 
                 #JSON CREATE
@@ -167,6 +171,13 @@ include ("./connex.php"); //include db connection. import $cnn variable.
                 $response['message'] = "Succes !";
                 $succes = true;
             }
+            catch(Exception $e){
+                #JSON CREATE
+                $response['status'] = 404;
+                $response['message'] = $e;
+            }
+                
+         }
 
         }
 
