@@ -77,13 +77,13 @@ include ("./connex.php"); //include db connection. import $cnn variable.
  ';
 
                 $headers = 'From:admin@superior.com' . "\r\n"; 
-                mail($to, $subject, $message, $headers); //Send the email
-
-                #JSON CREATE
-                $response['status'] = 200;
-                $response['message'] = "Succes !";
-                $succes = true;
+                mail($to, $subject, $message, $headers); //Send the email      
             }
+
+            #JSON CREATE
+            $response['status'] = 200;
+            $response['message'] = "Succes !";
+            $succes = true;
 
         }
 
