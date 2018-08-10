@@ -1,6 +1,5 @@
 <?php 
 include ("./connex.php"); //include db connection. import $cnn variable.
-
     $user_name    = $_POST['user_name'];
     $user_email   = $_POST['user_email'];
     $user_pw      = $_POST['user_pw'];
@@ -11,46 +10,40 @@ include ("./connex.php"); //include db connection. import $cnn variable.
 //  $cnn     = include
  if($user_name != null && $user_email != null && $user_pw != null && $user_address != null)   
  {
-	$query = "SELECT * FROM users WHERE user_email = '$user_email' or user_address = '$user_address'";
-	if (!$result = mysqli_query($cnn, $query))
+    $query = "SELECT * FROM users WHERE user_email = '$user_email' or user_address = '$user_address'";
+    if (!$result = mysqli_query($cnn, $query))
         exit(mysqli_error($cnn));
     if(mysqli_num_rows($result) > 0)
     {
-    	while($row = mysqli_fetch_assoc($result))
-    	{
-    		$response = $row;
-    	}
+        while($row = mysqli_fetch_assoc($result))
+        {
+            $response = $row;
+        }
     }
     else
     {
-
-    	$salted = "4566654jyttgdjgghjygg".$user_pw."yqwsx6890d"; //encryptin pw
+        $salted = "4566654jyttgdjgghjygg".$user_pw."yqwsx6890d"; //encryptin pw
         $hashed = hash("sha512", $salted); //encryptin pw
         $code   = md5(rand(0,1000)); //Generate random 32 character hash and assign it to a local variable. // Example output: f4552671f8909587cf485ea990207f3b
-    	$query = "INSERT INTO users(user_name, user_email, user_pw, user_address, registration, active) VALUES('$user_name','$user_email','$hashed','$user_address','$code', '$type')";
-
-    	if(!$result = mysqli_query($cnn,$query)) 
-    	{
-    		exit(mysqli_error($cnn));
-    	}else{
+        $query = "INSERT INTO users(user_name, user_email, user_pw, user_address, registration, active) VALUES('$user_name','$user_email','$hashed','$user_address','$code', '$type')";
+        if(!$result = mysqli_query($cnn,$query)) 
+        {
+            exit(mysqli_error($cnn));
+        }else{
             $query2 = "SELECT id_user FROM users WHERE user_address = '$user_address'";
             if(!$result = mysqli_query($cnn,$query2)) 
             {
                 exit(mysqli_error($cnn));
             }
-
             $data = mysqli_fetch_row($result);
             $user_id = (int) $data[0];
-
             #SET COOKIE ON SERVER
             setcookie("walle", $user_id, time() + 846000);
-
-            $query3 = "INSERT INTO wallet(wallet_balance,wallet_unlock,wallet_withdraws,wallet_paids,wallet_claims,paids_update,user_id)VALUES(0, 0, 0, 0,0,now(),'$user_id')";
+            $query3 = "INSERT INTO wallet(wallet_balance,wallet_unlock,wallet_withdraws,wallet_paids,wallet_claims,user_id)VALUES(0, 0, 0, 0,0, '$user_id')";
             if(!$result = mysqli_query($cnn,$query3)) 
             {
                 exit(mysqli_error($cnn));
             }else{
-
                 #
                 ##START VERIFICATION EMAIL ADDRESS
                 #
@@ -75,31 +68,25 @@ include ("./connex.php"); //include db connection. import $cnn variable.
  Kryptonia: https://kryptonia.io/
  
  ';
-
                 $headers = 'From:admin@superior.com' . "\r\n"; 
-                mail($to, $subject, $message, $headers); //Send the email      
+                mail($to, $subject, $message, $headers); //Send the email
+                #JSON CREATE
+                $response['status'] = 200;
+                $response['message'] = "Succes !";
+                $succes = true;
             }
-
-            #JSON CREATE
-            $response['status'] = 200;
-            $response['message'] = "Succes !";
-            $succes = true;
-
         }
-
         if (!$succes) {
          $response['status'] = 404;
          $response['message'] = "Invalid Request !";
         }
-
     }
     header('Content-type: application/json; charset=utf8');
     echo json_encode($response);
 }
 else
 {
-	$response['status'] = 404;
-	$response['message'] = "Invalid Request !";
+    $response['status'] = 404;
+    $response['message'] = "Invalid Request !";
 }
-
  ?>
