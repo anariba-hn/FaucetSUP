@@ -291,6 +291,15 @@ footer a{
     text-align: center;
 }
 
+.succes_tranfer_modal{
+    text-align: center;
+}
+
+.succes_tranfer_modal img{
+    width: 96px;
+    height: 96px;
+}
+
 .donate-modal{
     text-align: center;
 }

@@ -410,16 +410,18 @@
                 </div>
                 <div class="modal-body succes_tranfer_modal">
                     <br/>
-                    <p>Your transfer has been processed</p>
+                    <p>YYour transfer has been processed. Please wait for it to complete and it will output in your history section.</p>
+                    <div class="row">
+                        <div class="col">
+                            <img src="./assets/img/success.png" alt="success-png">
+                        </div>
+                    </div>
                     <br/>
                     <button id="btnClose" type="button" class="btn btn-succes" data-dismiss="modal">OK</button>
                 </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- succes modal -->
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- succes modal -->
 
     <!--ERROR LOG DIV-->
 
