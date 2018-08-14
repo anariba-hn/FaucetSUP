@@ -147,12 +147,12 @@ require "/var/www/html/vendor/vendor/autoload.php";
                         <div class='content'>
                             <p>Your account has been created, you can login with the following credentials after you have activated your account by pressing the url below.</p>
                             <div class='data'>
-                            <p>Username:" .$user_name."</p>
-                            <p>Address:" .$user_address."</p>
-                            <p>Password:" .$user_pw."</p>
+                            <p>Username: " .$user_name."</p>
+                            <p>Address: " .$user_address."</p>
+                            <p>Password: " .$user_pw."</p>
                             </div>
                             <div class='redirect'>
-                                <p>Please click this link to activate your account: <a href='https://faucet.the-superior-coin.net/verify.php?email=".$user_email."&hash=".$code.">https://faucet.the-superior-coin.net/verify.php?email=".$user_email."&hash=".$code."</a></p>
+                                <p>Please click this link to activate your account: <a href='https://faucet.the-superior-coin.net/verify.php?email=".$user_email."&hash=".$code."'>https://faucet.the-superior-coin.net/verify.php?email=".$user_email."&hash=".$code."</a></p>
                             </div>
                         </div>
                         <div class='footer'>
