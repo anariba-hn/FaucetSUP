@@ -369,3 +369,8 @@ footer a{
     height: 256px;
 }
 
+.grecaptcha-badge{
+            margin: auto;
+            margin-bottom: 15px;
+}
+

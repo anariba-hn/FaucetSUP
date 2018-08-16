@@ -54,73 +54,50 @@ function getBalance(){
 function setClaim(){
     var address = localStorage.getItem("walle");
 
-            $.ajax({
-                type : 'POST',
-                url  : '../captcha.php',
-                data : "g-recaptcha-response=" + grecaptcha.getResponse()  
+            $.post('../checkClaims.php',
+            {
+            user_address : address
             }).done(function(data){
+            var     m  = data.minutes;
+            var     t  = data.time;
+
+            if(data.status == 404)
+                alert(data.message);
+            else if ( m < t)
+            {
+                $wait = (t - m);
+                alert("You have to wait "+$wait+" minutes to claim!")
+            }
+            else{
+
+                $.post('../setClaim.php',
+                {
+                user_address : address,
+                }).done(function(data){
+
                 if(data.status == 404)
-                    {
-                        $.post('../checkClaims.php',
-                        {
-                        user_address : address
-                        }).done(function(data){
-                        var     m  = data.minutes;
-                        var     t  = data.time;
+                {
+                     $("#logMsg").text(data.message);
+                     Errorlog();
+                     alert("An Error appeared the page will be reload");
+                     window.location.reload();
+                }else{
+                        $("#btnClaim").css("visibility", "hide");
+                        $("#aClaim").css("color", "white");
+                        $("#modal1").modal("hide");
+                        window.location.reload();
+                    }    
+         
+                });
+            }
 
-                        if(data.status == 404)
-                            alert(data.message);
-                        else if ( m < t)
-                        {
-                            $wait = (t - m);
-                            alert("You have to wait "+$wait+" minutes to claim!")
-                        }
-                        else{
+        });
 
-                            $.post('../setClaim.php',
-                            {
-                            user_address : address,
-                            }).done(function(data){
-
-                            if(data.status == 404)
-                            {
-                                 $("#logMsg").text(data.message);
-                                 Errorlog();
-                                 alert("An Error appeared the page will be reload");
-                                 window.location.reload();
-                            }else{
-                                    $("#btnClaim").css("visibility", "hide");
-                                    $("#aClaim").css("color", "white");
-                                    $("#modal1").modal("hide");
-                                    window.location.reload();
-                                }    
-                     
-                            });
-                        }
-
-                    });
-
-                    }else{
-                        $("#logMsg").text("Are you a robot? Then select the reCaptcha !!");
-                        Errorlog();
-                        $("#g-recaptcha-response").focus();
-                    }
-            }).fail(function(data){
-                alert(data);
-            });
 }
 
 function setPaid(){
     var address     = localStorage.getItem("walle");
 
-    $.ajax({
-        type    :   'POST',
-        url     :   '../captcha.php',
-        data    :   "g-recaptcha-response=" + grecaptcha.getResponse()
-    }).done(function(data){
-
-        if(data.status == 404)
-            {
                 $.post('../setPaid.php',
                    {
                     user_address   : address
@@ -135,15 +112,6 @@ function setPaid(){
                         window.location.reload();
                     }
                 });
-            }else{
-                $("#logMsg").text("Are you a robot? Then select the reCaptcha !!");
-                Errorlog();
-                $("#g-recaptcha-response").focus();
-            }
-
-    }).fail(function(data){
-        alert(data);
-    });
 }
 
 function setTransfer(){
@@ -199,7 +167,7 @@ function setTransfer(){
             {
                 //$("#msg").css("visibility", "visible");
                 //msg.text(data.message);
-                $("#logMsg").text("Please enter a higher amount");
+                $("#logMsg").text(data.message);
                 Errorlog();
                 $("#mount").css("color","red");
                 $('#amount').focus();
