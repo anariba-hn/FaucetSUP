@@ -88,7 +88,7 @@ function setTransfer(){
             }
             else if(data.flag == 2)
             {
-                $("#logMsg").text(data.message);
+                $("#logMsg").text("Please enter a higher amount");
                 Errorlog();
                 $("#mount").css("color","red");
                 $('#amount').focus();
