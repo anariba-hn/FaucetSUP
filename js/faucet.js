@@ -3,6 +3,8 @@ function getBalance(){
 
     if(!!Cookies.get('session'))
         var address = localStorage.getItem("walle");
+    else
+        window.location.href = "index.html";
 
     $.post('./getBalance.php',
            {
