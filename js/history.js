@@ -119,9 +119,30 @@ $(document).ready(function(){
     getBalance();
 
     $("#btnSend").click(function(){
-        alert("This could an Add-On");
-         window.open("https://www.youtube.com/watch?v=coVJIoQJx9Q", "Diseño Web", "width=500, height=300");
-        setTransfer();
+        $.post('../getHyperlinks.php',{
+
+            }).done(function (data) {
+                if(data.status == 404)
+                    alert("Ups ! something happends: " + data.message);
+                else{
+
+                    var href = data.hyper;
+                    var windowName = 'userConsole'; 
+                    var popUp = window.open(href, windowName, 'width=1000, height=700, left=24, top=24, scrollbars, resizable');
+                    if (popUp == null || typeof(popUp)=='undefined') {  
+                    
+                        swal({
+                          type: 'error',
+                          title: 'Oops...',
+                          text: 'Please disable your pop-up blocker and click the "Transfer" button again.'
+                        })
+                    } 
+                    else {  
+                        popUp.focus();
+                        setTransfer();
+                    }
+                }
+            });
     })
 
     $("#btnClose").click(function(){

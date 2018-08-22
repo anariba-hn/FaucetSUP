@@ -300,8 +300,20 @@ $(document).ready(function(){
                 else{
 
                     var href = data.hyper;
-                    window.open(href, "Diseño Web", "width=500, height=300");
-                    setClaim();
+                    var windowName = 'userConsole'; 
+                    var popUp = window.open(href, windowName, 'width=1000, height=700, left=24, top=24, scrollbars, resizable');
+                    if (popUp == null || typeof(popUp)=='undefined') {  
+                    
+                        swal({
+                          type: 'error',
+                          title: 'Oops...',
+                          text: 'Please disable your pop-up blocker and click the "Claim" button again.'
+                        })
+                    } 
+                    else {  
+                        popUp.focus();
+                        setClaim();
+                    }
                 }
             });
     })
@@ -310,32 +322,56 @@ $(document).ready(function(){
 
         $.post('../getHyperlinks.php',{
 
-        }).done(function (data) {
-            if(data.status == 404)
-                alert("Ups ! something happends: " + data.message);
-            else{
+            }).done(function (data) {
+                if(data.status == 404)
+                    alert("Ups ! something happends: " + data.message);
+                else{
 
-                var href = data.hyper;
-                window.open(href, "Diseño Web", "width=500, height=300");
-                setPaid();
-            }
-        });
+                    var href = data.hyper;
+                    var windowName = 'userConsole'; 
+                    var popUp = window.open(href, windowName, 'width=1000, height=700, left=24, top=24, scrollbars, resizable');
+                    if (popUp == null || typeof(popUp)=='undefined') {  
+                    
+                        swal({
+                          type: 'error',
+                          title: 'Oops...',
+                          text: 'Please disable your pop-up blocker and click the "Paid" button again.'
+                        })
+                    } 
+                    else {  
+                        popUp.focus();
+                        setPaid();
+                    }
+                }
+            });
     })
 
     $("#btnSend").click(function(){
 
         $.post('../getHyperlinks.php',{
 
-        }).done(function (data) {
-            if(data.status == 404)
-                alert("Ups ! something happends: " + data.message);
-            else{
+            }).done(function (data) {
+                if(data.status == 404)
+                    alert("Ups ! something happends: " + data.message);
+                else{
 
-                var href = data.hyper;
-                window.open(href, "Diseño Web", "width=500, height=300");
-                setTransfer();
-            }
-        });
+                    var href = data.hyper;
+                    var windowName = 'userConsole'; 
+                    var popUp = window.open(href, windowName, 'width=1000, height=700, left=24, top=24, scrollbars, resizable');
+                    if (popUp == null || typeof(popUp)=='undefined') {  
+                    
+                        swal({
+                          type: 'error',
+                          title: 'Oops...',
+                          text: 'Please disable your pop-up blocker and click the "Transfer" button again.'
+                        })
+                    } 
+                    else {  
+                        popUp.focus();
+                        setTransfer();
+                    }
+                }
+            });
     })
 
     $("#btnClose").click(function(){
