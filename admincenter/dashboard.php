@@ -124,10 +124,10 @@ if(empty($_SESSION['admin']))
                         <td width="20%">Email</td>
                         <td width="10%">Balance</td>
                         <td width="10%">Unlock</td>
-                        <td width="40%">Wallet</td>
                         <td width="10%">Withdrawals</td>
                         <td width="10%">Paid</td>
                         <td width="10%">Claims</td>
+                        <td width="40%">Wallet</td>
                     </tr>
                 </thead>
 
@@ -143,10 +143,10 @@ if(empty($_SESSION['admin']))
                                 echo "<td>", $row['user_email'], "</td>";
                                 echo "<td>", $row['wallet_balance'], "</td>";
                                 echo "<td>", $row['wallet_unlock'], "</td>";
-                                echo "<td>", $row['user_address'], "</td>";
                                 echo "<td>", $row['wallet_withdraws'], "</td>";
                                 echo "<td>", $row['wallet_paids'], "</td>";
                                 echo "<td>", $row['wallet_claims'], "</td>";
+                                echo "<td>", $row['user_address'], "</td>";
                             echo "</tr>";
                         }
                 ?>

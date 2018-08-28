@@ -52,14 +52,14 @@ require "/var/www/html/vendor/vendor/autoload.php";
             }else{
                 $mail = new PHPMailer(true); 
                 //Server settings
-                //$mail->SMTPDebug = 1;                               // Enable verbose debug output
-                //$mail->isSMTP();                                      // Set mailer to use SMTP
-                //$mail->Host = 'mail.faucet.the-superior-coin.net';  // Specify main and backup SMTP servers
-                //$mail->SMTPAuth = true;                               // Enable SMTP authentication
-                //$mail->Username = 'admin@superior-coin.com';          // SMTP username
-                //$mail->Password = 'secret';                           // SMTP password
-                //$mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
-                //$mail->Port = 465;                                    // TCP port to connect to
+                $mail->SMTPDebug = 1;                               // Enable verbose debug output
+                $mail->isSMTP();                                      // Set mailer to use SMTP
+                $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+                $mail->SMTPAuth = true;                               // Enable SMTP authentication
+                $mail->Username = 'superiorfaucet@gmail.com';          // SMTP username
+                $mail->Password = 'Superior2020';                           // SMTP password
+                $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+                $mail->Port = 465;                                    // TCP port to connect to
 
                 //Recipients
                 $mail->setFrom('admin@superior-coin.com', 'Faucet');

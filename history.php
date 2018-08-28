@@ -411,7 +411,7 @@
                 </div>
                 <div class="modal-body succes_tranfer_modal">
                     <br/>
-                    <p>YYour transfer has been processed. Please wait for it to complete and it will output in your history section.</p>
+                    <p>Your transfer has been processed. Please wait for it to complete and it will output in your history section.</p>
                     <div class="row">
                         <div class="col">
                             <img src="./assets/img/success.png" alt="success-png">
@@ -461,7 +461,7 @@
                 </div>
 
                 <div class="col-xs-2 col-md-2 media-icon">
-                    <a href="https://t.me/superiorcoin"><img src="./assets/img/telegram_PNG14.png" alt="TLG-PNG"></a>
+                    <a href="https://discord.gg/swsHbJH"><img src="./assets/img/discord.png" alt="DISCORD-PNG"></a>
                 </div>
 
                 <div class="col-xs-2 col-md-2 media-icon">
