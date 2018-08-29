@@ -44,6 +44,13 @@
                     <li class="nav-item">
                         <a id="btnLogOut" class="nav-link" href="#">Log Out</a>
                     </li>
+                    <li class="nav-item google_translate_element">
+                            <div id="google_translate_element"></div><script type="text/javascript">
+                            function googleTranslateElementInit() {
+                              new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, gaTrack: true, gaId: 'UA-120818445-1'}, 'google_translate_element');
+                            }
+                            </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+                        </li>
                 </ul>
             </div>
         </nav>
