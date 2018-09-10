@@ -460,7 +460,10 @@
                 </div>
 
                 <div class="col-xs-2 col-md-2 media-icon">
-                    <a href="https://www.linkedin.com/company/superior-coin/"><img src="assets/img/003-linkedin.png" alt="LINKD-PNG"></a>
+                    <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&url=https://faucet.the-superior-coin.net/&title=Visit%20and%20start%20earning%20Superior%20Coin
+                    &summary=My%20favorite%20developer%20program&source=SuperiorFaucet">
+                    <img src="assets/img/003-linkedin.png" alt="LINKD-PNG">
+                    </a>
                 </div>
 
                 <div class="col-xs-2 col-md-2 media-icon">
@@ -472,11 +475,25 @@
                 </div>
 
                 <div class="col-xs-2 col-md-2 media-icon">
-                    <a href="https://www.facebook.com/TheSuperiorCoin/"><img src="assets/img/facebook.png" alt="FCB-PNG"></a>
+                    <!--<a href="https://www.facebook.com/TheSuperiorCoin/"></a>-->
+                    <a  target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffaucet.the-superior-coin.net%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
+                    <img src="assets/img/facebook.png" alt="FCB-PNG">
+                    </a>
+                    <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = 'https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v3.1';
+                          fjs.parentNode.insertBefore(js, fjs);
+                          }(document, 'script', 'facebook-jssdk'));
+                    </script>
                 </div>
 
                 <div class="col-xs-2 col-md-2 media-icon">
-                    <a href="https://twitter.com/superiorcoins"><img src="assets/img/twitter.png" alt="TWITTER-PNG"></a>
+                    <!--<a href="https://twitter.com/superiorcoins"></a>-->
+                    <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/intent/tweet?hashtags=Crypto,BlockChain&amp;original_referer=https%3A%2F%2Fdeveloper.twitter.com%2Fen%2Fdocs%2Ftwitter-for-websites%2Ftweet-button%2Foverview&amp;ref_src=twsrc%5Etfw&amp;related=twitterapi%2Ctwitter&amp;text=Visit%20and%20start%20earning%20Superior%20Coin&amp;tw_p=tweetbutton&amp;url=https%3A%2F%2Ffaucet.the-superior-coin.net&amp;via=superiorcoins">
+                        <img src="assets/img/twitter.png" alt="TWITTER-PNG">
+                    </a>
                 </div>
 
             </div> <!-- CONTAINER ENDS -->
