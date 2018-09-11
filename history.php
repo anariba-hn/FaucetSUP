@@ -22,7 +22,7 @@
 
 <body>
 
-    <head>
+    <header>
         <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="./faucet.html">
                     <img src="assets/img/sup-logo.png" width="40" height="40" class="d-inline-block align-top" alt="">
@@ -45,16 +45,18 @@
                         <a id="btnLogOut" class="nav-link" href="#">Log Out</a>
                     </li>
                     <li class="nav-item google_translate_element">
-                            <div id="google_translate_element"></div><script type="text/javascript">
+                            <div id="google_translate_element"></div>
+                            <script>
                             function googleTranslateElementInit() {
                               new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, gaTrack: true, gaId: 'UA-120818445-1'}, 'google_translate_element');
                             }
-                            </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+                            </script>
+                            <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
                         </li>
                 </ul>
             </div>
         </nav>
-    </head>
+    </header>
 
     <div class="container">
         <div class="row">
@@ -561,4 +563,3 @@
 </footer>
 
 </html>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">

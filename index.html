@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/faucetstylee.css">
@@ -51,11 +52,14 @@
                 </div>
             </div>
 
-            <div id="google_translate_element"></div><script type="text/javascript">
+            <div id="google_translate_element"></div>
+            <script>
             function googleTranslateElementInit() {
               new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE, gaTrack: true, gaId: 'UA-120818445-1'}, 'google_translate_element');
             }
-            </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+            </script>
+            <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">  
+            </script>
 
             <div class="col hero">
                 <h1>Welcome to Superior Coin Faucet</h1>
@@ -66,7 +70,7 @@
                 <br/>
                 <input id="txtWallet" type="text" placeholder="Enter your Wallet/Email Addres">
                 <br/>
-                <button id="btnLogIn" type="button" type="button" class="goBtn btn btn-dark">GO</button>
+                <button id="btnLogIn" type="button" class="goBtn btn btn-dark">GO</button>
                 <button id="btnSignUp" class="btn btn-dark upBtn" type="button" data-toggle="modal" data-target="#modal1">Sign Up</button>
                 <br/><br/>
                 <button class="btn btn-warning" data-toggle="modal" data-target="#donate_modal">Donate Here</button>
@@ -96,7 +100,7 @@
                         <div class="modal-header">
                             <h5 class="modal-title">Please Fill the Information Below</h5>
                             <br/>
-                            <button type="button" class="close" data-dismiss="modal" arial-label="Close">&times;</button>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div> <!--ENDS MODAL-HEADER-->
 
                         <div class="modal-body">
@@ -135,8 +139,8 @@
                                             <div style="width: 302px; height: 422px; position: absolute;">
                                                 <iframe src="https://www.google.com/recaptcha/api/fallback?k=6LdKHlcUAAAAAGgrRg639ZPqtaNP3JMny-izMjMX
                                                              "
-                                                        frameborder="0" scrolling="no"
-                                                        style="width: 302px; height:422px; border-style: none;">
+                                                        
+                                                        style="width: 302px; height:422px; border-style: none; frameborder:0; scrolling:none">
                                                 </iframe>
                                             </div>
                                         </div>
@@ -192,7 +196,7 @@
                             <br/>
                         </div>
                         <div class="modal-footer">
-                            <button id="btnSignAlert" type="button" type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
+                            <button id="btnSignAlert" type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->
@@ -426,4 +430,3 @@
 
     </footer>
 </html>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="stylesheet" href=""><style></style>
