@@ -52,7 +52,7 @@ if(isset($action))
         #
         ###VERIFY IF THE URL HAS A SECURE PROTOCOL
         #
-        if(!filter_var($hyper, FILTER_VALIDATE_URL))
+        if(filter_var($hyper, FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED))
         {
             $response['message'] = "Your URL is not secure, please enter a Valid HTTPS link";
             $response['status']  = 400;

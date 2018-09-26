@@ -277,7 +277,6 @@ function donate(action){
 
     else if(action == 1)
     {
-        $("#succesDonate_modal").modal("show");
 
         $.post('./setDonate.php',{
             name : name,
