@@ -49,13 +49,23 @@ if(isset($action))
             $donor_id = 1; //for the first donation
         }
 
-        $query = "INSERT INTO donation(name, email, integrated, payment_id, block, hyperlink, donor_id) VALUES('$name', '$email', '$integAddress', '$integPayment', '$height', '$hyper', '$donor_id')";
-        if(!$result = mysqli_query($cnn, $query))
-            exit(mysqli_error($cnn));
+        #
+        ###VERIFY IF THE URL HAS A SECURE PROTOCOL
+        #
+        if(!filter_var($hyper, FILTER_VALIDATE_URL))
+        {
+            $response['message'] = "Your URL is not secure, please enter a Valid HTTPS link";
+            $response['status']  = 400;
+        }
         else{
-            $response['address'] = $integAddress;
-            $response['message'] = "Succes";
-            $response['status']  = 200;
+            $query = "INSERT INTO donation(name, email, integrated, payment_id, block, hyperlink) VALUES('$name', '$email', '$integAddress', '$integPayment', '$height', '$hyper')";
+            if(!$result = mysqli_query($cnn, $query))
+                exit(mysqli_error($cnn));
+            else{
+                $response['address'] = $integAddress;
+                $response['message'] = "Succes";
+                $response['status']  = 200;
+            }
         }
 
         #
