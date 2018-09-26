@@ -250,7 +250,7 @@ function donate(action){
         }).done(function(data){
             
             if(data.status != 200)
-                alert("Ups something happens! " + data.message)
+                alert("Ups something happens! " + data.message);
             else{
                 $("#donate_modal").modal("hide");
                 $("#anonymus_modal").modal("show");
@@ -272,7 +272,8 @@ function donate(action){
 
     else if(!result){//$("#msgDonate").text("Please enter a Valid email address.");
         $("#logMsg").text("Please enter a Valid email address.");
-        Errorlog();}
+        Errorlog();
+    }
 
     else if(action == 1)
     {
@@ -285,8 +286,13 @@ function donate(action){
             action : act
         }).done(function(data){
             
-            if(data.status != 200)
-                alert("Ups something happens! " + data.message)
+            if(data.status == 404)
+                alert("Ups something happens! " + data.message);
+            if(data.status == 400)
+            {
+                $("#logMsg").text(data.message);
+                Errorlog();
+            }
             else{
                 $("#donate_modal").modal("hide");
                 $("#succesDonate_modal").modal("show");
