@@ -52,13 +52,13 @@ if(isset($action))
         #
         ###VERIFY IF THE URL HAS A SECURE PROTOCOL
         #
-        if(filter_var($hyper, FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED))
+        if(!filter_var($hyper, FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED))
         {
-            $response['message'] = "Your URL is not secure, please enter a Valid HTTPS link";
+            $response['message'] = "Your URL is not valid, please enter a Valid HTTPS";
             $response['status']  = 400;
         }
         else{
-            $query = "INSERT INTO donation(name, email, integrated, payment_id, block, hyperlink) VALUES('$name', '$email', '$integAddress', '$integPayment', '$height', '$hyper')";
+            $query = "INSERT INTO donation(name, email, integrated, payment_id, block, hyperlink, donor_id) VALUES('$name', '$email', '$integAddress', '$integPayment', '$height', '$hyper', '$donor_id')";
             if(!$result = mysqli_query($cnn, $query))
                 exit(mysqli_error($cnn));
             else{
