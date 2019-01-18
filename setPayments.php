@@ -49,13 +49,20 @@ $query2 = "SELECT user_pw FROM users WHERE id_user = '$userid'";
 		            exit(mysqli_error($cnn));
 		        else{
 		        	$data3 = mysqli_fetch_row($result);
-		    		$unlock_balance = (int) $data3[0];	
+		    		$unlock_balance = (int) $data3[0];
+
+		    		#NEW FILTER VALIDATION FOR WALLET CLAIMS CANT BE LESS THAN BALANCE
+			        $queryAlt = "SELECT wallet_claims FROM wallet where user_id = '$userid'";
+			        if (!$resultAlt = mysqli_query($cnn,$queryAlt)) 
+			            exit(mysqli_error($cnn));
+			        $dataAlt = mysqli_fetch_row($resultAlt);
+			        $claims  = (int) $dataAlt[0];	
 		        }
 		        
 		    }
 
 		    #VERIFY ENOUGH BALANCE
-		    if ($unlock_balance >= $tranfer_amount) 
+		    if ($unlock_balance >= $tranfer_amount && $claims >= $unlock_balance) 
 		    {
 		    	$query5 = "INSERT INTO vf_payments(payments_balance,payments_status,payments_wallet,payments_date,user_id)VALUES('$tranfer_amount','$status','$tranfer_destination',now(),'$userid')";
 		    		if (!$result = mysqli_query($cnn, $query5))

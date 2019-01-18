@@ -37,11 +37,27 @@ if ($user_address != null)
         $query4 = "SELECT wallet_unlock FROM wallet WHERE user_id = '$userid'";
         if (!$result = mysqli_query($cnn,$query4)) 
             exit(mysqli_error($cnn));
+
+        $data3 = mysqli_fetch_row($result);
+        $old_unlock = (int) $data3[0];
+
+
+        #NEW FILTER VALIDATION FOR WALLET CLAIMS CANT BE LESS THAN BALANCE
+        $queryAlt = "SELECT wallet_claims FROM wallet where user_id = '$userid'";
+        if (!$resultAlt = mysqli_query($cnn,$queryAlt)) 
+            exit(mysqli_error($cnn));
+        $dataAlt = mysqli_fetch_row($resultAlt);
+        $claims  = (int) $dataAlt[0];
+
+        if($old_unlock > $claims || $old_balance > $claims)
+            break; 
+        else
+            $new_unlock = $old_balance + $old_unlock;
     }
 
-    $data3 = mysqli_fetch_row($result);
-    $old_unlock = (int) $data3[0];
-    $new_unlock = $old_balance + $old_unlock;
+    #$data3 = mysqli_fetch_row($result);
+    #$old_unlock = (int) $data3[0];
+    #$new_unlock = $old_balance + $old_unlock;
     
 
     if(mysqli_num_rows($result)>0)
